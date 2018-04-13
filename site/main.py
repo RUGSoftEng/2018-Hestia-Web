@@ -6,7 +6,7 @@ import requests
 
 app = Flask(__name__,
     static_url_path='',
-    static_folder='templates/static')
+    static_folder='static')
 
 
 # Create endpoints
@@ -47,6 +47,7 @@ def apiRequestHandler():
 # Handle routing requests according to rest principles
 def routeRequest(method, query, payload):
     result = ""
+    print("Sending request to server:", method, ", ", query, ", ", payload);
     if (method == "GET"):
         result = requests.get(query, verify=False).text
     elif (method == "POST"):
