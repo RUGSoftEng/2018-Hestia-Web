@@ -21,3 +21,5 @@
 | *02/4/2018* | 10:00-15:00 | Updated Apache server version, fixed bugs, reorganized code, added to presentation slides. |
 | *03/4/2018* | 8:30-12:30 | Presentation of Hestia Web. |
 | *04/4/2018* | 9:00-12:30 | Conversion of apache server to flask and jinja2 integration. |
+| *12/4/2018* | 9:00-15:00 | Integration of Firebase servers lists into devices page. |
+| *13/4/2018* | 12:00-17:00 | Fixed UI bugs and created auto generating add devices form. |
