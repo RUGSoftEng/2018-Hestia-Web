@@ -112,7 +112,7 @@ payload = ns.model('payload', {
 class ServerRequest(Resource):
     @ns.doc('request_from_server')
     def post(self, id):
-        '''Update a server given its identifier'''
+        '''Forward a request to a server'''
         server = DAO.get(id)
         requestType = api.payload["requestType"]
         endpoint = api.payload["endpoint"]
