@@ -129,7 +129,20 @@ def routeRequest(method, query, payload):
 Currently, the verify flag is set to `False`, as there is no secure connection to the site yet, which obviously has to be changed. What the code above does is, based on the method, it will send a package with corresponding information to the corresponding URL, and return the result of that request back to the client who originally sent the request.
 
 ## Plugin Marketplace
-In order to allow users to more easily take advantage of Hestia's versatility, a *marketplace* will be constructed to host plugin files, and let users both browse and install plugins onto their own Hestia controller. The marketplace will consist of the following 
+In order to allow users to more easily take advantage of Hestia's versatility, a *marketplace* will be constructed to host plugin files, and let users both browse and install plugins onto their own Hestia controller. The marketplace will consist of both a front-end, user oriented design to search for and browse plugins, and a back-end database that will store the data as a relational database and associated files.
+
+![Marketplace Diagram](images/MarketplaceArchitecture.png)
+
+More specifically, for each plugin, the following information will be stored:
+
+* Name
+* Author's name
+* Date of creation/upload
+* Description
+* Rating (users can vote on plugins they like, *tentative*)
+* Path to a hidden directory containing all required files.
+* Download counter
+* Tags/Topics (light, lock, etc.)
 
 ## Glossary
 Below are defined terms used in the architecture document:
