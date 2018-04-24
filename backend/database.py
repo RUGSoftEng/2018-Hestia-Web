@@ -26,19 +26,23 @@ def get_servers():
 
 
 @app.route('/servers', methods=['POST'])
-def add_exam():
+def add_server():
     # mount exam object
     posted_server = ServerSchema(only=('serverID', 'serverName', 'serverAddress'))\
         .load(request.get_json())
 
-    server = Server(**posted_server.data, created_by="HTTP post request")
+    new_server = Server(**posted_server.data, created_by="HTTP post request")
 
     # persist exam
     session = Session()
-    session.add(server)
+    session.add(new_server)
     session.commit()
 
     # return created exam
-    new_server = ServerSchema.dump(server).data
+    new_server_schema = ServerSchema.dump(new_server).data
     session.close()
     return jsonify(new_server), 201
+
+@app.route('/hello')
+def hello():
+    return "World"
