@@ -20,6 +20,7 @@ server = ns.model('Server', {
     'serverID': fields.String(readOnly=True, description="The server identification"),
     'serverName': fields.String(readOnly=True, description="The server identification"), 
     'serverAddress': fields.String(readOnly=True, description="The server identification"),
+    'serverPort': fields.String(readOnly=True, description="The server identification"),
 
 })
 
@@ -44,7 +45,7 @@ class ServerList(Resource):
     @ns.doc('create_server')
     def post(self):
         # mount exam object
-        posted_server = ServerSchema(only=('serverID', 'serverName', 'serverAddress'))\
+        posted_server = ServerSchema(only=('serverID', 'serverName', 'serverAddress', 'serverPort'))\
                                            .load(api.payload)
 
         blah_server = Server(**posted_server.data, created_by="HTTP post request")
