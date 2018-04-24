@@ -47,7 +47,7 @@ class ServerDAO(object):
 
 DAO = ServerDAO()
 DAO.create({'IPAddress': 'http://0.0.0.0',
-            'port': '8000',
+            'port': '9999',
 }
 )
 
@@ -119,7 +119,7 @@ class ServerRequest(Resource):
         optionalPayload = api.payload["optionalPayload"]
         return routeRequest(requestType, server['IPAddress']+':'+ server['port'] + endpoint, optionalPayload)
 
-TIMEOUT = 1.0
+TIMEOUT = 0.5
 def routeRequest(method, query, payload):
     result = ""
     method = method.upper()
