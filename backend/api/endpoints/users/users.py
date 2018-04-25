@@ -26,17 +26,18 @@ from api.endpoints.users import NAMESPACE
 
 BASE.metadata.create_all(ENGINE)
 
-USER = NAMESPACE.model('User',{
-    'userID': fields.String(readOnly=True, description="The user"),
-    'serversID': fields.String(readOnly=True, description="The server that the user is tied to"),
+USER = NAMESPACE.model('User', {
+    'user_id': fields.String(readOnly=True, description="The user"),
+    'servers_id': fields.String(readOnly=True, description="The server that the user is tied to"),
 
 })
+
 
 @NAMESPACE.route('/')
 class UserList(Resource):
     '''Shows a list of all users and lets you POST to add new users'''
     @NAMESPACE.doc('list_users')
-    def get(self): #pylint: disable=no-self-use
+    def get(self):  # pylint: disable=no-self-use
         '''Get the current users.'''
         session = SESSION()
         users_objects = session.query(User).all()
@@ -52,11 +53,11 @@ class UserList(Resource):
 
     @NAMESPACE.expect(USER)
     @NAMESPACE.doc('create_user')
-    def post(self): # pylint: disable=no-self-use
+    def post(self):  # pylint: disable=no-self-use
         ''' Post a new user. '''
         posted_user = UserSchema(
-            only=('userID',
-                  'serversID')).load(NAMESPACE.apis[0].payload)
+            only=('user_id',
+                  'servers_id')).load(NAMESPACE.apis[0].payload)
 
         user = User(**posted_user.data)
 
@@ -64,7 +65,6 @@ class UserList(Resource):
         session = SESSION()
         session.add(user)
         session.commit()
-
 
         # Return created user
         new_user = UserSchema().dump(user).data

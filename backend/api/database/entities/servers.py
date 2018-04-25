@@ -7,7 +7,7 @@ from sqlalchemy import Column, String
 from .entity import Entity, BASE
 
 
-class Server(Entity, BASE): # pylint: disable=too-few-public-methods
+class Server(Entity, BASE):  # pylint: disable=too-few-public-methods
     """
     The server entity.
     """
@@ -24,6 +24,7 @@ class Server(Entity, BASE): # pylint: disable=too-few-public-methods
         self.server_name = server_name
         self.server_address = server_address
         self.server_port = server_port
+
 
 class ServerSchema(Schema):
     """

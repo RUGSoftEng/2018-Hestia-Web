@@ -38,7 +38,7 @@ SERVER = NAMESPACE.model('Server', {
 class ServerList(Resource):
     '''Shows a list of all servers, and lets you POST to add new servers'''
     @NAMESPACE.doc('list_servers')
-    def get(self): # pylint: disable=no-self-use
+    def get(self):  # pylint: disable=no-self-use
         '''Get the current servers.'''
         session = SESSION()
         servers_objects = session.query(Server).all()
@@ -54,7 +54,7 @@ class ServerList(Resource):
 
     @NAMESPACE.expect(SERVER)
     @NAMESPACE.doc('create_server')
-    def post(self): # pylint: disable=no-self-use
+    def post(self):  # pylint: disable=no-self-use
         '''Post a new server.'''
         posted_server = ServerSchema(
             only=('server_id',

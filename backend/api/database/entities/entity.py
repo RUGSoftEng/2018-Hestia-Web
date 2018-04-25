@@ -10,13 +10,14 @@ DB_URL = 'localhost:5432'
 DB_NAME = 'HestiaDB'
 DB_USER = 'postgres'
 DB_PASSWORD = 'hestia'
-ENGINE = create_engine(f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_URL}/{DB_NAME}')
+ENGINE = create_engine(
+    f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_URL}/{DB_NAME}')
 SESSION = sessionmaker(bind=ENGINE)
 
 BASE = declarative_base()
 
 
-class Entity(): # pylint: disable=too-few-public-methods
+class Entity():  # pylint: disable=too-few-public-methods
     """
     A entity that is stored in a database.
     """

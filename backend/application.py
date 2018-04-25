@@ -23,7 +23,6 @@ def cli():
 
 @click.command()
 def run():
-
     """
     Run the backend in production mode.
     """
@@ -32,7 +31,6 @@ def run():
 
 @click.command()
 def dev():
-
     """
     Run the backend in development mode.
     """
