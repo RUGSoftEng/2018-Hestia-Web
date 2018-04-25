@@ -1,64 +1,44 @@
-from flask import Flask, jsonify, json, request
-from flask_restplus import Api, Resource, fields, reqparse
-from .entities.entity import Session, engine, Base
-from .entities.servers import Server, ServerSchema
-from bson.objectid import ObjectId
+"""
+Coordinates the running of the Hestia web backend.
+"""
+import click
+from flask import Flask
 from werkzeug.contrib.fixers import ProxyFix
-import requests
+from api import API
 
-app = Flask(__name__)
-app.wsgi_app = ProxyFix(app.wsgi_app)
-api = Api(app, version='1.0', title='Hestia Web API',
-          description='The central web API, handling the routing of requests to local Hestia controllers',
-)
+APP = Flask(__name__)
+APP.wsgi_app = ProxyFix(APP.wsgi_app)
+API.init_app(APP)
 
-Base.metadata.create_all(engine)
 
-ns = api.namespace('servers', description='Server operations')
+@click.group()
+def cli():
+    """
+    Group that options for the command line interface.
+    """
+    pass
 
-server = ns.model('Server', {
-    'serverID': fields.String(readOnly=True, description="The server identification"),
-    'serverName': fields.String(readOnly=True, description="The server identification"), 
-    'serverAddress': fields.String(readOnly=True, description="The server identification"),
-    'serverPort': fields.String(readOnly=True, description="The server identification"),
 
-})
+@click.command()
+def run():
 
-@ns.route('/')
-class ServerList(Resource):
-    '''Shows a list of all servers, and lets you POST to add new servers'''
-    @ns.doc('list_servers')
-    def get(self):
-        '''List all servers'''
-        session = Session()
-        servers_objects = session.query(Server).all()
+    """
+    Run the backend in production mode.
+    """
+    APP.run(host="0.0.0.0", port=5000)
 
-        # transforming into JSON-serializable objects
-        schema = ServerSchema(many=True)
-        all_servers = schema.dump(servers_objects)
 
-        # serializing as JSON
-        session.close()
-        return jsonify(all_servers.data)
+@click.command()
+def dev():
 
-    @ns.expect(server)
-    @ns.doc('create_server')
-    def post(self):
-        # mount exam object
-        posted_server = ServerSchema(only=('serverID', 'serverName', 'serverAddress', 'serverPort'))\
-                                           .load(api.payload)
+    """
+    Run the backend in development mode.
+    """
+    APP.run(host="0.0.0.0", port=5000, debug=True)
 
-        blah_server = Server(**posted_server.data, created_by="HTTP post request")
 
-        # persist exam
-        session = Session()
-        session.add(blah_server)
-        session.commit()
+cli.add_command(run)
+cli.add_command(dev)
 
-        # return created exam
-        new_server = ServerSchema().dump(blah_server).data
-        session.close()
-        return jsonify(new_server)
-
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    cli()
