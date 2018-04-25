@@ -22,7 +22,7 @@ from api.database.entities.users import (
     UserSchema
 )
 
-from api.endpoints.servers import NAMESPACE
+from api.endpoints.users import NAMESPACE
 
 BASE.metadata.create_all(ENGINE)
 
@@ -54,8 +54,6 @@ class UserList(Resource):
     @NAMESPACE.doc('create_user')
     def post(self): # pylint: disable=no-self-use
         ''' Post a new user. '''
-        print(NAMESPACE.apis[1].payload)
-
         posted_user = UserSchema(
             only=('userID',
                   'serversID')).load(NAMESPACE.apis[0].payload)

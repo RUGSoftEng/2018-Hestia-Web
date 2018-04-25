@@ -27,4 +27,4 @@ class UserSchema(Schema):
     serversID = fields.Str()
     created_at = fields.DateTime()
     updated_at = fields.DateTime()
-    last_updated_by = fields.Str()
+    

@@ -21,7 +21,7 @@ from api.database.entities.servers import (
     ServerSchema
 )
 
-from api.endpoints.users import NAMESPACE
+from api.endpoints.servers import NAMESPACE
 
 BASE.metadata.create_all(ENGINE)
 
@@ -56,7 +56,6 @@ class ServerList(Resource):
     @NAMESPACE.doc('create_server')
     def post(self): # pylint: disable=no-self-use
         '''Post a new server.'''
-        # mount exam object
         posted_server = ServerSchema(
             only=('server_id',
                   'server_name',
