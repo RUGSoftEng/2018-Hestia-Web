@@ -3,6 +3,7 @@ Create the API from the underlying endpoints.
 """
 from flask_restplus import Api
 from api.endpoints.servers.servers import NAMESPACE as SERVERS_NAMESPACE
+from api.endpoints.users.users import NAMESPACE as USERS_NAMESPACE
 
 API = Api(
     version='1.0',
@@ -11,3 +12,4 @@ API = Api(
 )
 
 API.add_namespace(SERVERS_NAMESPACE)
+API.add_namespace(USERS_NAMESPACE)

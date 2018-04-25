@@ -83,3 +83,7 @@ The database will be running immediately. The following commands are also availa
 | Stop the database   | `docker stop hestia-web-db`  |
 | Delete the database | `docker rm hestia-web-db`    |
 
+### Other
+You may install postgres on Windows using BigSQL's premade installer. It comes with the servers and pdAdmin3 for you to visually inspect the database and manually edit values if need be.
+
+Just go to: http://openscg.com/bigsql/ and click download->PostgresSQL10.3 Stable.

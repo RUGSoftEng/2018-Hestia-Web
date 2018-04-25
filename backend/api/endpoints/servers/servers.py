@@ -21,7 +21,7 @@ from api.database.entities.servers import (
     ServerSchema
 )
 
-from api.endpoints.servers import NAMESPACE
+from api.endpoints.users import NAMESPACE
 
 BASE.metadata.create_all(ENGINE)
 
@@ -65,12 +65,12 @@ class ServerList(Resource):
 
         server = Server(**posted_server.data)
 
-        # persist exam
+        # persist server
         session = SESSION()
         session.add(server)
         session.commit()
 
-        # return created exam
+        # return created server
         new_server = ServerSchema().dump(server).data
         session.close()
         return jsonify(new_server)
