@@ -16,7 +16,7 @@ class Server(Entity, BASE):  # pylint: disable=too-few-public-methods
     __tablename__ = 'servers'
 
     server_id = Column(Integer, primary_key=True)
-    server_owner = Column(String, ForeignKey('User.user_id'))
+    server_owner = Column(String, ForeignKey('users.user_id'))
     server_name = Column(String)
     server_address = Column(String)
     server_port = Column(String)
