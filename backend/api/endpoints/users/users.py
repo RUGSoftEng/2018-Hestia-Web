@@ -49,7 +49,7 @@ class UserList(Resource):
         # serializing as JSON
         session.close()
         return jsonify(all_users.data)
-    
+
     @NAMESPACE.expect(USER)
     @NAMESPACE.doc('create_user')
     def post(self): # pylint: disable=no-self-use
@@ -64,7 +64,7 @@ class UserList(Resource):
         session = SESSION()
         session.add(user)
         session.commit()
-        
+
 
         # Return created user
         new_user = UserSchema().dump(user).data

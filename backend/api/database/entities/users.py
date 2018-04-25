@@ -13,8 +13,8 @@ class User(Entity, BASE): # pylint: disable=too-few-public-methods
     userID = Column(String)
     serversID = Column(String)
 
-    def __init__(self, userID, serversID, created_by):
-        Entity.__init__(self, created_by)
+    def __init__(self, userID, serversID):
+        Entity.__init__(self)
         self.userID = userID
         self.serversID = serversID
 
@@ -27,4 +27,3 @@ class UserSchema(Schema):
     serversID = fields.Str()
     created_at = fields.DateTime()
     updated_at = fields.DateTime()
-    
