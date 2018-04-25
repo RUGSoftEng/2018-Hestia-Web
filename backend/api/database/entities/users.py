@@ -16,12 +16,11 @@ class User(Entity, BASE):  # pylint: disable=too-few-public-methods
     __tablename__ = 'users'
 
     user_id = Column(String, primary_key=True)
-    server_ids = relationship("Server")
+    servers = relationship("Server")
 
-    def __init__(self, user_id, server_idss):
+    def __init__(self, user_id):
         Entity.__init__(self)
         self.user_id = user_id
-        self.server_idss = server_idss
 
 
 class UserSchema(Schema):
@@ -29,6 +28,6 @@ class UserSchema(Schema):
     The users schema.
     """
     user_id = fields.Str()
-    server_ids = fields.Integer()
+    server_ids = fields.Str()
     created_at = fields.DateTime()
     updated_at = fields.DateTime()

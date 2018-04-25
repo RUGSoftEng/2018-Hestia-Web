@@ -7,6 +7,8 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 
 from .entity import Entity, BASE
+from api.database.entities.users import User
+
 
 
 class Server(Entity, BASE):  # pylint: disable=too-few-public-methods
@@ -15,7 +17,7 @@ class Server(Entity, BASE):  # pylint: disable=too-few-public-methods
     """
     __tablename__ = 'servers'
 
-    server_id = Column(Integer, primary_key=True)
+    server_id = Column(String, primary_key=True)
     server_owner = Column(String, ForeignKey('users.user_id'))
     server_name = Column(String)
     server_address = Column(String)
@@ -34,7 +36,7 @@ class ServerSchema(Schema):
     """
     The server schema.
     """
-    server_id = fields.Integer()
+    server_id = fields.Str()
     server_owner = fields.Str()
     server_name = fields.Str()
     server_address = fields.Str()
