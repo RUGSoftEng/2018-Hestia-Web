@@ -27,8 +27,8 @@ from api.endpoints.users import NAMESPACE
 BASE.metadata.create_all(ENGINE)
 
 USER = NAMESPACE.model('User', {
-    'user_id': fields.String(readOnly=True, description="The user"),
-    'servers_id': fields.String(readOnly=True, description="The server that the user is tied to"),
+    'user_id': fields.String(readOnly=True, description="The user identification"),
+    'server_ids': fields.String(readOnly=True, description="The server that the user is tied to"),
 
 })
 

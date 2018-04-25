@@ -21,7 +21,6 @@ class Entity():  # pylint: disable=too-few-public-methods
     """
     A entity that is stored in a database.
     """
-    id = Column(Integer, primary_key=True)
     created_at = Column(DateTime)
     updated_at = Column(DateTime)
 

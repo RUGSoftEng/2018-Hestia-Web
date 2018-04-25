@@ -27,6 +27,7 @@ BASE.metadata.create_all(ENGINE)
 
 SERVER = NAMESPACE.model('Server', {
     'server_id': fields.String(readOnly=True, description="The server identification"),
+    'server_owner': fields.String(readOnly=True, description="Owner of the server"),
     'server_name': fields.String(readOnly=True, description="The server identification"),
     'server_address': fields.String(readOnly=True, description="The server identification"),
     'server_port': fields.String(readOnly=True, description="The server identification"),
@@ -58,6 +59,7 @@ class ServerList(Resource):
         '''Post a new server.'''
         posted_server = ServerSchema(
             only=('server_id',
+                  'server_owner',
                   'server_name',
                   'server_address',
                   'server_port')).load(NAMESPACE.apis[0].payload)

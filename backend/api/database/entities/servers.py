@@ -2,7 +2,9 @@
 Declares the server entity and its schema to allow for de/serialization to and from the database.
 """
 from marshmallow import Schema, fields
-from sqlalchemy import Column, String
+from sqlalchemy import Table, Column, Integer, String, ForeignKey
+from sqlalchemy.orm import relationship
+from sqlalchemy.ext.declarative import declarative_base
 
 from .entity import Entity, BASE
 
@@ -13,14 +15,16 @@ class Server(Entity, BASE):  # pylint: disable=too-few-public-methods
     """
     __tablename__ = 'servers'
 
-    server_id = Column(String)
+    server_id = Column(Integer, primary_key=True)
+    server_owner = Column(String, ForeignKey('User.user_id'))
     server_name = Column(String)
     server_address = Column(String)
     server_port = Column(String)
 
-    def __init__(self, server_id, server_name, server_address, server_port):
+    def __init__(self, server_id, server_owner, server_name, server_address, server_port):
         Entity.__init__(self)
         self.server_id = server_id
+        self.server_owner = server_owner
         self.server_name = server_name
         self.server_address = server_address
         self.server_port = server_port
@@ -30,8 +34,8 @@ class ServerSchema(Schema):
     """
     The server schema.
     """
-    id = fields.Number()
-    server_id = fields.Str()
+    server_id = fields.Integer()
+    server_owner = fields.Str()
     server_name = fields.Str()
     server_address = fields.Str()
     server_port = fields.Str()
