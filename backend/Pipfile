@@ -13,6 +13,7 @@ sqlalchemy = "*"
 "psycopg2-binary" = "*"
 flask = "*"
 marshmallow = "*"
+pylint = "*"
 
 [dev-packages]
 
