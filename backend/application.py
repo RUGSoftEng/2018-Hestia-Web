@@ -3,10 +3,12 @@ Coordinates the running of the Hestia web backend.
 """
 import click
 from flask import Flask
+from flask_cors import CORS
 from werkzeug.contrib.fixers import ProxyFix
 from api import API
 
 APP = Flask(__name__)
+CORS(APP)
 APP.wsgi_app = ProxyFix(APP.wsgi_app)
 API.init_app(APP)
 
