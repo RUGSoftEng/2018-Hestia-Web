@@ -54,16 +54,15 @@ This enables the environment with the lock file already included in the reposito
 
 ## Server Setup
 ### Linux
-Assuming the environment is enabled (pipenv shell) in the backend directory, you may now start the server with:
+Assuming the environment is enabled (pipenv shell) in the backend directory, you may now start the server in development mode with:
 ```bash
-FLASK_APP=application.py flask run
+python application.py dev
 ```
 
 ### Windows
 Assuming the environment is enabled (pipenv shell) in the backend directory, you may now start the server with:
 ```bash
-set FLASK_APP=application.py
-flask run
+python application.py dev
 ```
 
 ## Database Setup
