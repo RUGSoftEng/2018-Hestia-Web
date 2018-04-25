@@ -24,13 +24,9 @@ from api.database.entities.users import (
 
 from api.endpoints.users import NAMESPACE
 
+from api.endpoints.users.user import USER
+
 BASE.metadata.create_all(ENGINE)
-
-USER = NAMESPACE.model('User', {
-    'user_id': fields.String(readOnly=True, description="The user identification"),
-    'server_ids': fields.String(readOnly=True, description="The server that the user is tied to"),
-
-})
 
 
 @NAMESPACE.route('/')
