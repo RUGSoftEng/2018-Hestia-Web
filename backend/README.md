@@ -65,3 +65,22 @@ Assuming the environment is enabled (pipenv shell) in the backend directory, you
 set FLASK_APP=application.py
 flask run
 ```
+
+## Database Setup
+### Docker
+Setup the docker container with the `postgres` database.
+```bash
+docker run --name hestia-web-db \
+    -p 5432:5432 \
+    -e POSTGRES_DB=HestiaDB \
+    -e POSTGRES_PASSWORD=hestia \
+    -d postgres
+```
+The database will be running immediately. The following commands are also available now.
+
+| Action              | Command                      |
+| :---                | :---                         |
+| Start the database  | `docker start hestia-web-db` |
+| Stop the database   | `docker stop hestia-web-db`  |
+| Delete the database | `docker rm hestia-web-db`    |
+
