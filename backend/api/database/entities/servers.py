@@ -43,3 +43,9 @@ class ServerSchema(Schema):
     server_port = fields.Str()
     created_at = fields.DateTime()
     updated_at = fields.DateTime()
+
+class ServerGetSchema(Schema):
+    """
+    Fetch server for user
+    """
+    server_owner = fields.Str()
