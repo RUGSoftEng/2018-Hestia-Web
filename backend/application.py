@@ -36,9 +36,21 @@ def dev():
     """
     APP.run(host="0.0.0.0", port=5000, debug=True)
 
+@click.command()
+@click.option('--dbtype',
+              prompt='Database type',
+              default="postgresql",
+              help='The type of database to initialize.')
+def initdb(dbtype):
+    """
+    Initialize a database.
+    """
+    print("Initializing the " + dbtype + " database.")
+
 
 cli.add_command(run)
 cli.add_command(dev)
+cli.add_command(initdb)
 
 if __name__ == "__main__":
     cli()
