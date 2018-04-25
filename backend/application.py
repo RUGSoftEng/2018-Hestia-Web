@@ -36,6 +36,7 @@ def dev():
     """
     APP.run(host="0.0.0.0", port=5000, debug=True)
 
+
 @click.command()
 @click.option('--dbtype',
               prompt='Database type',
