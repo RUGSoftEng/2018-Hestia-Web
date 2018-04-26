@@ -14,3 +14,5 @@
 | *27-03-2018* | 1 | Final touches and short meeting.
 | *14-04-2018* | 2 | Cathing up with all new functionalities and testing after the exams
 | *16-04-2018* | 6 | worked on add/delete devices. start to learn about vue.js, semantics ui
+| *20-04-2018* | 5 | tried to set up for connection between front-end and backend using vue and flask/ learned vue for frontend.
+| *24-04-2018* | 4 | worked on frontend of project using vue, 
