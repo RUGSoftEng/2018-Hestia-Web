@@ -1,7 +1,16 @@
+"""
+Defines the user endpoint. For fetching information for a specific user
+"""
+
 from flask_restplus import (
     Resource,
     fields,
 )
+
+from api.database.entities.entity import(
+    SESSION
+)
+
 from api.endpoints.users import NAMESPACE
 
 USER = NAMESPACE.model('User', {
@@ -19,17 +28,22 @@ class User(Resource):
     @NAMESPACE.marshal_with(USER)
     def get(self, id):
         '''Fetch a given resource'''
-        return "get"
+        returnString = "Get from user: " + id
+        return returnString
+
 
     @NAMESPACE.doc('delete_user')
     @NAMESPACE.response(204, 'User deleted')
     def delete(self, id):
         '''Delete a user given its identifier'''
-        return "delete"
+
+        returnString = "ID to delete: " + id
+        return returnString
         return '', 204
 
     @NAMESPACE.expect(USER)
     @NAMESPACE.marshal_with(USER)
     def put(self, id):
         '''Update a user given its identifier'''
-        return "request"
+        returnString = "Update user: " + id
+        return "return /user/put"
