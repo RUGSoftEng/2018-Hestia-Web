@@ -31,4 +31,4 @@
 | *23/04/2018* | 18:00-20:00| Figuring out the Semantic UI menu. |
 | *24/04/2018* | 09:00-14:00| Team meeting and working on the seperation of files in the frontend. |
 | *25/04/2018* | 15:30-17:00| Finally figured out how to import Vue components. |
-| *26/04/2018* | 13:00-17:00| Worked on the feature/vue frontend branch. Made sure the vuex protocols are followed and created some visual things. |
+| *26/04/2018* | 09:00-15:00| Worked on the feature/vue frontend branch. Made sure the vuex protocols are followed and created some visual things. |
