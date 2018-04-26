@@ -21,4 +21,7 @@
 | *15-03-2018* | 2 | Tutorials and learning projects in Javascript|
 | *17-04-2018* | 6 | Catch up, added server deletion, discussed Vue.js with Troy, planned new backend with RESTplus, research RESTplus, setup Vue.js|
 | *17-04-2018* | 3 | Fixed bugs, added renaming, fixed deletion, enabled auto refresh, git cleanup|
+| *23-04-2018* | 2 | SQLAlchemy research, tutorials|
 | *24-04-2018* | 6 | Work on new database, research SQLAlchemy, research Auth, Meeting discussion |
+| *25-04-2018* | 6 | Worked on database endpoints and model, research SQLAlchemy relationships|
+| *26-04-2018* | 2 | Meeting with Troy, setting up user endpoint|
