@@ -13,11 +13,11 @@ from flask_restplus import (
 
 from sqlalchemy.orm import (exc)
 
-from api.database.entities.entity import(
+from api.database.entities.entity import (
     SESSION,
 )
 
-from api.database.entities.model import(
+from api.database.entities.model import (
     User as UserDB,
     UserSchema,
 )
@@ -30,18 +30,20 @@ USER = NAMESPACE.model('User', {
 
 })
 
-@NAMESPACE.route('/<string:id>')
+
+@NAMESPACE.route('/<string:user_id>')
 @NAMESPACE.response(404, 'User not found')
-@NAMESPACE.param('id', 'The user identifier')
+@NAMESPACE.param('user_id', 'The user identifier')
 class User(Resource):
     '''Show a single user and lets you delete a single user'''
     @NAMESPACE.doc('get_user')
-    def get(self, id):
+    def get(self, user_id):
         '''Get a specific user.'''
         session = SESSION()
         try:
-            users_objects = session.query(UserDB).filter_by(user_id=id).one()
-        except exc.NoResultFound as e:
+            users_objects = session.query(
+                UserDB).filter_by(user_id=user_id).one()
+        except exc.NoResultFound:
             return "", 404
 
         # transforming into JSON-serializable objects
@@ -52,13 +54,12 @@ class User(Resource):
         session.close()
         return jsonify(all_users.data)
 
-
     @NAMESPACE.doc('delete_user')
     @NAMESPACE.response(204, 'User deleted')
-    def delete(self, id):
+    def delete(self, user_id):
         '''Delete a user given its identifier'''
         session = SESSION()
-        user = session.query(UserDB).filter_by(user_id=id).one()
+        user = session.query(UserDB).filter_by(user_id=user_id).one()
         session.delete(user)
         session.commit()
 
@@ -68,7 +69,7 @@ class User(Resource):
 
     @NAMESPACE.expect(USER)
     @NAMESPACE.marshal_with(USER)
-    def put(self, id):
+    def put(self, user_id):
         '''Update a user given its identifier'''
-        returnString = "Update user: " + id
-        return "return /user/put"
+        return_string = "Update user: " + user_id
+        return return_string

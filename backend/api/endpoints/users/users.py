@@ -8,7 +8,6 @@ from flask import (
 
 from flask_restplus import (
     Resource,
-    fields,
 )
 
 from api.database.entities.entity import (
@@ -33,12 +32,11 @@ BASE.metadata.create_all(ENGINE)
 class UserList(Resource):
     '''Shows a list of all users and lets you POST to add new users'''
     @NAMESPACE.doc('list_users')
-    def get(self):  # pylint: disable=no-self-use
+    def get(self):
         '''Get the current users.'''
         session = SESSION()
         users_objects = session.query(User).all()
 
-        print(users_objects)
         # transforming into JSON-serializable objects
         schema = UserSchema(many=True)
         all_users = schema.dump(users_objects)
@@ -49,7 +47,7 @@ class UserList(Resource):
 
     @NAMESPACE.expect(USER)
     @NAMESPACE.doc('create_user')
-    def post(self):  # pylint: disable=no-self-use
+    def post(self):
         ''' Post a new user. '''
         posted_user = UserSchema(
             only=('user_id',

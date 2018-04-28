@@ -7,7 +7,8 @@ from sqlalchemy.orm import relationship
 
 from .entity import Entity, BASE
 
-class User(Entity, BASE):  # pylint: disable=too-few-public-methods
+
+class User(Entity, BASE):
     """
     The user entity.
     """
@@ -15,9 +16,11 @@ class User(Entity, BASE):  # pylint: disable=too-few-public-methods
 
     user_id = Column(String, primary_key=True)
     servers = relationship("Server", cascade="all, delete-orphan")
+
     def __init__(self, user_id):
         Entity.__init__(self)
         self.user_id = user_id
+
 
 class UserSchema(Schema):
     """
@@ -28,7 +31,8 @@ class UserSchema(Schema):
     created_at = fields.DateTime()
     updated_at = fields.DateTime()
 
-class Server(Entity, BASE):  # pylint: disable=too-few-public-methods
+
+class Server(Entity, BASE):
     """
     The server entity.
     """

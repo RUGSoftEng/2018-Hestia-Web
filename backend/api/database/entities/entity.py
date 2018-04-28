@@ -33,7 +33,7 @@ SESSION = sessionmaker(bind=ENGINE)
 BASE = declarative_base()
 
 
-class Entity():  # pylint: disable=too-few-public-methods
+class Entity():
     """
     A entity that is stored in a database.
     """

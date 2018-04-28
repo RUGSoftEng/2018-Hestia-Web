@@ -7,7 +7,6 @@ from flask import (
 
 from flask_restplus import (
     Resource,
-    fields,
 )
 
 from api.database.entities.entity import (
@@ -27,16 +26,16 @@ from api.endpoints.servers.server import SERVER
 
 BASE.metadata.create_all(ENGINE)
 
+
 @NAMESPACE.route('/')
 class ServerList(Resource):
     '''Shows a list of all servers, and lets you POST to add new servers'''
     @NAMESPACE.doc('list_servers')
-    def get(self):  # pylint: disable=no-self-use
+    def get(self):
         '''Get the current servers.'''
         session = SESSION()
         servers_objects = session.query(Server).all()
 
-        print(servers_objects)
         # transforming into JSON-serializable objects
         schema = ServerSchema(many=True)
         all_servers = schema.dump(servers_objects)
@@ -47,7 +46,7 @@ class ServerList(Resource):
 
     @NAMESPACE.expect(SERVER)
     @NAMESPACE.doc('create_server')
-    def post(self):  # pylint: disable=no-self-use
+    def post(self):
         '''Post a new server.'''
         posted_server = ServerSchema(
             only=('server_id',
