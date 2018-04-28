@@ -1,7 +1,15 @@
+from flask import (
+    jsonify
+)
+
 from flask_restplus import (
     Resource,
     fields,
 )
+
+import requests
+
+from sqlalchemy.orm import (exc)
 
 from api.database.entities.entity import(
     SESSION,
@@ -42,10 +50,21 @@ SERVER = NAMESPACE.model('Server', {
 class Server(Resource):
     '''Show a single server item and lets you delete it'''
     @NAMESPACE.doc('get_server')
-    @NAMESPACE.marshal_with(SERVER)
     def get(self, id):
-        '''Fetch a given resource'''
-        return "get"
+        '''Get a specific server.'''
+        session = SESSION()
+        try:
+            users_objects = session.query(ServerDB).filter_by(server_id=id).one()
+        except exc.NoResultFound as e:
+            return "", 404
+
+        # transforming into JSON-serializable objects
+        schema = ServerSchema()
+        all_users = schema.dump(users_objects)
+
+        # serializing as JSON
+        session.close()
+        return jsonify(all_users.data)
 
     @NAMESPACE.doc('delete_server')
     @NAMESPACE.response(204, 'Server deleted')
@@ -99,9 +118,35 @@ class ServerRequest(Resource):
     @NAMESPACE.doc('request_from_server')
     def post(self, id):
         '''Forward a request to a server'''
-        # server = DAO.get(id)
-        # requestType = api.payload["requestType"]
-        # endpoint = api.payload["endpoint"]
-        # optionalPayload = api.payload["optionalPayload"]
-        # return routeRequest(requestType, server['IPAddress']+':'+ server['port'] + endpoint, optionalPayload)
+        session = SESSION()
+        try:
+            server_object = session.query(ServerDB).filter_by(server_id=id).one()
+        except exc.NoResultFound as e:
+            return "", 404
+
+        # transforming into JSON-serializable objects
+        schema = ServerSchema()
+        server = schema.dump(server_object).data
+
+        requestType = NAMESPACE.apis[0].payload["requestType"]
+        endpoint = NAMESPACE.apis[0].payload["endpoint"]
+        optionalPayload = NAMESPACE.apis[0].payload["optionalPayload"]
+        return route_request(requestType, server['server_address']+':'+ server['server_port'] + endpoint, optionalPayload)
         return "Forward request"
+
+TIMEOUT = 1.0
+def route_request(method, query, payload):
+    result = ""
+    method = method.upper()
+    print("Sending request to server:", method, ", ", query, ", ", payload)
+    if (method == "GET"):
+        result = requests.get(query, verify=False, timeout=TIMEOUT).json()
+    elif (method == "POST"):
+        result = requests.post(query, verify=False, json=payload, timeout=TIMEOUT).json()
+    elif (method == "PUT"):
+        result = requests.put(query, verify=False, json=payload, timeout=TIMEOUT).json()
+    elif (method == "DELETE"):
+        result = requests.delete(query, verify=False, timeout=TIMEOUT)
+    else:
+        result = "Invalid REST method."
+    return result
