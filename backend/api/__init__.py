@@ -11,5 +11,7 @@ API = Api(
     description='The Hestia Web Api, handling routing to your controllers.',
 )
 
+
+# Adds the SERVER and USER namespace to the API
 API.add_namespace(SERVERS_NAMESPACE)
 API.add_namespace(USERS_NAMESPACE)

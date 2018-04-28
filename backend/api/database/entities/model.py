@@ -1,7 +1,9 @@
+"""
+Declare the model objects for the database as well as schema for each
+"""
 from marshmallow import Schema, fields
-from sqlalchemy import Table, Column, Integer, String, ForeignKey
+from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
-from sqlalchemy.ext.declarative import declarative_base
 
 from .entity import Entity, BASE
 
@@ -58,4 +60,3 @@ class ServerSchema(Schema):
     server_port = fields.Str()
     created_at = fields.DateTime()
     updated_at = fields.DateTime()
-
