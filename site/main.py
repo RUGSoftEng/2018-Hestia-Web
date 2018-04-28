@@ -1,5 +1,6 @@
 # This represents the backend server that handles all of the routing requests
 # made from the webgui to the local hestia controllers
+# SQL Alchemy manages Database
 
 from flask import Flask, render_template, request, jsonify
 import requests
