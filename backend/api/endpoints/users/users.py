@@ -17,7 +17,7 @@ from api.database.entities.entity import (
     BASE
 )
 
-from api.database.entities.users import (
+from api.database.entities.model import (
     User,
     UserSchema
 )

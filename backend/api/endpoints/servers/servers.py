@@ -16,10 +16,9 @@ from api.database.entities.entity import (
     BASE
 )
 
-from api.database.entities.servers import (
+from api.database.entities.model import (
     Server,
     ServerSchema,
-    ServerGetSchema
 )
 
 from api.endpoints.servers import NAMESPACE
@@ -52,7 +51,7 @@ class ServerList(Resource):
         '''Post a new server.'''
         posted_server = ServerSchema(
             only=('server_id',
-                  'server_owner',
+                  'user_id',
                   'server_name',
                   'server_address',
                   'server_port')).load(NAMESPACE.apis[0].payload)
