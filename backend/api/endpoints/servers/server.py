@@ -2,6 +2,16 @@ from flask_restplus import (
     Resource,
     fields,
 )
+
+from api.database.entities.entity import(
+    SESSION,
+)
+
+from api.database.entities.model import(
+    Server as ServerDB,
+    ServerSchema,
+)
+
 from api.endpoints.servers import NAMESPACE
 SERVER = NAMESPACE.model('Server', {
     'server_id': fields.String(
@@ -41,8 +51,14 @@ class Server(Resource):
     @NAMESPACE.response(204, 'Server deleted')
     def delete(self, id):
         '''Delete a server given its identifier'''
-        return "delete"
-        return '', 204
+        session = SESSION()
+        server = session.query(ServerDB).filter_by(server_id=id).one()
+        session.delete(server)
+        session.commit()
+
+        session.close()
+
+        return "", 204
 
     @NAMESPACE.expect(SERVER)
     @NAMESPACE.marshal_with(SERVER)
