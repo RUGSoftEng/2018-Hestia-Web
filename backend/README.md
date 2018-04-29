@@ -24,7 +24,7 @@ Within the servers, a ServerList class is declared that handles the endpoint for
 The second function available at the '/' route of /servers allows a posting of a new server to the database. This function expects a SERVER model which is then posted to the database. If this is successful, a message will be returned with the new server in the payload.
 
 ### /servers/<string:id>
-This endpoint extends from the /servers/, but adds the ability to query a single server based on the identitification of the (user) that requested. When an authenticated user needs to communicated with a specific server, they will pass the server id into the argument of the endpoint. For example, an authenticated user wishes to get from server with id="54a8c4h". They will send a request through the endpoint /servers/54a8c4h/ point.
+This endpoint extends from the /servers/, but adds the ability to query a single server based on the identitification of the (user) that requested. When an authenticated user needs to communicated with a specific server, they will pass the server id into the argument of the endpoint. For example, an authenticated user wishes to get from server with id="54a8c4h". They will send a request through the endpoint /servers/54a8c4h/. 
 
 #### get
 The get function acts like before and fetches the server as an object from the database. This is then returned as a JSON object.
