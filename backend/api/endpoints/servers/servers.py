@@ -28,6 +28,7 @@ BASE.metadata.create_all(ENGINE)
 
 
 @NAMESPACE.route('/')
+@requires_auth
 class ServerList(Resource):
     '''Shows a list of all servers, and lets you POST to add new servers'''
     @NAMESPACE.doc('list_servers')

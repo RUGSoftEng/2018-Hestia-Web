@@ -1,5 +1,5 @@
 """
-Creates endpoints for the indivudal server access
+Creates endpoints for the individual server access
 """
 from flask import (
     jsonify
