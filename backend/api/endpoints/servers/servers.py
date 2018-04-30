@@ -5,6 +5,14 @@ from flask import (
     jsonify
 )
 
+from flask_cors import (
+    cross_origin,
+)
+
+from api.authentication.authentication import (
+    requires_auth,
+)
+
 from flask_restplus import (
     Resource,
 )
@@ -31,6 +39,10 @@ BASE.metadata.create_all(ENGINE)
 class ServerList(Resource):
     '''Shows a list of all servers, and lets you POST to add new servers'''
     @NAMESPACE.doc('list_servers')
+    @cross_origin(headers=["Content-Type", "Authorization"])
+    @cross_origin(headers=["Access-Control-Allow-Origin", "*"])
+    @requires_auth
+    @NAMESPACE.doc(security='apikey')
     def get(self):
         '''Get the current servers.'''
         session = SESSION()
@@ -46,6 +58,10 @@ class ServerList(Resource):
 
     @NAMESPACE.expect(SERVER)
     @NAMESPACE.doc('create_server')
+    @cross_origin(headers=["Content-Type", "Authorization"])
+    @cross_origin(headers=["Access-Control-Allow-Origin", "*"])
+    @requires_auth
+    @NAMESPACE.doc(security='apikey')
     def post(self):
         '''Post a new server.'''
         posted_server = ServerSchema(

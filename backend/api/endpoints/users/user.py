@@ -11,6 +11,14 @@ from flask_restplus import (
     fields,
 )
 
+from flask_cors import (
+    cross_origin,
+)
+
+from api.authentication.authentication import (
+    requires_auth,
+)
+
 from sqlalchemy.orm import (exc)
 
 from api.database.entities.entity import (
@@ -37,6 +45,10 @@ USER = NAMESPACE.model('User', {
 class User(Resource):
     '''Show a single user and lets you delete a single user'''
     @NAMESPACE.doc('get_user')
+    @cross_origin(headers=["Content-Type", "Authorization"])
+    @cross_origin(headers=["Access-Control-Allow-Origin", "*"])
+    @requires_auth
+    @NAMESPACE.doc(security='apikey')
     def get(self, user_id):
         '''Get a specific user.'''
         session = SESSION()
@@ -56,6 +68,10 @@ class User(Resource):
 
     @NAMESPACE.doc('delete_user')
     @NAMESPACE.response(204, 'User deleted')
+    @cross_origin(headers=["Content-Type", "Authorization"])
+    @cross_origin(headers=["Access-Control-Allow-Origin", "*"])
+    @requires_auth
+    @NAMESPACE.doc(security='apikey')
     def delete(self, user_id):
         '''Delete a user given its identifier'''
         session = SESSION()
@@ -69,6 +85,10 @@ class User(Resource):
 
     @NAMESPACE.expect(USER)
     @NAMESPACE.marshal_with(USER)
+    @cross_origin(headers=["Content-Type", "Authorization"])
+    @cross_origin(headers=["Access-Control-Allow-Origin", "*"])
+    @requires_auth
+    @NAMESPACE.doc(security='apikey')
     def put(self, user_id):
         '''Update a user given its identifier'''
         return_string = "Update user: " + user_id
