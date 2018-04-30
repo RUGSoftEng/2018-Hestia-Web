@@ -10,6 +10,14 @@ from flask_restplus import (
     fields,
 )
 
+from flask_cors import (
+    cross_origin,
+)
+
+from api.authentication.authentication import (
+    requires_auth,
+)
+
 import requests
 
 from sqlalchemy.orm import (exc)
@@ -54,6 +62,9 @@ SERVER = NAMESPACE.model('Server', {
 class Server(Resource):
     '''Show a single server item and lets you delete it'''
     @NAMESPACE.doc('get_server')
+    @cross_origin(headers=["Content-Type", "Authorization"])
+    @cross_origin(headers=["Access-Control-Allow-Origin", "*"])
+    @requires_auth
     def get(self, server_id):
         '''Get a specific server.'''
         session = SESSION()
@@ -76,6 +87,9 @@ class Server(Resource):
 
     @NAMESPACE.doc('delete_server')
     @NAMESPACE.response(204, 'Server deleted')
+    @cross_origin(headers=["Content-Type", "Authorization"])
+    @cross_origin(headers=["Access-Control-Allow-Origin", "*"])
+    @requires_auth
     def delete(self, server_id):
         '''Delete a server given its identifier'''
         session = SESSION()
@@ -89,6 +103,9 @@ class Server(Resource):
 
     @NAMESPACE.expect(SERVER)
     @NAMESPACE.marshal_with(SERVER)
+    @cross_origin(headers=["Content-Type", "Authorization"])
+    @cross_origin(headers=["Access-Control-Allow-Origin", "*"])
+    @requires_auth
     def put(self, server_id):
         '''Update a server given its identifier'''
         return_string = "Update server: " + server_id
@@ -120,6 +137,9 @@ class ServerRequest(Resource):
     Defines the request class that sends a request to a controller
     """
     @NAMESPACE.doc('request_from_server')
+    @cross_origin(headers=["Content-Type", "Authorization"])
+    @cross_origin(headers=["Access-Control-Allow-Origin", "*"])
+    @requires_auth
     def post(self, server_id):
         '''Forward a request to a server'''
         session = SESSION()
