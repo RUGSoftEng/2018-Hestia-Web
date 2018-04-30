@@ -65,6 +65,7 @@ class Server(Resource):
     @cross_origin(headers=["Content-Type", "Authorization"])
     @cross_origin(headers=["Access-Control-Allow-Origin", "*"])
     @requires_auth
+    @NAMESPACE.doc(security='apikey')
     def get(self, server_id):
         '''Get a specific server.'''
         session = SESSION()
@@ -90,6 +91,7 @@ class Server(Resource):
     @cross_origin(headers=["Content-Type", "Authorization"])
     @cross_origin(headers=["Access-Control-Allow-Origin", "*"])
     @requires_auth
+    @NAMESPACE.doc(security='apikey')
     def delete(self, server_id):
         '''Delete a server given its identifier'''
         session = SESSION()
@@ -106,6 +108,7 @@ class Server(Resource):
     @cross_origin(headers=["Content-Type", "Authorization"])
     @cross_origin(headers=["Access-Control-Allow-Origin", "*"])
     @requires_auth
+    @NAMESPACE.doc(security='apikey')
     def put(self, server_id):
         '''Update a server given its identifier'''
         return_string = "Update server: " + server_id
@@ -140,6 +143,7 @@ class ServerRequest(Resource):
     @cross_origin(headers=["Content-Type", "Authorization"])
     @cross_origin(headers=["Access-Control-Allow-Origin", "*"])
     @requires_auth
+    @NAMESPACE.doc(security='apikey')
     def post(self, server_id):
         '''Forward a request to a server'''
         session = SESSION()

@@ -10,6 +10,14 @@ from flask_restplus import (
     Resource,
 )
 
+from flask_cors import (
+    cross_origin,
+)
+
+from api.authentication.authentication import (
+    requires_auth,
+)
+
 from api.database.entities.entity import (
     SESSION,
     ENGINE,
@@ -32,6 +40,10 @@ BASE.metadata.create_all(ENGINE)
 class UserList(Resource):
     '''Shows a list of all users and lets you POST to add new users'''
     @NAMESPACE.doc('list_users')
+    @cross_origin(headers=["Content-Type", "Authorization"])
+    @cross_origin(headers=["Access-Control-Allow-Origin", "*"])
+    @requires_auth
+    @NAMESPACE.doc(security='apikey')
     def get(self):
         '''Get the current users.'''
         session = SESSION()
@@ -47,6 +59,10 @@ class UserList(Resource):
 
     @NAMESPACE.expect(USER)
     @NAMESPACE.doc('create_user')
+    @cross_origin(headers=["Content-Type", "Authorization"])
+    @cross_origin(headers=["Access-Control-Allow-Origin", "*"])
+    @requires_auth
+    @NAMESPACE.doc(security='apikey')
     def post(self):
         ''' Post a new user. '''
         posted_user = UserSchema(

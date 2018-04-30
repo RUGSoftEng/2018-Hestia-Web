@@ -42,6 +42,7 @@ class ServerList(Resource):
     @cross_origin(headers=["Content-Type", "Authorization"])
     @cross_origin(headers=["Access-Control-Allow-Origin", "*"])
     @requires_auth
+    @NAMESPACE.doc(security='apikey')
     def get(self):
         '''Get the current servers.'''
         session = SESSION()
@@ -60,6 +61,7 @@ class ServerList(Resource):
     @cross_origin(headers=["Content-Type", "Authorization"])
     @cross_origin(headers=["Access-Control-Allow-Origin", "*"])
     @requires_auth
+    @NAMESPACE.doc(security='apikey')
     def post(self):
         '''Post a new server.'''
         posted_server = ServerSchema(
