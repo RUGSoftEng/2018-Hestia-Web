@@ -56,7 +56,7 @@ The website will allow a user to connect to their controllers through a web serv
 ![Website Design](images/Hestia_control_concept.png  "Website Control Concept")
 
 ### Design choices
-Due to the Firebase server, once the user has logged in then they will be able to see devices from every server they own, without having to switch between them. Thus, the main focus of the website will be on listing the devices managed by their controllers, and on the operations that can be applied on them. These will mirror those already implemented by Hestia, such as renaming or deleting a device, but with more streamlined interfacing added, such as using buttons and sliders in order to change the activators of a device, instead of having to directly enter values.
+We use auth0 for login, in order to implement single sign-on. Thus, the main focus of the website will be on listing the devices managed by their controllers, and on the operations that can be applied on them. These will mirror those already implemented by Hestia, such as renaming or deleting a device, but with more streamlined interfacing added, such as using buttons and sliders in order to change the activators of a device, instead of having to directly enter values.
 
 
 #### Structural choices
