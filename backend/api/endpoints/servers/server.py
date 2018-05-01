@@ -16,6 +16,7 @@ from flask_cors import (
 
 from api.authentication.authentication import (
     requires_auth,
+    get_user_id,
 )
 
 import requests
@@ -70,7 +71,7 @@ class Server(Resource):
         # Error 404 if >1 or D.N.E
         try:
             server_object = session.query(
-                ServerDB).filter_by(server_id=server_id).one()
+                ServerDB).filter_by(server_id=server_id, user_id=get_user_id()).one()
         except exc.NoResultFound:
             return "", 404
 
@@ -91,7 +92,11 @@ class Server(Resource):
     def delete(self, server_id):
         '''Delete a server given its identifier'''
         session = SESSION()
-        server = session.query(ServerDB).filter_by(server_id=server_id).one()
+        try:
+            server_object = server = session.query(ServerDB).filter_by(server_id=server_id, user_id=get_user_id()).one()
+        except exc.NoResultFound:
+            return "", 404
+
         session.delete(server)
         session.commit()
 
@@ -145,7 +150,7 @@ class ServerRequest(Resource):
         session = SESSION()
         try:
             server_object = session.query(
-                ServerDB).filter_by(server_id=server_id).one()
+                ServerDB).filter_by(server_id=server_id, user_id=get_user_id()).one()
         except exc.NoResultFound:
             return "", 404
 
