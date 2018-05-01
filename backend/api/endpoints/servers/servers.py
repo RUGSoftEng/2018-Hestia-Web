@@ -11,6 +11,7 @@ from flask_cors import (
 
 from api.authentication.authentication import (
     requires_auth,
+    get_user_id,
 )
 
 from flask_restplus import (
@@ -46,7 +47,7 @@ class ServerList(Resource):
     def get(self):
         '''Get the current servers.'''
         session = SESSION()
-        servers_objects = session.query(Server).all()
+        servers_objects = session.query(Server).filter_by(user_id=get_user_id())
 
         # transforming into JSON-serializable objects
         schema = ServerSchema(many=True)
@@ -64,12 +65,14 @@ class ServerList(Resource):
     @NAMESPACE.doc(security='apikey')
     def post(self):
         '''Post a new server.'''
+        payload = NAMESPACE.apis[0].payload
+        payload['user_id'] = get_user_id()
         posted_server = ServerSchema(
             only=('server_id',
                   'user_id',
                   'server_name',
                   'server_address',
-                  'server_port')).load(NAMESPACE.apis[0].payload)
+                  'server_port')).load(payload)
 
         server = Server(**posted_server.data)
 
