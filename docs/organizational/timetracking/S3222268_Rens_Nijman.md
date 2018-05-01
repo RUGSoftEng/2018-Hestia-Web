@@ -110,6 +110,12 @@
 | *2018-04-24* | 16:30-17:00 | Research flask dance                                  |
 | *2018-04-24* | 17:00-17:30 | Research flask dance                                  |
 | *2018-04-24* | 17:30-18:00 | Research flask dance                                  |
+| *2018-04-25* | 12:00-12:30 | Research authentication options                       |
+| *2018-04-25* | 12:30-13:00 | Research authentication options                       |
+| *2018-04-25* | 13:00-13:30 | Research authentication options                       |
+| *2018-04-25* | 13:30-14:00 | Research authentication options                       |
+| *2018-04-25* | 14:00-14:30 | Research authentication options                       |
+| *2018-04-25* | 14:30-15:00 | Research authentication options                       |
 | *2018-04-29* | 12:00-12:30 | Research Auth0                                        |
 | *2018-04-29* | 12:30-13:00 | Research Auth0                                        |
 | *2018-04-29* | 13:00-13:30 | Research Auth0                                        |
@@ -179,13 +185,13 @@
 | *2018-05-01* | 15:00-15:30 | Finish up authentication and using user info          |
 | *2018-05-01* | 15:30-16:00 | Finish up authentication and using user info          |
 | *2018-05-01* | 16:00-16:30 | Finish up authentication and using user info          |
-| *2018-05-01* | 18:30-19:00 | Finish up authentication and using user info          |
-| *2018-05-01* | 19:00-19:30 | Finish up authentication and using user info          |
-| *2018-05-01* | 19:30-20:00 | Finish up authentication and using user info          |
-| *2018-05-01* | 20:00-20:30 | Finish up authentication and using user info          |
-| *2018-05-01* | 20:30-21:00 | Finish up authentication and using user info          |
-| *2018-05-01* | 21:00-21:30 | Finish up authentication and using user info          |
-| *2018-05-01* | 21:30-22:00 | Finish up authentication and using user info          |
-| *2018-05-01* | 22:00-22:30 | Finish up authentication and using user info          |
-| *2018-05-01* | 22:30-23:00 | Finish up authentication and using user info          |
-| *2018-05-01* | 23:00-23:30 | Finish up authentication and using user info          |
+| *2018-05-01* | 18:30-19:00 | Linking user info (user id) to database               |
+| *2018-05-01* | 19:00-19:30 | Linking user info (user id) to database               |
+| *2018-05-01* | 19:30-20:00 | Linking user info (user id) to database               |
+| *2018-05-01* | 20:00-20:30 | Linking user info (user id) to database               |
+| *2018-05-01* | 20:30-21:00 | Linking user info (user id) to database               |
+| *2018-05-01* | 21:00-21:30 | Linking user info (user id) to database               |
+| *2018-05-01* | 21:30-22:00 | Linking user info (user id) to database               |
+| *2018-05-01* | 22:00-22:30 | Linking user info (user id) to database               |
+| *2018-05-01* | 22:30-23:00 | Linking user info (user id) to database               |
+| *2018-05-01* | 23:00-23:30 | Linking user info (user id) to database               |

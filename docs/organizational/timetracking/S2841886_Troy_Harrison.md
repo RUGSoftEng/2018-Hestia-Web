@@ -96,3 +96,56 @@
 | *17-04-2018* | 21:00-21:30 | Assisted with bug squashing.                                                                                       |
 |              | 21:30-22:00 | Assisted with bug squashing.                                                                                       |
 |              | 22:00-22:30 | Git cleanup                                                                                                        |
+| *19-04-2018* | 09:00-09:30 | Meeting with Feiko (TA and Client) and Lars (Client)                                                               |
+|              | 09:30-10:00 | Meeting with Feiko (TA and Client) and Lars (Client)                                                               |
+| *21-04-2018* | 10:00-10:30 | Research RESTplus                                                                                                  |
+|              | 10:30-11:00 | Research RESTplus                                                                                                  |
+|              | 11:00-11:30 | Research RESTplus                                                                                                  |
+|              | 11:30-12:00 | Research RESTplus                                                                                                  |
+|              | 12:00-12:30 | Research RESTplus                                                                                                  |
+|              | 12:30-13:00 | Research RESTplus                                                                                                  |
+|              | 13:30-14:00 | Research RESTplus                                                                                                  |
+| *22-04-2018* | 10:00-10:30 | Convert current backend to RESTplus                                                                                |
+|              | 10:30-11:00 | Convert current backend to RESTplus                                                                                |
+|              | 11:00-11:30 | Convert current backend to RESTplus                                                                                |
+|              | 11:30-12:00 | Convert current backend to RESTplus                                                                                |
+|              | 12:00-12:30 | Convert current backend to RESTplus                                                                                |
+|              | 12:30-13:00 | Convert current backend to RESTplus                                                                                |
+| *23-04-2018* | 11:00-11:30 | Research OAuth and Authentication flows                                                                            |
+|              | 11:30-12:00 | Research Flask Social Login Options                                                                                |
+|              | 12:00-12:30 | Research Flask Dance                                                                                               |
+| *24-04-2018* |             |                                                                                                                    |
+| *26-04-2018* |             |                                                                                                                    |
+| *29-04-2018* |             |                                                                                                                    |
+| *30-04-2018* | 14:00-14:30 | Worked on integrating Auth0 for authentication layer on backend.                                                   |
+|              | 14:30-15:00 | Worked on integrating Auth0 for authentication layer on backend.                                                   |
+|              | 15:00-15:30 | Worked on integrating Auth0 for authentication layer on backend.                                                   |
+|              | 15:30-15:00 | Worked on integrating Auth0 for authentication layer on backend.                                                   |
+|              | 15:00-15:30 | Worked on integrating Auth0 for authentication layer on backend.                                                   |
+|              | 15:30-16:00 | Worked on integrating Auth0 for authentication layer on frontend.                                                  |
+|              | 16:00-16:30 | Worked on integrating Auth0 for authentication layer on frontend.                                                  |
+|              | 16:30-17:00 | Worked on integrating Auth0 for authentication layer on frontend.                                                  |
+|              | 17:00-17:30 | Worked on integrating Auth0 for authentication layer on frontend.                                                  |
+|              | 17:30-18:00 | Research Auth0 implicit grant flow.                                                                                |
+|              | 18:30-19:00 | Research Auth0 implicit grant flow.                                                                                |
+| *01-05-2018* | 09:00-09:30 | Fix Vue authentication callback redirection issue.                                                                 |
+|              | 12:00-12:30 | Fix Auth0 access_token generation.                                                                                 |
+|              | 12:30-13:00 | Fix Auth0 access_token generation.                                                                                 |
+|              | 13:00-13:30 | Fix Auth0 access_token generation.                                                                                 |
+|              | 13:30-14:00 | Fix Auth0 access_token generation.                                                                                 |
+|              | 14:00-14:30 | Fix Auth0 sub (user_id) access on backend.                                                                         |
+|              | 14:30-15:00 | Fix Auth0 sub (user_id) access on backend.                                                                         |
+|              | 15:00-15:30 | Setup test backend server for frontend to begin switching from the dummy calls to calling the real server.         |
+|              | 15:30-16:00 | Migrate backend to using user_id from access token on table insert.                                                |
+|              | 16:00-16:30 | Migrate backend to using user_id from access token on table insert.                                                |
+|              | 20:30-21:00 | Cleanup endpoints based on user_id from access token.                                                              |
+|              | 21:00-21:30 | Cleanup endpoints based on user_id from access token.                                                              |
+|              | 21:30-22:00 | Cleanup endpoints based on user_id from access token.                                                              |
+|              | 22:00-22:30 | Cleanup model in database.                                                                                         |
+|              | 22:30-23:00 | Cleanup model in database.                                                                                         |
+|              | 23:00-23:30 | Handle time tracking and merging.                                                                                  |
+|              | 23:30-23:59 | Handle merging and sprint pull request.                                                 |
+                  
+                  
+                  
+                  
