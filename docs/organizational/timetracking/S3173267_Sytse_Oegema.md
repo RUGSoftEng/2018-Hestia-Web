@@ -23,3 +23,15 @@
 | *02/04/2018* | 10:00-11:30| Determining the subjects to discus durring the presentation and the structure of the presentation.|
 | *03/04/2018* | 8:30-12:30| Presentation preparation and the presentations.|
 | *17/04/2018* | 11:30-17:30| First meeting up with the group and later on making the feature frontend branch with Troy. Also doing research on vue. [Tutorial](https://codeburst.io/full-stack-single-page-application-with-vue-js-and-flask-b1e036315532)|
+| *18/04/2018* | 09:30-10:30| Doing a tutorial on basic vue.|
+| *19/04/2018* | 09:00-10:30| Meeting with the client and TA.|
+| *19/04/2018* | 10:30-17:00| Worked on the new veu frontend.|
+| *20/04/2018* | 09:30-14:30| Vue research and working on frontend.|
+| *22/04/2018* | 13:00-17:00| More Vue research especially into the vuex package. |
+| *23/04/2018* | 18:00-20:00| Figuring out the Semantic UI menu. |
+| *24/04/2018* | 09:00-14:00| Team meeting and working on the seperation of files in the frontend. |
+| *25/04/2018* | 15:30-17:00| Finally figured out how to import Vue components. |
+| *26/04/2018* | 09:00-15:00| Worked on the feature/vue frontend branch. Made sure the vuex protocols are followed and created some visual things. |
+| *29/04/2018* | 10:30-12:00| Worked on the documentation of the vue branch. |
+| *31/04/2018* | 13:00-18:30| Working on the 404 page. Followed by a meeting. Explained some things about vue to Nick. Worked on the login page with Troy. |
+| *01/05/2018* | 12:00-18:30| Working on the async requests for fetching data from the servers. Also looking into router redirection if someone is not authenticated yet. |
