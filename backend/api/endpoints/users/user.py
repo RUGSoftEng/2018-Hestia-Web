@@ -32,12 +32,6 @@ from api.database.entities.model import (
 
 from api.endpoints.users import NAMESPACE
 
-USER = NAMESPACE.model('User', {
-    'user_id': fields.String(readOnly=True, description="The user identification"),
-    'server_ids': fields.String(readOnly=True, description="The server that the user is tied to"),
-
-})
-
 
 @NAMESPACE.route('/<string:user_id>')
 @NAMESPACE.response(404, 'User not found')

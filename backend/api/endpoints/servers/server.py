@@ -37,10 +37,6 @@ SERVER = NAMESPACE.model('Server', {
         readOnly=True,
         description="The server identification"
     ),
-    'user_id': fields.String(
-        readOnly=True,
-        description="Owner of the server"
-    ),
     'server_name': fields.String(
         readOnly=True,
         description="The server identification"

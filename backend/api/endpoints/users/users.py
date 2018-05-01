@@ -16,6 +16,7 @@ from flask_cors import (
 
 from api.authentication.authentication import (
     requires_auth,
+    get_user_id,
 )
 
 from api.database.entities.entity import (
@@ -30,8 +31,6 @@ from api.database.entities.model import (
 )
 
 from api.endpoints.users import NAMESPACE
-
-from api.endpoints.users.user import USER
 
 BASE.metadata.create_all(ENGINE)
 
@@ -57,7 +56,6 @@ class UserList(Resource):
         session.close()
         return jsonify(all_users.data)
 
-    @NAMESPACE.expect(USER)
     @NAMESPACE.doc('create_user')
     @cross_origin(headers=["Content-Type", "Authorization"])
     @cross_origin(headers=["Access-Control-Allow-Origin", "*"])
@@ -68,7 +66,7 @@ class UserList(Resource):
         posted_user = UserSchema(
             only=('user_id',
                   'servers_id')).load(NAMESPACE.apis[0].payload)
-
+        print(get_user_id())
         user = User(**posted_user.data)
 
         # persist user
