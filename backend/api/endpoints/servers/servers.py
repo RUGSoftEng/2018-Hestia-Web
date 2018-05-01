@@ -68,8 +68,7 @@ class ServerList(Resource):
         payload = NAMESPACE.apis[0].payload
         payload['user_id'] = get_user_id()
         posted_server = ServerSchema(
-            only=('server_id',
-                  'user_id',
+            only=('user_id',
                   'server_name',
                   'server_address',
                   'server_port')).load(payload)

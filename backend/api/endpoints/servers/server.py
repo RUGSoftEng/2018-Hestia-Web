@@ -34,10 +34,6 @@ from api.database.entities.model import (
 
 from api.endpoints.servers import NAMESPACE
 SERVER = NAMESPACE.model('Server', {
-    'server_id': fields.String(
-        readOnly=True,
-        description="The server identification"
-    ),
     'server_name': fields.String(
         readOnly=True,
         description="The server identification"
