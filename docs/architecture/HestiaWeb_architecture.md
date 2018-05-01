@@ -23,8 +23,12 @@ The Hestia Home Automation System, developed by the clients, aims to make home a
 To improve on this, we will develop a web based interface for Hestia. For this, there are two main systems under consideration: the front-end (the user interface with which the client interacts), and the back-end (which serves as a middleman between local Hestia servers and their users).
 This document describes the functioning of these systems, their interaction, and the motivation behind their underlying design choices.
 ### Overview
-Our goal for this project is to create a web interface for Hestia. This web interface, which is hosted on a central server, should allow users to log in and connect to their local Hestia servers. This allows users to interact with their home automation system remotely.
+Our goal for this project is to create a web interface for Hestia. This web interface, which is hosted on a central server, should allow users to log in and connect to their local Hestia servers. This allows users to interact with their home automation system remotely. 
+
 A Hestia server is a *controller* that manages a set of *peripherals*. Those peripherals are the facilities to be automated. These could for example be lights, locks, or any number of programmable devices. This is possible because Hestia is designed to be peripheral independent via a plugin infrastructure.
+
+Additionally, the client would like to have a *marketplace*, where independed creators can submit plugins to be made available to other Hestia users.
+
 The clients have created this system using the REST API. This decouples our work from the underlying infrastructure of Hestia.
 ## General Overview of the System
 The Hestia Web Interface can be divided into two main sub-systems as mentioned in the introduction.
@@ -82,11 +86,30 @@ def routeRequest(method, query, payload):
     return result
 ```
 Currently, the verify flag is set to `False`, as there is no secure connection to the site yet, which obviously has to be changed. What the code above does is, based on the method, it will send a package with corresponding information to the corresponding URL, and return the result of that request back to the client who originally sent the request.
+
+## Plugin Marketplace
+In order to allow users to more easily take advantage of Hestia's versatility, a *marketplace* will be constructed to host plugin files, and let users both browse and install plugins onto their own Hestia controller. The marketplace will consist of both a front-end, user oriented design to search for and browse plugins, and a back-end database that will store the data as a relational database and associated files.
+
+![Marketplace Diagram](images/MarketplaceArchitecture.png)
+
+More specifically, for each plugin, the following information will be stored:
+
+* Name
+* Author's name
+* Date of creation/upload
+* Description
+* Rating (users can vote on plugins they like, *tentative*)
+* Path to a hidden directory containing all required files.
+* Download counter
+* Tags/Topics (light, lock, etc.)
+
 ## Glossary
 Below are defined terms used in the architecture document:
 * *Controller*: The local Hestia server in a user's house. The controller simply runs the Hestia Server previously developed by the client, and has a unique IP address and port number.
 * *Peripheral*: A peripheral is any device which can be connected to the Hestia system via a plugin. For example, a Phillips Hue light bulb would constitute a peripheral.
 * *User*: A user is someone who has installed a Hestia controller in their home, and accesses the website to control their system.
+* *Marketplace*: A seperate area of the site where users can browse available plugins, upload their own, and integrate these plugins into their local controller's setup.
+
 ## Change Log
 | Who           |       When | Where          | What                                                                           |
 | :---          |       :--- | :---           | :---                                                                           |
