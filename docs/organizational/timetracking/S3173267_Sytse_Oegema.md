@@ -32,3 +32,6 @@
 | *24/04/2018* | 09:00-14:00| Team meeting and working on the seperation of files in the frontend. |
 | *25/04/2018* | 15:30-17:00| Finally figured out how to import Vue components. |
 | *26/04/2018* | 09:00-15:00| Worked on the feature/vue frontend branch. Made sure the vuex protocols are followed and created some visual things. |
+| *29/04/2018* | 10:30-12:00| Worked on the documentation of the vue branch. |
+| *31/04/2018* | 13:00-18:30| Working on the 404 page. Followed by a meeting. Explained some things about vue to Nick. Worked on the login page with Troy. |
+| *01/05/2018* | 12:00-18:30| Working on the async requests for fetching data from the servers. Also looking into router redirection if someone is not authenticated yet. |
