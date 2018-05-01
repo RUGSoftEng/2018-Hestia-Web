@@ -6,6 +6,8 @@ from flask import (
     jsonify
 )
 
+import json
+
 from flask_restplus import (
     Resource,
 )
@@ -63,10 +65,13 @@ class UserList(Resource):
     @NAMESPACE.doc(security='apikey')
     def post(self):
         ''' Post a new user. '''
+        user_id = {
+            "user_id" : get_user_id()
+        }
+        user_id = json.dumps(user_id)
         posted_user = UserSchema(
-            only=('user_id',
-                  'servers_id')).load(NAMESPACE.apis[0].payload)
-        print(get_user_id())
+            only=('user_id')).load(user_id)
+        print(posted_user)
         user = User(**posted_user.data)
 
         # persist user
