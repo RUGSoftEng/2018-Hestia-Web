@@ -14,7 +14,10 @@
 | *27/03/2018* | 17:00-19:00| Updated requirements document with list of features which have been implemented |
 | *27/03/2018* | 17:00-19:00| Updated requirements document with list of features which have been implemented |
 | *15/04/2018* | 17:00-19:00| Updated architecture document in order to reflect new design choices |
-| *16/03/2018* | 09:00-11:00| Attended meeting, typed up notes from meeting |
-| *16/03/2018* | 03:00-15:00| Started researching legal documentation for website, made initial notes |
-| *17/03/2018* | 07:00-19:00| Made css fix for logout button |
+| *16/04/2018* | 09:00-11:00| Attended meeting, typed up notes from meeting |
+| *16/04/2018* | 03:00-15:00| Started researching legal documentation for website, made initial notes |
+| *17/04/2018* | 17:00-19:00| Made css fix for logout button |
+| *25/04/2018* | 07:00-19:00| Researched legal issues for website, made privacy policy and terms and conditions  |
+| *27/04/2018* | 07:00-21:00| created pages for the above, worked on implementing footer  |
+| *01/05/2018* | 12:00-17:00| Updated architecture document for latest sprint |
 
