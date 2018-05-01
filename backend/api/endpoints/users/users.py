@@ -39,24 +39,7 @@ BASE.metadata.create_all(ENGINE)
 
 @NAMESPACE.route('/')
 class UserList(Resource):
-    '''Shows a list of all users and lets you POST to add new users'''
-    @NAMESPACE.doc('list_users')
-    @cross_origin(headers=["Content-Type", "Authorization"])
-    @cross_origin(headers=["Access-Control-Allow-Origin", "*"])
-    @requires_auth
-    @NAMESPACE.doc(security='apikey')
-    def get(self):
-        '''Get the current users.'''
-        session = SESSION()
-        users_objects = session.query(User).all()
-
-        # transforming into JSON-serializable objects
-        schema = UserSchema(many=True)
-        all_users = schema.dump(users_objects)
-
-        # serializing as JSON
-        session.close()
-        return jsonify(all_users.data)
+    '''Lets you POST to add new users'''
 
     @NAMESPACE.doc('create_user')
     @cross_origin(headers=["Content-Type", "Authorization"])
