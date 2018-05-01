@@ -27,7 +27,6 @@ class UserSchema(Schema):
     The users schema.
     """
     user_id = fields.Str()
-    server_ids = fields.Str()
     created_at = fields.DateTime()
     updated_at = fields.DateTime()
 
