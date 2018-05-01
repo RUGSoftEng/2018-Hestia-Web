@@ -66,12 +66,13 @@ class UserList(Resource):
     def post(self):
         ''' Post a new user. '''
         user_id = {
-            "user_id" : get_user_id()
+            'user_id' : get_user_id()
         }
-        user_id = json.dumps(user_id)
+
         posted_user = UserSchema(
-            only=('user_id')).load(user_id)
-        print(posted_user)
+                only=('user_id',
+                'servers_id')).load(user_id)
+
         user = User(**posted_user.data)
 
         # persist user
