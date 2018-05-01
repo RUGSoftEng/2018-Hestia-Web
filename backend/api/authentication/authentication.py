@@ -61,6 +61,33 @@ def get_token_auth_header():
     return token
 
 
+def get_user_id():
+    token = get_token_auth_header()
+
+    jsonurl = urlopen("https://"+AUTH0_DOMAIN+"/.well-known/jwks.json")
+
+    jwks = json.loads(jsonurl.read())
+
+    rsa_key = {}
+    for key in jwks["keys"]:
+        rsa_key = {
+            "kty": key["kty"],
+            "kid": key["kid"],
+            "use": key["use"],
+            "n": key["n"],
+            "e": key["e"]
+        }
+
+    payload = jwt.decode(
+        token,
+        rsa_key,
+        algorithms=ALGORITHMS,
+        audience=API_IDENTIFIER,
+        issuer="https://"+AUTH0_DOMAIN+"/"
+    )
+
+    return payload['sub']
+
 def requires_scope(required_scope):
     """Determines if the required scope is present in the access token
     Args:
