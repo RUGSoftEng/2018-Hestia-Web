@@ -1,4 +1,6 @@
-
+"""
+Provides an authentication layer using JWT via Auth0.
+"""
 from functools import wraps
 import json
 from os import environ as env
@@ -6,7 +8,6 @@ from six.moves.urllib.request import urlopen
 
 from dotenv import load_dotenv, find_dotenv
 from flask import Flask, request, jsonify, _request_ctx_stack
-from flask_cors import cross_origin
 from jose import jwt
 
 ENV_FILE = find_dotenv()
@@ -18,15 +19,21 @@ ALGORITHMS = ["RS256"]
 APP = Flask(__name__)
 
 
-# Format error response and append status code.
 class AuthError(Exception):
+    """
+    An error to be thrown when unauthenticated access to protected resource is requested.
+    """
     def __init__(self, error, status_code):
+        Exception.__init__(self)
         self.error = error
         self.status_code = status_code
 
 
 @APP.errorhandler(AuthError)
 def handle_auth_error(ex):
+    """
+    Produce the authentication error as a JSON HTTP response.
+    """
     response = jsonify(ex.error)
     response.status_code = ex.status_code
     return response
@@ -62,6 +69,9 @@ def get_token_auth_header():
 
 
 def get_user_id():
+    """
+    Get the user id from the access token in the Authorization header.
+    """
     token = get_token_auth_header()
 
     jsonurl = urlopen("https://"+AUTH0_DOMAIN+"/.well-known/jwks.json")
@@ -88,6 +98,7 @@ def get_user_id():
 
     return payload['sub']
 
+
 def requires_scope(required_scope):
     """Determines if the required scope is present in the access token
     Args:
@@ -103,12 +114,14 @@ def requires_scope(required_scope):
     return False
 
 
-def requires_auth(f):
+def requires_auth(func):
     """Determines if the access token is valid
     """
-    @wraps(f)
+    @wraps(func)
     def decorated(*args, **kwargs):
-
+        """
+        The decorator requiring authentication before func may be called.
+        """
         token = get_token_auth_header()
         jsonurl = urlopen("https://"+AUTH0_DOMAIN+"/.well-known/jwks.json")
         jwks = json.loads(jsonurl.read())
@@ -158,7 +171,7 @@ def requires_auth(f):
                                  " token."}, 401)
 
             _request_ctx_stack.top.current_user = payload
-            return f(*args, **kwargs)
+            return func(*args, **kwargs)
         raise AuthError({"code": "invalid_header",
                          "description": "Unable to find appropriate key"}, 401)
     return decorated

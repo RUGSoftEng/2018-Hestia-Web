@@ -2,34 +2,16 @@
 Defines the user endpoint. For fetching information for a specific user
 """
 
-from flask import (
-    jsonify
-)
-
-from flask_restplus import (
-    Resource,
-    fields,
-)
-
-from flask_cors import (
-    cross_origin,
-)
-
-from api.authentication.authentication import (
-    requires_auth,
-)
-
+from flask import (jsonify)
+from flask_restplus import (Resource)
+from flask_cors import (cross_origin)
 from sqlalchemy.orm import (exc)
-
-from api.database.entities.entity import (
-    SESSION,
-)
-
+from api.authentication.authentication import (requires_auth)
+from api.database.entities.entity import (SESSION)
 from api.database.entities.model import (
     User as UserDB,
     UserSchema,
 )
-
 from api.endpoints.users import NAMESPACE
 
 
@@ -77,8 +59,6 @@ class User(Resource):
 
         return "", 204
 
-    @NAMESPACE.expect(USER)
-    @NAMESPACE.marshal_with(USER)
     @cross_origin(headers=["Content-Type", "Authorization"])
     @cross_origin(headers=["Access-Control-Allow-Origin", "*"])
     @requires_auth

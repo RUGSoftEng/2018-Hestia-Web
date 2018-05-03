@@ -2,19 +2,11 @@
 Defines the users end point. A user is a registered account linked with
 one or more server IDs
 """
-from flask import (
-    jsonify
-)
+from flask import (jsonify)
 
-import json
+from flask_restplus import (Resource)
 
-from flask_restplus import (
-    Resource,
-)
-
-from flask_cors import (
-    cross_origin,
-)
+from flask_cors import (cross_origin)
 
 from api.authentication.authentication import (
     requires_auth,
@@ -24,7 +16,7 @@ from api.authentication.authentication import (
 from api.database.entities.entity import (
     SESSION,
     ENGINE,
-    BASE
+    BASE,
 )
 
 from api.database.entities.model import (
@@ -49,12 +41,12 @@ class UserList(Resource):
     def post(self):
         ''' Post a new user. '''
         user_id = {
-            'user_id' : get_user_id()
+            'user_id': get_user_id()
         }
 
         posted_user = UserSchema(
-                only=('user_id',
-                'servers_id')).load(user_id)
+            only=('user_id',
+                  'servers_id')).load(user_id)
 
         user = User(**posted_user.data)
 
