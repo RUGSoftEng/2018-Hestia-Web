@@ -81,6 +81,11 @@ This will create a virtualenv with python3
 
 Make sure your cd is `backend` directory.
 
+Install the dependencies of the project:
+```bash
+pipenv install
+```
+
 Finally run:
 ```bash
 pipenv shell
