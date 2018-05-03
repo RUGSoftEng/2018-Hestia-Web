@@ -1,13 +1,12 @@
 """
 Declare the model objects for the database as well as schema for each
 """
-import uuid
-import base64
 from marshmallow import Schema, fields
 from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
 
-from .entity import Entity, BASE
+from api.database.entities.entity import Entity, BASE
+from api.database.util import url_safe_uuid
 
 
 class User(Entity, BASE):
@@ -47,7 +46,7 @@ class Server(Entity, BASE):
 
     def __init__(self, user_id, server_name, server_address, server_port):
         Entity.__init__(self)
-        self.server_id = (str(base64.urlsafe_b64encode(uuid.uuid4().bytes))).replace("=", "").replace("\'","")[1:]
+        self.server_id = url_safe_uuid()
         self.user_id = user_id
         self.server_name = server_name
         self.server_address = server_address

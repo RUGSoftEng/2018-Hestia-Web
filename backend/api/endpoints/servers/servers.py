@@ -1,40 +1,27 @@
 """
 Defines the servers end point. A server represents a remote Hestia controller.
 """
-from flask import (
-    jsonify
-)
-
-from flask_cors import (
-    cross_origin,
-)
-
+from flask import (jsonify)
+from flask_cors import (cross_origin)
+from flask_restplus import (Resource)
 from api.authentication.authentication import (
     requires_auth,
     get_user_id,
 )
-
-from flask_restplus import (
-    Resource,
-)
-
 from api.database.entities.entity import (
     SESSION,
     ENGINE,
-    BASE
+    BASE,
 )
-
 from api.database.entities.model import (
     Server,
     ServerSchema,
 )
+from api.endpoints.servers import (NAMESPACE)
+from api.endpoints.servers.server import (SERVER)
 
-from api.endpoints.servers import NAMESPACE
-
-from api.endpoints.servers.server import SERVER
 
 BASE.metadata.create_all(ENGINE)
-
 
 @NAMESPACE.route('/')
 class ServerList(Resource):
@@ -47,7 +34,8 @@ class ServerList(Resource):
     def get(self):
         '''Get the current servers.'''
         session = SESSION()
-        servers_objects = session.query(Server).filter_by(user_id=get_user_id())
+        servers_objects = session.query(
+            Server).filter_by(user_id=get_user_id())
 
         # transforming into JSON-serializable objects
         schema = ServerSchema(many=True)

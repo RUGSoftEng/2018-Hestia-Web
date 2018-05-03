@@ -1,38 +1,25 @@
 """
 Creates endpoints for the individual server access
 """
-from flask import (
-    jsonify
-)
-
+import requests
+from flask import (jsonify)
 from flask_restplus import (
     Resource,
     fields,
 )
-
-from flask_cors import (
-    cross_origin,
-)
-
+from flask_cors import (cross_origin)
+from sqlalchemy.orm import (exc)
 from api.authentication.authentication import (
     requires_auth,
     get_user_id,
 )
-
-import requests
-
-from sqlalchemy.orm import (exc)
-
-from api.database.entities.entity import (
-    SESSION,
-)
-
+from api.database.entities.entity import (SESSION)
 from api.database.entities.model import (
     Server as ServerDB,
     ServerSchema,
 )
-
 from api.endpoints.servers import NAMESPACE
+
 SERVER = NAMESPACE.model('Server', {
     'server_name': fields.String(
         readOnly=True,
@@ -89,7 +76,8 @@ class Server(Resource):
         '''Delete a server given its identifier'''
         session = SESSION()
         try:
-            server_object = server = session.query(ServerDB).filter_by(server_id=server_id, user_id=get_user_id()).one()
+            server = session.query(ServerDB).filter_by(
+                server_id=server_id, user_id=get_user_id()).one()
         except exc.NoResultFound:
             return "", 404
 
@@ -184,4 +172,4 @@ def route_request(method, query, payload):
         result = requests.delete(query, verify=False, timeout=TIMEOUT)
     else:
         result = "Invalid REST method."
-    return result
+    return jsonify(result)
