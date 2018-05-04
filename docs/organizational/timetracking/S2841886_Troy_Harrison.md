@@ -144,7 +144,12 @@
 |              | 22:00-22:30 | Cleanup model in database.                                                                                         |
 |              | 22:30-23:00 | Cleanup model in database.                                                                                         |
 |              | 23:00-23:30 | Handle time tracking and merging.                                                                                  |
-|              | 23:30-23:59 | Handle merging and sprint pull request.                                                 |
+|              | 23:30-23:59 | Handle merging and sprint pull request.                                                                            |
+| *2018-05-04* | 10:00-10:30 | Setup Travis CI for backend                                                                                        |
+|              | 10:30-11:00 | Setup Travis CI for backend                                                                                        |
+|              | 11:00-11:30 | Setup Travis CI for backend                                                                                        |
+|              | 11:30-12:00 | Setup Travis CI for backend                                                                                        |
+|              | 12:00-12:30 | Setup Travis CI for backend                                                                                        |
                   
                   
                   
