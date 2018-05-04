@@ -3,10 +3,12 @@ python: "3.6"
 
 install:
   - pip install pipenv
+  - pip install pytest
   - cd ./backend/
   - pipenv install
-  - pipenv install pytest
 
 script:
   - pytest
 
+cache:
+  - pip
