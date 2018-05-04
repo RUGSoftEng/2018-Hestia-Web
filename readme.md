@@ -1,7 +1,6 @@
 # Hestia Webserver
-To run the webserver, please use the following commands:
-
-First to build a virtual environment in which the Flask server can run:
-`./dev_setup.sh`
-Then to run the server:
-`./launch.sh`
+## Build status
+| Branch      | Build Status                                                                                                                                       |
+| Master      | [![Build Status](https://travis-ci.org/RUGSoftEng/2018-Hestia-Web.svg?branch=master)](https://travis-ci.org/RUGSoftEng/2018-Hestia-Web)            |
+| Development | [![Build Status](https://travis-ci.org/RUGSoftEng/2018-Hestia-Web.svg?branch=development)](https://travis-ci.org/RUGSoftEng/2018-Hestia-Web)       |
+| Testing     | [![Build Status](https://travis-ci.org/RUGSoftEng/2018-Hestia-Web.svg?branch=feature%2Ftesting)](https://travis-ci.org/RUGSoftEng/2018-Hestia-Web) |
