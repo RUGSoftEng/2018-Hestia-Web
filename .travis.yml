@@ -1,0 +1,14 @@
+language: python
+python: "3.6"
+
+install:
+  - pip install pipenv
+  - cd ./backend/
+  - pipenv install
+  - pipenv install pytest
+  - pipenv shell
+
+script:
+  - cd ./backend
+  - pytest
+
