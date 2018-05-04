@@ -6,6 +6,7 @@ install:
   - pip install pytest
   - cd ./backend/
   - pipenv install
+  - pipenv shell
 
 script:
   - pytest
