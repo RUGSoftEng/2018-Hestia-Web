@@ -149,7 +149,7 @@
 |              | 10:30-11:00 | Setup Travis CI for backend                                                                                        |
 |              | 11:00-11:30 | Setup Travis CI for backend                                                                                        |
 |              | 11:30-12:00 | Setup Travis CI for backend                                                                                        |
-|              | 12:00-12:30 | Setup Travis CI for backend                                                                                        |
+|              | 12:00-12:30 | Add build badges to readme                                                                                         |
                   
                   
                   
