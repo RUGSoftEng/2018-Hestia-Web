@@ -44,8 +44,8 @@ Make sure you have Python 3.6 installed.
 
 ```sh
 sudo add-apt-repository ppa:deadsnakes/ppa
-sudo apt-get update
-sudo apt-get install python3.6
+sudo apt update
+sudo apt install python3.6
 ```
 
 Make sure you have pipenv installed through pip.
@@ -81,6 +81,11 @@ This will create a virtualenv with python3
 
 Make sure your cd is `backend` directory.
 
+Install the dependencies of the project:
+```bash
+pipenv install
+```
+
 Finally run:
 ```bash
 pipenv shell
@@ -102,6 +107,14 @@ python application.py dev
 
 ## Database Setup
 ### Docker
+First install Docker. For Ubuntu you do;
+```bash
+sudo apt install docker.io
+```
+Then you need to fix the user permissions on Ubuntu. **Make sure to logout and log back in afterwards.**
+```bash
+sudo usermod -a -G docker $USER
+```
 Setup the docker container with the `postgres` database.
 ```bash
 docker run --name hestia-web-db \

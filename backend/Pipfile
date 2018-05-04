@@ -15,7 +15,10 @@ flask = "*"
 marshmallow = "*"
 pylint = "*"
 flask-cors = "*"
-pytest = "*"
+authlib = "*"
+six = "*"
+python-dotenv = "*"
+python-jose-cryptodome = "*"
 
 [dev-packages]
 

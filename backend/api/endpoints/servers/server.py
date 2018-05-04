@@ -1,38 +1,26 @@
 """
-Creates endpoints for the indivudal server access
+Creates endpoints for the individual server access
 """
-from flask import (
-    jsonify
-)
-
+import requests
+from flask import (jsonify)
 from flask_restplus import (
     Resource,
     fields,
 )
-
-import requests
-
+from flask_cors import (cross_origin)
 from sqlalchemy.orm import (exc)
-
-from api.database.entities.entity import (
-    SESSION,
+from api.authentication.authentication import (
+    requires_auth,
+    get_user_id,
 )
-
+from api.database.entities.entity import (SESSION)
 from api.database.entities.model import (
     Server as ServerDB,
     ServerSchema,
 )
-
 from api.endpoints.servers import NAMESPACE
+
 SERVER = NAMESPACE.model('Server', {
-    'server_id': fields.String(
-        readOnly=True,
-        description="The server identification"
-    ),
-    'user_id': fields.String(
-        readOnly=True,
-        description="Owner of the server"
-    ),
     'server_name': fields.String(
         readOnly=True,
         description="The server identification"
@@ -54,6 +42,10 @@ SERVER = NAMESPACE.model('Server', {
 class Server(Resource):
     '''Show a single server item and lets you delete it'''
     @NAMESPACE.doc('get_server')
+    @cross_origin(headers=["Content-Type", "Authorization"])
+    @cross_origin(headers=["Access-Control-Allow-Origin", "*"])
+    @requires_auth
+    @NAMESPACE.doc(security='apikey')
     def get(self, server_id):
         '''Get a specific server.'''
         session = SESSION()
@@ -62,7 +54,7 @@ class Server(Resource):
         # Error 404 if >1 or D.N.E
         try:
             server_object = session.query(
-                ServerDB).filter_by(server_id=server_id).one()
+                ServerDB).filter_by(server_id=server_id, user_id=get_user_id()).one()
         except exc.NoResultFound:
             return "", 404
 
@@ -76,10 +68,19 @@ class Server(Resource):
 
     @NAMESPACE.doc('delete_server')
     @NAMESPACE.response(204, 'Server deleted')
+    @cross_origin(headers=["Content-Type", "Authorization"])
+    @cross_origin(headers=["Access-Control-Allow-Origin", "*"])
+    @requires_auth
+    @NAMESPACE.doc(security='apikey')
     def delete(self, server_id):
         '''Delete a server given its identifier'''
         session = SESSION()
-        server = session.query(ServerDB).filter_by(server_id=server_id).one()
+        try:
+            server = session.query(ServerDB).filter_by(
+                server_id=server_id, user_id=get_user_id()).one()
+        except exc.NoResultFound:
+            return "", 404
+
         session.delete(server)
         session.commit()
 
@@ -89,6 +90,10 @@ class Server(Resource):
 
     @NAMESPACE.expect(SERVER)
     @NAMESPACE.marshal_with(SERVER)
+    @cross_origin(headers=["Content-Type", "Authorization"])
+    @cross_origin(headers=["Access-Control-Allow-Origin", "*"])
+    @requires_auth
+    @NAMESPACE.doc(security='apikey')
     def put(self, server_id):
         '''Update a server given its identifier'''
         return_string = "Update server: " + server_id
@@ -120,12 +125,16 @@ class ServerRequest(Resource):
     Defines the request class that sends a request to a controller
     """
     @NAMESPACE.doc('request_from_server')
+    @cross_origin(headers=["Content-Type", "Authorization"])
+    @cross_origin(headers=["Access-Control-Allow-Origin", "*"])
+    @requires_auth
+    @NAMESPACE.doc(security='apikey')
     def post(self, server_id):
         '''Forward a request to a server'''
         session = SESSION()
         try:
             server_object = session.query(
-                ServerDB).filter_by(server_id=server_id).one()
+                ServerDB).filter_by(server_id=server_id, user_id=get_user_id()).one()
         except exc.NoResultFound:
             return "", 404
 
@@ -163,4 +172,4 @@ def route_request(method, query, payload):
         result = requests.delete(query, verify=False, timeout=TIMEOUT)
     else:
         result = "Invalid REST method."
-    return result
+    return jsonify(result)

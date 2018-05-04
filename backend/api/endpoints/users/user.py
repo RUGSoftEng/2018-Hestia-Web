@@ -2,33 +2,17 @@
 Defines the user endpoint. For fetching information for a specific user
 """
 
-from flask import (
-    jsonify
-)
-
-from flask_restplus import (
-    Resource,
-    fields,
-)
-
+from flask import (jsonify)
+from flask_restplus import (Resource)
+from flask_cors import (cross_origin)
 from sqlalchemy.orm import (exc)
-
-from api.database.entities.entity import (
-    SESSION,
-)
-
+from api.authentication.authentication import (requires_auth)
+from api.database.entities.entity import (SESSION)
 from api.database.entities.model import (
     User as UserDB,
     UserSchema,
 )
-
 from api.endpoints.users import NAMESPACE
-
-USER = NAMESPACE.model('User', {
-    'user_id': fields.String(readOnly=True, description="The user identification"),
-    'server_ids': fields.String(readOnly=True, description="The server that the user is tied to"),
-
-})
 
 
 @NAMESPACE.route('/<string:user_id>')
@@ -37,6 +21,10 @@ USER = NAMESPACE.model('User', {
 class User(Resource):
     '''Show a single user and lets you delete a single user'''
     @NAMESPACE.doc('get_user')
+    @cross_origin(headers=["Content-Type", "Authorization"])
+    @cross_origin(headers=["Access-Control-Allow-Origin", "*"])
+    @requires_auth
+    @NAMESPACE.doc(security='apikey')
     def get(self, user_id):
         '''Get a specific user.'''
         session = SESSION()
@@ -56,6 +44,10 @@ class User(Resource):
 
     @NAMESPACE.doc('delete_user')
     @NAMESPACE.response(204, 'User deleted')
+    @cross_origin(headers=["Content-Type", "Authorization"])
+    @cross_origin(headers=["Access-Control-Allow-Origin", "*"])
+    @requires_auth
+    @NAMESPACE.doc(security='apikey')
     def delete(self, user_id):
         '''Delete a user given its identifier'''
         session = SESSION()
@@ -67,8 +59,10 @@ class User(Resource):
 
         return "", 204
 
-    @NAMESPACE.expect(USER)
-    @NAMESPACE.marshal_with(USER)
+    @cross_origin(headers=["Content-Type", "Authorization"])
+    @cross_origin(headers=["Access-Control-Allow-Origin", "*"])
+    @requires_auth
+    @NAMESPACE.doc(security='apikey')
     def put(self, user_id):
         '''Update a user given its identifier'''
         return_string = "Update user: " + user_id

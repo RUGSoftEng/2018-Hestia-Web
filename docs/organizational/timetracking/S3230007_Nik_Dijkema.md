@@ -12,3 +12,5 @@
 | *25/03/2018* | 18:30-19:45 | Further preparing tangible design for functionality. |
 | *26/03/2017* | 17:15-20:00 | Implementing functionality and further work on design including functionality and troubleshooting. |
 | *27/03/2018* | 11:30-12:15 | Final functional implementations and further troubleshooting and design fixes for minimum requirements pull request. |
+| *29/04/2018* | 15:30-17:15 | Familiarising myself with recent platform changes (Vur and Semantic UI. |
+| *30/04/2018* | 14:45-18:45 | looking further into vue and sematix UI and starting new final frontend design in Vue/Semantic UI. |
