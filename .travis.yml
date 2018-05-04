@@ -8,7 +8,6 @@ install:
 
 script:
   - pytest
-  - exit 0
 
 cache:
   - pip
