@@ -28,3 +28,4 @@
 | *28-04-2018* |     5 | Meeting with Troy, cleaning code, testing                                                                                                                     |
 | *29-04-2018* |     4 | Meeting with Troy, testing, fixing bugs                                                                                                                       |
 | *01-05-2018* |     2 | Research into auth changes, short meeting at campus, testing research                                                                                         |
+| *04-05-2018* |     3 | Testing setup, TravisCI setup, with Troy                                                                                                                      |
