@@ -35,3 +35,11 @@
 | *29/04/2018* | 10:30-12:00| Worked on the documentation of the vue branch. |
 | *31/04/2018* | 13:00-18:30| Working on the 404 page. Followed by a meeting. Explained some things about vue to Nick. Worked on the login page with Troy. |
 | *01/05/2018* | 12:00-18:30| Working on the async requests for fetching data from the servers. Also looking into router redirection if someone is not authenticated yet. |
+| *03/05/2018* | 11:00-12:00| Meeting with the custommer. Discussed the login procedure for the Hestia local server and showed the work we had thusfar. |
+| *03/05/2018* | 12:00-14:00| Working on the frontend authentication configuration with Elias and Troy. |
+| *05/05/2018* | 12:00-14:00| Looking into JSdoc. |
+| *07/05/2018* | 13:00-16:00| Meeting with the group to expalin each other front and backend. |
+| *07/05/2018* | 18:00-20:30| Fixing the http requests for deleting servers, getting devices, updating activator states. |
+
+
+
