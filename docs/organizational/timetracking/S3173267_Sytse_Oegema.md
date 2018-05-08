@@ -40,6 +40,8 @@
 | *05/05/2018* | 12:00-14:00| Looking into JSdoc. |
 | *07/05/2018* | 13:00-16:00| Meeting with the group to expalin each other front and backend. |
 | *07/05/2018* | 18:00-20:30| Fixing the http requests for deleting servers, getting devices, updating activator states. |
+| *08/05/2018* | 8:00-11:30 | Writing getter functions and http requests for the plugin collections and devices. |
+| *08/05/2018* | 15:00-19:00| Working on the add devices modal in the frontend. |
 
 
 
