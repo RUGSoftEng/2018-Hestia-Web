@@ -157,7 +157,6 @@ def route_request(method, query, payload):
     """
     Defines the route function to send commands to a controller
     """
-    result = ""
     method = method.upper()
     print("Sending request to server:", method, ", ", query, ", ", payload)
     if method == "GET":
