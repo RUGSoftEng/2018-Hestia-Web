@@ -45,7 +45,7 @@ This function will update a server given it's id.
 This function handles routing a request to the actual controller residing at the address contained in the server object. A PAYLOAD is defined that takes in the type of request, the endpoint it is going to, and any optional payload in raw form. This payload is sent to the server that is returned from the query (that returns the ONE object after filtering based on id). It will return 404 if the server is not able to be contacted or does not exist. This function utilizes a helper function "route_requset" that handles the actual setup of each request based on the type of request.
 
 ## Development Setup
-### Linux
+### Linux Ubuntu
 Make sure you have Python 3.6 installed.
 
 ```sh
@@ -72,6 +72,34 @@ Finally run:
 pipenv shell
 ```
 This enables the environment with the lock file already included in the repository.
+
+### Linux Arch
+Make sure you have Python 3.6 installed.
+
+```sh
+sudo pacman -S python3
+sudo pacman -S python-pip
+```
+
+Make sure you have pipenv installed through pip.
+```bash
+sudo pip install pipenv
+```
+
+Make sure your cd is `backend` directory.
+
+Now run:
+```bash
+pipenv install
+```
+This will create a virtualenv with python3
+
+Finally run:
+```bash
+pipenv shell
+```
+This enables the environment with the lock file already included in the repository.
+
 
 ### Windows
 Setup is very different for windows. You must first download python 3.6 from their website.
@@ -100,20 +128,20 @@ This enables the environment with the lock file already included in the reposito
 
 ## Server Setup
 ### Linux
-Assuming the environment is enabled (pipenv shell) in the backend directory, you may now start the server in development mode with:
+Assuming the environment is enabled (pipenv shell) in the backend directory, and the database server is running, you may now start the server in development mode with:
 ```bash
 python application.py dev
 ```
 
 ### Windows
-Assuming the environment is enabled (pipenv shell) in the backend directory, you may now start the server with:
+Assuming the environment is enabled (pipenv shell) in the backend directory, and the database server is running, you may now start the server with:
 ```bash
 python application.py dev
 ```
 
 ## Database Setup
-### Docker
-First install Docker. For Ubuntu you do;
+### Docker Ubuntu
+First install Docker:
 ```bash
 sudo apt install docker.io
 ```
@@ -136,6 +164,38 @@ The database will be running immediately. The following commands are also availa
 | Start the database  | `docker start hestia-web-db` |
 | Stop the database   | `docker stop hestia-web-db`  |
 | Delete the database | `docker rm hestia-web-db`    |
+
+### Docker Arch
+First install Docker:
+```bash
+sudo pacman -S docker
+```
+
+Create group:
+```bash
+sudo groupadd docker #may already exist
+```
+
+Add yourself to group:
+```bash
+sudo gpasswd -a *username* docker
+```
+
+Now start docker daemon:
+```bash
+sudo systemctl start docker #for auto-start, use enable instead of start
+```
+
+Finally, launch container:
+```bash
+sudo docker run --name hestia-web-db \
+    -p 5432:5432 \
+    -e POSTGRES_DB=HestiaDB \
+    -e POSTGRES_PASSWORD=hestia \
+    -d postgres
+```
+
+You should now be able to run the server.
 
 ### Other
 You may install postgres on Windows using BigSQL's premade installer. It comes with the servers and pdAdmin3 for you to visually inspect the database and manually edit values if need be.

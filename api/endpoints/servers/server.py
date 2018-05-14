@@ -89,15 +89,36 @@ class Server(Resource):
         return "", 204
 
     @NAMESPACE.expect(SERVER)
-    @NAMESPACE.marshal_with(SERVER)
     @cross_origin(headers=["Content-Type", "Authorization"])
     @cross_origin(headers=["Access-Control-Allow-Origin", "*"])
     @requires_auth
     @NAMESPACE.doc(security='apikey')
     def put(self, server_id):
         '''Update a server given its identifier'''
-        return_string = "Update server: " + server_id
-        return return_string
+        session = SESSION()
+        try:
+            server = session.query(ServerDB).filter_by(
+                server_id=server_id, user_id=get_user_id()).one()
+        except exc.NoResultFound:
+            return "", 404
+
+        payload = NAMESPACE.apis[0].payload
+
+        if "server_name" in payload:
+            server.server_name = payload["server_name"]
+        if "server_address" in payload:
+            server.server_address = payload["server_address"]
+        if "server_port" in payload:
+            server.server_port = payload["server_port"]
+
+        schema = ServerSchema()
+        user_server = schema.dump(server).data
+
+        session.commit()
+        session.close()
+
+        # serializing as JSON for return
+        return jsonify(user_server)
 
 
 PAYLOAD = NAMESPACE.model('payload', {
