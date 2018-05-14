@@ -29,3 +29,4 @@
 | *29-04-2018* |     4 | Meeting with Troy, testing, fixing bugs                                                                                                                       |
 | *01-05-2018* |     2 | Research into auth changes, short meeting at campus, testing research                                                                                         |
 | *04-05-2018* |     3 | Testing setup, TravisCI setup, with Troy                                                                                                                      |
+| *14-05-2018* |     3 | Meeting at EA, Discord meeting with Troy to setup put for servers, update installation for arch linux                                                         |
