@@ -2,6 +2,7 @@
 Coordinates the running of the Hestia web backend.
 """
 import click
+import os
 from flask import Flask
 from flask_cors import CORS
 from werkzeug.contrib.fixers import ProxyFix
@@ -11,6 +12,7 @@ APP = Flask(__name__)
 CORS(APP)
 APP.wsgi_app = ProxyFix(APP.wsgi_app)
 API.init_app(APP)
+PORT=int(os.environ.get("PORT", 5000))
 
 
 @click.group()
@@ -26,7 +28,7 @@ def run():
     """
     Run the backend in production mode.
     """
-    APP.run(host="0.0.0.0", port=5000)
+    APP.run(host="0.0.0.0", port=PORT)
 
 
 @click.command()
@@ -34,7 +36,7 @@ def dev():
     """
     Run the backend in development mode.
     """
-    APP.run(host="0.0.0.0", port=5000, debug=True)
+    APP.run(host="0.0.0.0", port=PORT, debug=True)
 
 
 @click.command()
