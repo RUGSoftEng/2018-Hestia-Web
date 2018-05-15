@@ -42,6 +42,9 @@
 | *07/05/2018* | 18:00-20:30| Fixing the http requests for deleting servers, getting devices, updating activator states. |
 | *08/05/2018* | 8:00-11:30 | Writing getter functions and http requests for the plugin collections and devices. |
 | *08/05/2018* | 15:00-19:00| Working on the add devices modal in the frontend. |
+| *14/05/2018* | 13:00-18:00| Figuring out the Gulp build for the semantic ui theme css. |
+| *15/05/2018* | 08:00-09:30| Reconfigured the add device modal in a more logical way. Also looked into the functionallity that still needed to be added to the frontend. |
+| *15/05/2018* | 13:00-18:00| Added the functionality that was still missing. Only the PUT methods do not have a GUI implementation yet. Also the DELETE a device is still bugging. |
 
 
 
