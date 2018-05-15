@@ -12,7 +12,7 @@
 | *25/03/2018* | 18:30-19:45 | Further preparing tangible design for functionality. |
 | *26/03/2017* | 17:15-20:00 | Implementing functionality and further work on design including functionality and troubleshooting. |
 | *27/03/2018* | 11:30-12:15 | Final functional implementations and further troubleshooting and design fixes for minimum requirements pull request. |
-
+||||
 | *30/04/2018* | 14:30-19:00 | Getting set up again after partial absence, big framework changes were made in my absence. I was also brought up to speed on the current standing of the project and the decided approach of the team. |
 | *14/05/2018* | 13:30-17:00 | Created a new plan for the front-end to be finished for the hallway testing. |
 | *15/05/2018* | 13:00-... | Adapted development front-end to new plan. |
