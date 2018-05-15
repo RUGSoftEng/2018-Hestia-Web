@@ -1,26 +1,19 @@
 [[source]]
-url = "https://pypi.python.org/simple"
+url = "https://pypi.org/simple"
 verify_ssl = true
 name = "pypi"
 
 [packages]
-Flask = "==0.12.2"
-requests = "==2.18.4"
-Werkzeug = "==0.14.1"
-pymongo = "==3.6.1"
-flask-restplus = "==0.10.1"
-sqlalchemy = "*"
-"psycopg2-binary" = "*"
 flask = "*"
-marshmallow = "*"
-pylint = "*"
+flask-sqlalchemy = "*"
+"psycopg2-binary" = "*"
 flask-cors = "*"
-authlib = "*"
-six = "*"
-python-dotenv = "*"
-python-jose-cryptodome = "*"
+flask-marshmallow = "*"
+marshmallow-sqlalchemy = "*"
+flask-restplus = "*"
 
 [dev-packages]
+pylint = "*"
 
 [requires]
 python_version = "3.6"
