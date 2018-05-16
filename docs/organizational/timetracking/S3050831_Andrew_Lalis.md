@@ -25,3 +25,6 @@
 | *13/4/2018* | 12:00-17:00 | Fixed UI bugs and created auto generating add devices form. |
 | *18/4/2018* | 13:00-15:00 | Began design of marketplace and architecture document. |
 | *23/4/2018* | 8:30-9:30 | Added to architecture document and created marketplace database schema. |
+| *7/5/2018* | 14:00-16:00 | Meeting, discuss designs and architecture. |
+| *7/5/2018* | 20:00-24:00 | Research SQL Alchemy, Postgres, and some Vue.
+| *9/5/2018* | 10:30-14:30 | Adding plugins endpoint, and adding plugins table to database. |
