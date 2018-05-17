@@ -3,12 +3,12 @@ from flask_restplus import (
     Namespace,
 )
 
-NAMESPACE = Namespace('servers', "The central point for all your server (controller) needs.")
+NAMESPACE = Namespace('users', "Manipulate users of the system.")
 
 @NAMESPACE.route('/')
-class Servers(Resource):
+class Users(Resource):
     """ GET all servers, POST a new server. """
-    def get(self):
+    def post(self):
         """
         List of servers.
         Returns a list of users starting from ``offset`` limited by ``limit``

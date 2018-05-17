@@ -9,6 +9,9 @@ from . import (
 
 def init_app(app):
     """ Initialize application modules. """
-    api.init_app(app)
-    servers.init_app(app)
-    users.init_app(app)
+    for content in (
+            api,
+            servers,
+            users,
+    ):
+        content.init_app(app)
