@@ -15,6 +15,7 @@ flask-restplus = "==0.10.1"
 [dev-packages]
 pytest = "*"
 pylint = "*"
+pytest-cov = "*"
 
 [requires]
 python_version = "3.6"
