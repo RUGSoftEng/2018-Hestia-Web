@@ -10,9 +10,9 @@ from flask_restplus import (
 
 from flask import (Blueprint)
 
-api_blueprint = Blueprint('api', __name__)
+API_BLUEPRINT = Blueprint('api', __name__)
 API = Api(
-    api_blueprint,
+    API_BLUEPRINT,
     version='1.0',
     title='Hestia Web API',
     description='The Hestia Web Api, handling routing to your controllers.',
@@ -20,4 +20,4 @@ API = Api(
 
 def init_app(app):
     """ Initializes the app at entry point. """
-    app.register_blueprint(api_blueprint)
+    app.register_blueprint(API_BLUEPRINT)
