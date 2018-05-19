@@ -36,19 +36,19 @@ class Server(Resource):
         """
         Get a server.
         """
-        return "Getting server"
+        return f"Getting server {server_id}"
 
     def delete(self, server_id):
         """
         Delete a server.
         """
-        return "Deleting server"
+        return f"Deleting server {server_id}"
 
     def put(self, server_id):
         """
         Update the information of a server.
         """
-        return "Updating server"
+        return f"Updating server {server_id}"
 
 @NAMESPACE.route('/<string:server_id>/request')
 @NAMESPACE.param('server_id', 'The server identifier')
@@ -60,4 +60,4 @@ class ServerRequest(Resource):
         """
         Forward a request to a server.
         """
-        return "Forwarding request to server"
+        return f"Forwarding request to server {server_id}"
