@@ -8,7 +8,7 @@ import pytest
     ('GET', '/servers/'),
     ('POST', '/servers/'),
     ('GET', '/servers/1'),
-    ('GET', '/servers/1'),
+    ('PUT', '/servers/1'),
     ('DELETE', '/servers/1'),
     ('POST', '/servers/1/request'),
 ))
