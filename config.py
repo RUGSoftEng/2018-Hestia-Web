@@ -7,19 +7,19 @@ DB_BASE_URL = 'localhost:5432'
 DB_USER = 'postgres'
 DB_PASSWORD = 'hestia'
 
-class Config:
+class BaseConfig:
     """ Base configuration options for the application. """
     DEBUG = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-class DevelopmentConfig(Config):
+class DevelopmentConfig(BaseConfig):
     """ Development configuration for the application. """
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_BASE_URL}/HestiaDB'
     PORT = 5000
 
 
-class TestingConfig(Config):
+class TestingConfig(BaseConfig):
     """ Test related configuration for the application. """
     DEBUG = True
     TESTING = True
@@ -28,7 +28,7 @@ class TestingConfig(Config):
     PORT = 5000
 
 
-class ProductionConfig(Config):
+class ProductionConfig(BaseConfig):
     """ Production configuration for the application. """
     DEBUG = False
     SQLALCHEMY_DATABASE_URI = os.environ.get(
