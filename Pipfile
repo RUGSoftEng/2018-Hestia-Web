@@ -10,7 +10,7 @@ flask-sqlalchemy = "*"
 flask-cors = "*"
 flask-marshmallow = "*"
 marshmallow-sqlalchemy = "*"
-flask-restplus = "*"
+flask-restplus = "==0.10.1"
 
 [dev-packages]
 pytest = "*"
