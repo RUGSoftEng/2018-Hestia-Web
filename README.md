@@ -22,7 +22,7 @@ Inside the endpoints folder, you will find all of the declared endpoints that ca
 
 ### /servers/
  The servers endpoint's NAMESPACE is declured in the init file. It just declares the namespace (from flask_restplus) and gives a description.
- 
+
 #### get
 Within the servers, a ServerList class is declared that handles the endpoint for the '/' part of /servers. This means that it handles the broad changes of the overall serverlist. Including a "get" for all servers in the server table. It fetches each object from the server, and then returns them in JSON format.
 
@@ -30,7 +30,7 @@ Within the servers, a ServerList class is declared that handles the endpoint for
 The second function available at the '/' route of /servers allows a posting of a new server to the database. This function expects a SERVER model which is then posted to the database. If this is successful, a message will be returned with the new server in the payload.
 
 ### /servers/<string:id>
-This endpoint extends from the /servers/, but adds the ability to query a single server based on the identitification of the (user) that requested. When an authenticated user needs to communicated with a specific server, they will pass the server id into the argument of the endpoint. For example, an authenticated user wishes to get from server with id="54a8c4h". They will send a request through the endpoint /servers/54a8c4h/. 
+This endpoint extends from the /servers/, but adds the ability to query a single server based on the identitification of the (user) that requested. When an authenticated user needs to communicated with a specific server, they will pass the server id into the argument of the endpoint. For example, an authenticated user wishes to get from server with id="54a8c4h". They will send a request through the endpoint /servers/54a8c4h/.
 
 #### get
 The get function acts like before and fetches the server as an object from the database. This is then returned as a JSON object.
@@ -90,7 +90,7 @@ Make sure your cd is `backend` directory.
 
 Now run:
 ```bash
-pipenv install
+pipenv install --dev
 ```
 This will create a virtualenv with python3
 
@@ -117,7 +117,7 @@ Make sure your cd is `backend` directory.
 
 Install the dependencies of the project:
 ```bash
-pipenv install
+pipenv install --dev
 ```
 
 Finally run:
