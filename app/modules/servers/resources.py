@@ -1,3 +1,8 @@
+"""
+Defines the endpoints allowing for access and manipulation of servers.
+A server represents a remote Hestia controller.
+"""
+
 from flask_restplus import (
     Resource,
     Namespace,

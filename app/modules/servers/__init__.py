@@ -9,7 +9,7 @@ def init_app(app):
     Init servers module.
     """
 
-    # # Touch underlying modules
+    ## Touch underlying modules
     from . import (
         resources,
     )
