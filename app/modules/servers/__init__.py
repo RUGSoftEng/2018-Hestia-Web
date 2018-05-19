@@ -2,9 +2,7 @@
 Servers module
 """
 
-from app.extensions.api import (API)
-
-def init_app(app):
+def init_api(api):
     """
     Init servers module.
     """
@@ -14,4 +12,4 @@ def init_app(app):
         resources,
     )
 
-    API.add_namespace(resources.NAMESPACE)
+    api.add_namespace(resources.NAMESPACE)

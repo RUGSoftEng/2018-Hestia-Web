@@ -2,8 +2,9 @@
 Modules enable logical resource separation.
 """
 
+from app.extensions.api import (API)
+
 from . import (
-    api,
     servers,
     users,
 )
@@ -11,8 +12,7 @@ from . import (
 def init_app(app):
     """ Initialize application modules. """
     for content in (
-            api,
             servers,
             users,
     ):
-        content.init_app(app)
+        content.init_api(API)
