@@ -13,5 +13,6 @@ import pytest
     ('POST', '/servers/1/request'),
 ))
 def test_general_access(http_method, http_path, flask_app_client):
+    """ Test that it is possible to access all of the server endpoints """
     response = flask_app_client.open(method=http_method, path=http_path)
     assert response.status_code == 200
