@@ -31,3 +31,4 @@
 | *18/5/2018* | 12:00-16:00 | Creating document for marketplace, and defining endpoints. |
 | *19/5/2018* | 11:00-17:00 | More work on architecture document for marketplace, and defining endpoints before starting real code. |
 | *19/5/2018* | 21:00-3:00 | Defined more endpoints and table for voting. All that's left is to implement this. |
+| *20/5/2018* | 10:00-19:00 | Working on the endpoints but also lots of research around flask and flaskplus and sqlalchemy. |
