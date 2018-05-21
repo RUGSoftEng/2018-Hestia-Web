@@ -31,3 +31,4 @@
 | *04-05-2018* |     3 | Testing setup, TravisCI setup, with Troy                                                                                                                      |
 | *14-05-2018* |     5 | Meeting at EA, Discord meeting with Troy to setup put for servers, update installation for arch linux                                                         |
 | *19-05-2018* |     5 | Create basic tests for app creation and the two endpoints. Worked with Troy. Also discussed remaining work to be done.| 
+| *21-05-2018* |     3 | Pytest research, added endpoint tests, needs database parts now. |
