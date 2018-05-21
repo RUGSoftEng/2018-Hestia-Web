@@ -28,21 +28,25 @@ def test_POST_servers(flask_app_client):
     assert response.get_json() == "Posting server"
 
 def test_GET_server(flask_app_client):
-    response = flask_app_client.open(method='POST', path='/servers/test_server')
+    server_id = "test_server"
+    response = flask_app_client.open(method='GET', path=f'/servers/{server_id}')
     print(response.get_json())
-    assert response.get_json() == "Getting server {server_id}"
+    assert response.get_json() == f"Getting server {server_id}"
 
 def test_PUT_server(flask_app_client):
-    response = flask_app_client.open(method='POST', path='/servers/test_server')
+    server_id = "test_server"
+    response = flask_app_client.open(method='PUT', path=f'/servers/{server_id}')
     print(response.get_json())
-    assert response.get_json() == "Updating server {server_id}"
+    assert response.get_json() == f"Updating server {server_id}"
 
 def test_DELETE_server(flask_app_client):
-    response = flask_app_client.open(method='POST', path='/servers/test_server')
+    server_id = "test_server"
+    response = flask_app_client.open(method='DELETE', path=f'/servers/{server_id}')
     print(response.get_json())
-    assert response.get_json() == "Deleting server {server_id}"
+    assert response.get_json() == f"Deleting server {server_id}"
 
 def test_POST_server_request(flask_app_client):
-    response = flask_app_client.open(method='POST', path='/servers/test_server/get')
+    server_id = "test_server"
+    response = flask_app_client.open(method='POST', path=f'/servers/{server_id}/request')
     print(response.get_json())
-    assert response.get_json() == "Forwarding request to server {server_id}"
+    assert response.get_json() == f"Forwarding request to server {server_id}"
