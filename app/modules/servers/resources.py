@@ -52,7 +52,6 @@ class Servers(Resource):
         parameter.
         """
         commit_or_abort(DB.session)
-        print(get_user_id())
 
         servers = DB.session.query(
             ServerModel).filter_by(user_id=get_user_id())
