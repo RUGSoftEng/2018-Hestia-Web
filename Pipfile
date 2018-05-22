@@ -1,27 +1,21 @@
 [[source]]
-
 url = "https://pypi.org/simple"
 verify_ssl = true
 name = "pypi"
 
-
 [packages]
-
 flask = "*"
 flask-sqlalchemy = "*"
 flask-cors = "*"
 flask-marshmallow = "*"
 marshmallow-sqlalchemy = "*"
 flask-restplus = "==0.10.1"
-
+requests = "*"
 
 [dev-packages]
-
 pytest = "*"
 pylint = "*"
 pytest-cov = "*"
 
-
 [requires]
-
 python_version = "3.6"

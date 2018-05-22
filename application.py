@@ -3,6 +3,7 @@ Coordinates the CLI for the application.
 """
 import click
 from app import (create_app)
+from app.extensions import (DB)
 
 @click.group()
 def cli():
@@ -13,13 +14,16 @@ def cli():
 def run():
     """ Run the backend in production mode. """
     app = create_app('production')
+    DB.create_all(app=app)
     app.run(host="0.0.0.0")
 
 @click.command()
 def dev():
     """ Run the backend in development mode. """
     app = create_app('development')
+    DB.create_all(app=app)
     app.run(host="0.0.0.0")
+
 
 cli.add_command(run)
 cli.add_command(dev)

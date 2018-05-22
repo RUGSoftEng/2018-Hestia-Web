@@ -4,7 +4,7 @@ Extensions allows for access to common resources throughout the application.
 
 from flask_cors import (CORS)
 from flask_marshmallow import (Marshmallow)
-from flask_sqlalchemy import (SQLAlchemy)
+from .flask_sqlalchemy import (SQLAlchemy)
 
 CROSS_ORIGIN_RESOURCE_SHARING = CORS()
 MARSHMALLOW = Marshmallow()

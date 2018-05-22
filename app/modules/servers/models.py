@@ -3,8 +3,10 @@ Defines the server database model
 """
 
 from app.extensions import (DB)
+from sqlalchemy import Column, String, ForeignKey
+from app.modules.util import (url_safe_uuid)
 
-class Server(DB.Model):
+class ServerModel(DB.Model):
     """
     Server database model
     """
@@ -17,10 +19,9 @@ class Server(DB.Model):
     server_port = Column(String)
 
     def __init__(self, user_id, server_name, server_address, server_port):
-        Entity.__init__(self)
         self.server_id = url_safe_uuid()
         self.user_id = user_id
         self.server_name = server_name
         self.server_address = server_address
         self.server_port = server_port
-
+        super(ServerModel, self).__init__()

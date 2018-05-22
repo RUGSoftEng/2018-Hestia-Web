@@ -3,6 +3,7 @@ Modules enable logical resource separation.
 """
 
 from app.extensions.api import (API)
+from app.extensions import (DB)
 
 from . import (
     servers,

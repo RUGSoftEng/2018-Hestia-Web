@@ -1,37 +1,20 @@
 """
 Defines the endpoints allowing for access and manipulation of users.
 """
-
 from flask_restplus import (
     Resource,
     Namespace,
 )
 
 from app.extensions import (DB)
+from .schemas import (UserSchema)
+from .models import (UserModel)
+from app.modules.util import (commit_or_abort)
 
 NAMESPACE = Namespace('users', "Manipulate users of the system.")
 
 def get_user_id():
     return "1"
-
-def commit_or_abort(session, default_error_message="The operation failed to complete"):
-        """
-        Simplifies creating database sessions.
-        """
-        try:
-            with session.begin():
-                yield
-        except ValueError as exception:
-            # log.info("Database transaction was rolled back due to: %r", exception)
-            print("ValueError")
-            http_exceptions.abort(code=HTTPStatus.CONFLICT, message=str(exception))
-        except sqlalchemy.exc.IntegrityError as exception:
-            print("SQLAlchemy Error")
-            # log.info("Database transaction was rolled back due to: %r", exception)
-            http_exceptions.abort(
-                code=HTTPStatus.CONFLICT,
-                message=default_error_message
-            )
 
 @NAMESPACE.route('/')
 class Users(Resource):
@@ -45,8 +28,10 @@ class Users(Resource):
         user_id = {
             'user_id': get_user_id()
         }
-        new_user = "test"
+        schema = UserSchema().load(user_id)
+        new_user = UserModel(**schema.data)
         DB.session.begin()
-        # DB.session.add(new_user)
+        DB.session.add(new_user)
+        DB.session.commit()
 
-        return new_user
+        return UserSchema().dump(new_user).data
