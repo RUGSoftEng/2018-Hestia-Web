@@ -11,6 +11,10 @@ flask-marshmallow = "*"
 marshmallow-sqlalchemy = "*"
 flask-restplus = "==0.10.1"
 requests = "*"
+python-jose-cryptodome = "*"
+authlib = "*"
+six = "*"
+python-dotenv = "*"
 
 [dev-packages]
 pytest = "*"

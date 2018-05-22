@@ -22,9 +22,6 @@ def commit_or_abort(session, default_error_message="The operation failed to comp
                 message=default_error_message
             )
 
-def get_user_id():
-    return "1";
-
 def url_safe_uuid():
     '''
     Returns a url safe uuid.

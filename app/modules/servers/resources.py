@@ -16,7 +16,10 @@ from app.modules.util import (
     commit_or_abort,
     route_request,
 )
-from app.modules.util import (get_user_id)
+from app.extensions.auth.authentication import (
+    requires_auth,
+    get_user_id,
+)
 from sqlalchemy.orm import (exc) # TODO there may be a more elegant way to manage this
 
 
@@ -40,6 +43,8 @@ SERVER = NAMESPACE.model('Server', {
 @NAMESPACE.route('/')
 class Servers(Resource):
     """ GET all servers, POST a new server. """
+    @requires_auth
+    @NAMESPACE.doc(security='apikey')
     def get(self):
         """
         List of servers.
@@ -47,6 +52,7 @@ class Servers(Resource):
         parameter.
         """
         commit_or_abort(DB.session)
+        print(get_user_id())
 
         servers = DB.session.query(
             ServerModel).filter_by(user_id=get_user_id())
@@ -57,6 +63,8 @@ class Servers(Resource):
         return all_servers
 
     @NAMESPACE.expect(SERVER)
+    @requires_auth
+    @NAMESPACE.doc(security='apikey')
     def post(self):
         """
         Add a server to the list of servers.
@@ -87,6 +95,8 @@ class Servers(Resource):
 @NAMESPACE.param('server_id', 'The server identifier')
 class Server(Resource):
     """ GET a server, DELETE a server, PUT (update) a server """
+    @requires_auth
+    @NAMESPACE.doc(security='apikey')
     def get(self, server_id):
         """
         Get a server.
@@ -106,6 +116,8 @@ class Server(Resource):
 
         return server
 
+    @requires_auth
+    @NAMESPACE.doc(security='apikey')
     def delete(self, server_id):
         """
         Delete a server.
@@ -126,6 +138,8 @@ class Server(Resource):
         return "", 204
 
     @NAMESPACE.expect(SERVER)
+    @requires_auth
+    @NAMESPACE.doc(security='apikey')
     def put(self, server_id):
         """
         Update the information of a server.
@@ -180,6 +194,8 @@ class ServerRequest(Resource):
     """
 
     @NAMESPACE.expect(PAYLOAD)
+    @requires_auth
+    @NAMESPACE.doc(security='apikey')
     def post(self, server_id):
         """
         Forward a request to a server.

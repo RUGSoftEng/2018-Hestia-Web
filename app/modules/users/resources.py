@@ -10,15 +10,18 @@ from app.extensions import (DB)
 from .schemas import (UserSchema)
 from .models import (UserModel)
 from app.modules.util import (commit_or_abort)
+from app.extensions.auth.authentication import (
+    requires_auth,
+    get_user_id,
+)
 
 NAMESPACE = Namespace('users', "Manipulate users of the system.")
-
-def get_user_id():
-    return "1"
 
 @NAMESPACE.route('/')
 class Users(Resource):
     """ POST a new user. """
+    @requires_auth
+    @NAMESPACE.doc(security='apikey')
     def post(self):
         """
         List of users.
