@@ -8,19 +8,15 @@ from flask_restplus import (
     Namespace,
     fields,
 )
-
+from sqlalchemy.orm import (exc) # TODO there may be a more elegant way to manage this
 from app.extensions import (DB)
-from .schemas import (ServerSchema)
-from .models import (ServerModel)
-from app.modules.util import (
-    commit_or_abort,
-    route_request,
-)
+from app.modules.util import (route_request)
 from app.extensions.auth.authentication import (
     requires_auth,
     get_user_id,
 )
-from sqlalchemy.orm import (exc) # TODO there may be a more elegant way to manage this
+from .schemas import (ServerSchema)
+from .models import (ServerModel)
 
 
 NAMESPACE = Namespace('servers', "The central point for all your server (controller) needs.")
@@ -51,7 +47,6 @@ class Servers(Resource):
         Returns a list of servers starting from ``offset`` limited by ``limit``
         parameter.
         """
-        commit_or_abort(DB.session)
 
         servers = DB.session.query(
             ServerModel).filter_by(user_id=get_user_id())
@@ -68,8 +63,6 @@ class Servers(Resource):
         """
         Add a server to the list of servers.
         """
-
-        commit_or_abort(DB.session)
 
         payload = NAMESPACE.apis[0].payload
         payload['user_id'] = get_user_id()
@@ -101,7 +94,6 @@ class Server(Resource):
         Get a server.
         """
 
-        commit_or_abort(DB.session)
         # Attempt to retrieve the SINGLE entry in the database with the server_id given.
         # Error 404 if >1 or D.N.E
         try:
@@ -127,8 +119,6 @@ class Server(Resource):
                 server_id=server_id, user_id=get_user_id()).one()
         except exc.NoResultFound:
             return "", 404
-
-        commit_or_abort(DB.session)
 
         DB.session.begin()
         DB.session.delete(server)
@@ -215,5 +205,3 @@ class ServerRequest(Resource):
         server_query = server['server_address'] + \
             ':' + server['server_port'] + endpoint
         return route_request(request_type, server_query, optional_payload)
-
-

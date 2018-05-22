@@ -1,11 +1,12 @@
 """
 Defines the user database model
 """
-
-
+from sqlalchemy import (
+    Column,
+    String,
+)
+from sqlalchemy.orm import (relationship)
 from app.extensions import (DB)
-from sqlalchemy import Column, String, ForeignKey
-from sqlalchemy.orm import relationship
 
 class UserModel(DB.Model):
     """
@@ -15,4 +16,3 @@ class UserModel(DB.Model):
 
     user_id = Column(String, primary_key=True)
     servers = relationship("ServerModel", cascade="all, delete-orphan")
-

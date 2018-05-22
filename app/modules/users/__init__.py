@@ -8,10 +8,6 @@ def init_api(api):
     """
 
     ## Touch underlying resources
-    from . import (
-        resources,
-        models,
-        schemas
-    )
+    from . import (resources)
 
     api.add_namespace(resources.NAMESPACE)

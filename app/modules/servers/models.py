@@ -2,8 +2,12 @@
 Defines the server database model
 """
 
+from sqlalchemy import (
+    Column,
+    String,
+    ForeignKey,
+)
 from app.extensions import (DB)
-from sqlalchemy import Column, String, ForeignKey
 from app.modules.util import (url_safe_uuid)
 
 class ServerModel(DB.Model):

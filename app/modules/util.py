@@ -1,31 +1,15 @@
+"""
+Defines util functions to be accessed by modules.
+"""
 import base64
 import uuid
 import requests
 from flask import (jsonify)
 
-def commit_or_abort(session, default_error_message="The operation failed to complete"):
-        """
-        Simplifies creating database sessions.
-        """
-        try:
-            with session.begin():
-                yield
-        except ValueError as exception:
-            # log.info("Database transaction was rolled back due to: %r", exception)
-            print("ValueError")
-            http_exceptions.abort(code=HTTPStatus.CONFLICT, message=str(exception))
-        except sqlalchemy.exc.IntegrityError as exception:
-            print("SQLAlchemy Error")
-            # log.info("Database transaction was rolled back due to: %r", exception)
-            http_exceptions.abort(
-                code=HTTPStatus.CONFLICT,
-                message=default_error_message
-            )
-
 def url_safe_uuid():
-    '''
+    """
     Returns a url safe uuid.
-    '''
+    """
     return str(base64.urlsafe_b64encode(uuid.uuid4().bytes)).replace("=", "").replace("\'", "")[1:]
 
 TIMEOUT = 1.0

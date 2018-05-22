@@ -1,3 +1,6 @@
+"""
+The app runner to be used for deployment via servers like Gunicorn or Waitress.
+"""
 from app import create_app
 
-app = create_app("production")
+APP = create_app("production")

@@ -7,13 +7,12 @@ from flask_restplus import (
 )
 
 from app.extensions import (DB)
-from .schemas import (UserSchema)
-from .models import (UserModel)
-from app.modules.util import (commit_or_abort)
 from app.extensions.auth.authentication import (
     requires_auth,
     get_user_id,
 )
+from .schemas import (UserSchema)
+from .models import (UserModel)
 
 NAMESPACE = Namespace('users', "Manipulate users of the system.")
 
