@@ -144,7 +144,44 @@
 |              | 22:00-22:30 | Cleanup model in database.                                                                                         |
 |              | 22:30-23:00 | Cleanup model in database.                                                                                         |
 |              | 23:00-23:30 | Handle time tracking and merging.                                                                                  |
-|              | 23:30-23:59 | Handle merging and sprint pull request.                                                 |
+|              | 23:30-23:59 | Handle merging and sprint pull request.                                                                            |
+| *2018-05-04* | 10:00-10:30 | Setup Travis CI for backend.                                                                                       |
+|              | 10:30-11:00 | Setup Travis CI for backend.                                                                                       |
+|              | 11:00-11:30 | Setup Travis CI for backend.                                                                                       |
+|              | 11:30-12:00 | Setup Travis CI for backend.                                                                                       |
+|              | 12:00-12:30 | Add build badges to readme.                                                                                        |
+| *2018-05-07* |             |                                                                                                                    |
+|              |             |                                                                                                                    |
+|              |             |                                                                                                                    |
+| *2018-05-12* | 11:00-11:30 | Research deployment via Heroku.                                                                                    |
+|              | 11:30-12:00 | Test deployment via Heroku.                                                                                        |
+|              | 11:30-12:00 | Test deployment via Heroku.                                                                                        |
+| *2018-05-14* | 12:00-12:30 | Setup Postgres database on Heroku for deployment.                                                                  |
+|              | 12:30-13:00 | Deploy application to Heroku. Continuous deployment is still a requirement.                                        |
+|              | 18:00-18:30 | Fix PUT functionality with Phil.                                                                                   |
+|              | 18:30-19:00 | Fix PUT functionality with Phil.                                                                                   |
+|              | 19:00-19:30 | Try to swap over to factory pattern. [Unsuccesful]                                                                 |
+|              | 19:30-20:00 | Try to swap over to factory pattern. [Unsuccesful]                                                                 |
+|              | 22:00-22:30 | Test factory on personal repository.                                                                               |
+|              | 22:30-23:00 | Test factory on personal repository.                                                                               |
+|              | 23:00-23:30 | Test factory on personal repository.                                                                               |
+| *2018-05-15* | 00:00-00:30 | Test factory on personal repository.                                                                               |
+|              | 00:30-01:00 | Test factory on personal repository.                                                                               |
+|              | 01:00-01:30 | Test factory on personal repository.                                                                               |
+|              | 01:30-02:00 | Test factory on personal repository.                                                                               |
+|              | 02:30-03:00 | Test factory on personal repository.                                                                               |
+|              | 03:30-04:00 | Test factory on personal repository.                                                                               |
+|              | 04:30-05:00 | Test factory on personal repository.                                                                               |
+|              | 11:00-11:30 | Assist iOS with authentication issue.                                                                              |
+|              | 11:30-12:00 | Assist iOS with authentication issue.                                                                              |
+|              | 12:00-12:30 | Assist frontend with debugging put request to controller.                                                          |
+|              | 12:30-13:00 | Assist frontend with debugging put request to controller.                                                          |
+|              | 13:00-13:30 | Assist frontend with design.                                                                                       |
+|              | 13:30-14:00 | Assist iOS with testing application on real live light.                                                            |
+|              | 14:00-14:30 | Assist iOS with testing application on real live light.                                                            |
+|              | 14:30-15:00 | Assist frontend with debugging.                                                                                    |
+|              | 15:30-16:00 | Assist frontend with debugging.                                                                                    |
+|              | 16:00-16:30 | Assist frontend with debugging.                                                                                    |
                   
                   
                   
