@@ -8,6 +8,7 @@ from app.extensions import (DB)
 from . import (
     servers,
     users,
+    presets,
 )
 
 def init_app(app):
@@ -15,5 +16,6 @@ def init_app(app):
     for content in (
             servers,
             users,
+            presets,
     ):
         content.init_api(API)
