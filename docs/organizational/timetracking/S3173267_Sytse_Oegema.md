@@ -45,6 +45,10 @@
 | *14/05/2018* | 13:00-18:00| Figuring out the Gulp build for the semantic ui theme css. |
 | *15/05/2018* | 08:00-09:30| Reconfigured the add device modal in a more logical way. Also looked into the functionallity that still needed to be added to the frontend. |
 | *15/05/2018* | 13:00-18:00| Added the functionality that was still missing. Only the PUT methods do not have a GUI implementation yet. Also the DELETE a device is still bugging. |
+| *21/05/2018* | 14:00-18:00| Worked on the login redirection. Now a user gets redirected to a login page, when his authentication token is expired. |
+| *22/05/2018* | 11:00-18:00| Worked on the refactoring of the previous sprint. |
+| *23/05/2018* | 10:00-10:30| Merged all refactorings into the feature branches. |
+
 
 
 
