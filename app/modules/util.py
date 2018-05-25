@@ -32,7 +32,12 @@ def route_request(method, query, payload):
         result = requests.delete(query, verify=False, timeout=TIMEOUT)
     else:
         result = "Invalid REST method."
-    return jsonify(result)
+
+    # CHeck if there was a response. For some methods such as DELETE there isn't one.
+    if result:
+        return jsonify(result)
+    else:
+        return
 
 def ping(query):
     """
