@@ -22,6 +22,7 @@ def route_request(method, query, payload):
     print("Sending request to server:", method, ", ", query, ", ", payload)
     if method == "GET":
         result = requests.get(query, verify=False, timeout=TIMEOUT).json()
+        print(result)
     elif method == "POST":
         result = requests.post(query, verify=False,
                                json=payload, timeout=TIMEOUT).json()
@@ -29,15 +30,11 @@ def route_request(method, query, payload):
         result = requests.put(query, verify=False,
                               json=payload, timeout=TIMEOUT).json()
     elif method == "DELETE":
-        result = requests.delete(query, verify=False, timeout=TIMEOUT)
+        result = requests.delete(query, verify=False, timeout=TIMEOUT).text
     else:
         result = "Invalid REST method."
 
-    # CHeck if there was a response. For some methods such as DELETE there isn't one.
-    if result:
-        return jsonify(result)
-    else:
-        return
+    return jsonify(result)
 
 def ping(query):
     """
