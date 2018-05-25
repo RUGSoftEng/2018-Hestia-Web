@@ -15,7 +15,7 @@ class BaseConfig:
 class DevelopmentConfig(BaseConfig):
     """ Development configuration for the application. """
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_BASE_URL}/HestiaDB'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///HestiaDB'
     PORT = 5000
 
 
@@ -23,7 +23,7 @@ class TestingConfig(BaseConfig):
     """ Test related configuration for the application. """
     DEBUG = True
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_BASE_URL}/HestiaTestDB'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///HestiaDB'
     PRESERVE_CONTEXT_ON_EXCEPTION = False
     PORT = 5000
 
@@ -31,7 +31,7 @@ class TestingConfig(BaseConfig):
 class ProductionConfig(BaseConfig):
     """ Production configuration for the application. """
     DEBUG = False
-    SQLALCHEMY_DATABASE_URI = f'sqlite:///HestiaDB'
+    SQLALCHEMY_DATABASE_URI = f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_BASE_URL}/HestiaDB'
     PORT = int(os.environ.get("PORT", 5000))
 
 
