@@ -203,38 +203,6 @@ class ServerRequest(Resource):
             ':' + server['server_port'] + endpoint
         return route_request(request_type, server_query, optional_payload)
 
-@NAMESPACE.route('/<string:server_id>/request')
-@NAMESPACE.param('server_id', 'The server identifier')
-class ServerRequest(Resource):
-    """
-    POST a request to be forwarded to a server.
-    """
-
-    @NAMESPACE.expect(PAYLOAD)
-    @requires_auth
-    @NAMESPACE.doc(security='apikey')
-    def post(self, server_id):
-        """
-        Forward a request to a server.
-        """
-
-        try:
-            server_object = DB.session.query(
-                ServerModel).filter_by(server_id=server_id, user_id=get_user_id()).one()
-        except exc.NoResultFound:
-            return "", 404
-
-        # transforming into JSON-serializable objects
-        server = ServerSchema().dump(server_object).data
-
-        request_type = NAMESPACE.apis[0].payload["requestType"]
-        endpoint = NAMESPACE.apis[0].payload["endpoint"]
-        optional_payload = NAMESPACE.apis[0].payload["optionalPayload"]
-        server_query = server['server_address'] + \
-            ':' + server['server_port'] + endpoint
-        return ping(server['server_address'] + ":" + server['server_port'])
-
-
 BATCH_PAYLOAD = NAMESPACE.model('batch_payload', {
     'preset_id': fields.String(
         readOnly=True,
@@ -264,11 +232,4 @@ class ServerBatchRequest(Resource):
             return "", 404
 
         # transforming into JSON-serializable objects
-        server = ServerSchema().dump(server_object).data
-
-        request_type = NAMESPACE.apis[0].payload["requestType"]
-        endpoint = NAMESPACE.apis[0].payload["endpoint"]
-        optional_payload = NAMESPACE.apis[0].payload["optionalPayload"]
-        server_query = server['server_address'] + \
-            ':' + server['server_port'] + endpoint
-        return ping(server['server_address'] + ":" + server['server_port'])
+        return "Sending batch request"
