@@ -33,3 +33,9 @@ def route_request(method, query, payload):
     else:
         result = "Invalid REST method."
     return jsonify(result)
+
+def ping(query):
+    """
+    Ping a URL and return the time.
+    """
+    return requests.get(query).elapsed.microseconds/100.0

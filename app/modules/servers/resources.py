@@ -173,7 +173,35 @@ PAYLOAD = NAMESPACE.model('payload', {
     ),
 })
 
+@NAMESPACE.route('/<string:server_id>/ping')
+@NAMESPACE.param('server_id', 'The server identifier')
+class ServerRequest(Resource):
+    """
+    GET the ping associated with the server.
+    """
 
+    @requires_auth
+    @NAMESPACE.doc(security='apikey')
+    def post(self, server_id):
+        """
+        Forward a request to a server.
+        """
+
+        try:
+            server_object = DB.session.query(
+                ServerModel).filter_by(server_id=server_id, user_id=get_user_id()).one()
+        except exc.NoResultFound:
+            return "", 404
+
+        # transforming into JSON-serializable objects
+        server = ServerSchema().dump(server_object).data
+
+        request_type = NAMESPACE.apis[0].payload["requestType"]
+        endpoint = NAMESPACE.apis[0].payload["endpoint"]
+        optional_payload = NAMESPACE.apis[0].payload["optionalPayload"]
+        server_query = server['server_address'] + \
+            ':' + server['server_port'] + endpoint
+        return route_request(request_type, server_query, optional_payload)
 
 @NAMESPACE.route('/<string:server_id>/request')
 @NAMESPACE.param('server_id', 'The server identifier')
@@ -204,4 +232,43 @@ class ServerRequest(Resource):
         optional_payload = NAMESPACE.apis[0].payload["optionalPayload"]
         server_query = server['server_address'] + \
             ':' + server['server_port'] + endpoint
-        return route_request(request_type, server_query, optional_payload)
+        return ping(server['server_address'] + ":" + server['server_port'])
+
+
+BATCH_PAYLOAD = NAMESPACE.model('batch_payload', {
+    'preset_id': fields.String(
+        readOnly=True,
+        description='The type of request to make to the server'
+    ),
+})
+
+@NAMESPACE.route('/<string:server_id>/batch_request')
+@NAMESPACE.param('server_id', 'The server identifier')
+class ServerBatchRequest(Resource):
+    """
+    POST a batch request (stored in a preset) whose contents are to be applied to a server.
+    """
+
+    @NAMESPACE.expect(BATCH_PAYLOAD)
+    @requires_auth
+    @NAMESPACE.doc(security='apikey')
+    def post(self, server_id):
+        """
+        Apply a preset (stored in a preset) whose contents are to be applied to a server.
+        """
+
+        try:
+            server_object = DB.session.query(
+                ServerModel).filter_by(server_id=server_id, user_id=get_user_id()).one()
+        except exc.NoResultFound:
+            return "", 404
+
+        # transforming into JSON-serializable objects
+        server = ServerSchema().dump(server_object).data
+
+        request_type = NAMESPACE.apis[0].payload["requestType"]
+        endpoint = NAMESPACE.apis[0].payload["endpoint"]
+        optional_payload = NAMESPACE.apis[0].payload["optionalPayload"]
+        server_query = server['server_address'] + \
+            ':' + server['server_port'] + endpoint
+        return ping(server['server_address'] + ":" + server['server_port'])
