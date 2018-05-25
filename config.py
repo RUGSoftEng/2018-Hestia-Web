@@ -31,7 +31,7 @@ class TestingConfig(BaseConfig):
 class ProductionConfig(BaseConfig):
     """ Production configuration for the application. """
     DEBUG = False
-    SQLALCHEMY_DATABASE_URI = f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_BASE_URL}/HestiaDB'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///HestiaDB'
     PORT = int(os.environ.get("PORT", 5000))
 
 
