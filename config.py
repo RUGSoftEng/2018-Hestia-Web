@@ -11,6 +11,7 @@ class BaseConfig:
     """ Base configuration options for the application. """
     DEBUG = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    HOST = "0.0.0.0"
 
 class DevelopmentConfig(BaseConfig):
     """ Development configuration for the application. """
