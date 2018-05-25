@@ -19,16 +19,14 @@ from ..servers.models import (ServerModel)
 from .schemas import (PresetSchema)
 from .models import (PresetModel)
 
-
 NAMESPACE = Namespace('servers', "The central point for all your server (controller) needs.")
 
-PAYLOAD = NAMESPACE.model('payload', {
+PRESET_PAYLOAD = NAMESPACE.model('payload', {
     'preset_name': fields.String(
         readOnly=True,
-        description='The type of request to make to the server'
+        description='The name of a preset.'
     ),
 })
-
 
 
 @NAMESPACE.route('/<string:server_id>/presets/')
@@ -54,7 +52,7 @@ class Presets(Resource):
         all_presets = schema.dump(presets).data
         return all_presets
 
-    @NAMESPACE.expect(PAYLOAD)
+    @NAMESPACE.expect(PRESET_PAYLOAD)
     @requires_auth
     @NAMESPACE.doc(security='apikey')
     def post(self, server_id):

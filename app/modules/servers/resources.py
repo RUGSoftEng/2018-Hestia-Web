@@ -157,7 +157,7 @@ class Server(Resource):
         # serializing as JSON for return
         return user_server
 
-PAYLOAD = NAMESPACE.model('payload', {
+REQUEST_PAYLOAD = NAMESPACE.model('request_payload', {
     'requestType': fields.String(
         readOnly=True,
         description='The type of request to make to the server'
@@ -177,9 +177,10 @@ PAYLOAD = NAMESPACE.model('payload', {
 @NAMESPACE.param('server_id', 'The server identifier')
 class ServerRequest(Resource):
     """
-    GET the ping associated with the server.
+    POST a request to a server.
     """
 
+    @NAMESPACE.expect(REQUEST_PAYLOAD)
     @requires_auth
     @NAMESPACE.doc(security='apikey')
     def post(self, server_id):
