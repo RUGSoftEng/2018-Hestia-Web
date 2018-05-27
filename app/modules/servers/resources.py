@@ -18,6 +18,7 @@ from app.extensions.auth.authentication import (
 from .schemas import (ServerSchema)
 from .models import (ServerModel)
 from ..presets.resources import (Preset)
+import ast
 
 
 NAMESPACE = Namespace('servers', "The central point for all your server (controller) needs.")
@@ -270,15 +271,13 @@ class ServerBatchRequest(Resource):
 
         preset_id  = NAMESPACE.apis[0].payload["preset_id"]
         preset_object = Preset().get(server_id, preset_id)
-        preset = preset_object["preset_state"]
-        print(preset_object)
-        print(preset)
+        preset = ast.literal_eval(preset_object["preset_state"])
 
         for device in preset:
             for activator in device["activators"]:
                 query = f"{server_url}/devices/{device['deviceId']}/activators/{activator['activatorId']}"
                 payload = {"state": activator["state"]}
-                route_requests("POST", query, payload)
+                route_request("POST", query, payload)
 
 
         # transforming into JSON-serializable objects
