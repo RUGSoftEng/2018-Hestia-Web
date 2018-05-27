@@ -5,6 +5,9 @@ import base64
 import uuid
 import requests
 from flask import (jsonify)
+# disable insecure warning
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 def url_safe_uuid():
     """

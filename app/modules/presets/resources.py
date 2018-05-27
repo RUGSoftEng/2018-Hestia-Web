@@ -16,8 +16,10 @@ from app.extensions.auth.authentication import (
     get_user_id,
 )
 from ..servers.models import (ServerModel)
+from ..servers.schemas import (ServerSchema)
 from .schemas import (PresetSchema)
 from .models import (PresetModel)
+import json
 
 NAMESPACE = Namespace('servers', "The central point for all your server (controller) needs.")
 
@@ -58,14 +60,20 @@ class Presets(Resource):
     def post(self, server_id):
        payload = NAMESPACE.apis[0].payload
        try:
-           DB.session.query(ServerModel).filter_by(
+           server_object = DB.session.query(ServerModel).filter_by(
                server_id=server_id, user_id=get_user_id()).one()
        except exc.NoResultFound:
            return "", 404
 
+       # transforming into JSON-serializable objects
+       server = ServerSchema().dump(server_object).data
+
        payload["server_id"] = server_id
+       server_address = server['server_address'] + ':' + server['server_port'] + '/devices/'
+       payload["preset_state"] = str(route_request("GET", server_address, "").json)
        posted_preset = PresetSchema(only=(
                'preset_name',
+               'preset_state',
                'server_id',
            )).load(payload)
        preset = PresetModel(**posted_preset.data)

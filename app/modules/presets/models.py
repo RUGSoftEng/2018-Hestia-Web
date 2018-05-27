@@ -6,7 +6,9 @@ from sqlalchemy import (
     Column,
     String,
     ForeignKey,
+    Integer,
 )
+from sqlalchemy.dialects.postgresql import *
 from app.extensions import (DB)
 from app.modules.util import (url_safe_uuid)
 
@@ -16,12 +18,7 @@ class PresetModel(DB.Model):
     """
     __tablename__ = 'presets'
 
-    preset_id = Column(String, primary_key=True)
+    preset_id = Column(Integer, primary_key=True, autoincrement=True)
     server_id = Column(String, ForeignKey('servers.server_id'))
     preset_name = Column(String)
-
-    def __init__(self, server_id, preset_name):
-        self.preset_id = url_safe_uuid()
-        self.server_id = server_id
-        self.preset_name = preset_name
-        super(PresetModel, self).__init__()
+    preset_state = Column(String)
