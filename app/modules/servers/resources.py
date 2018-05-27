@@ -17,6 +17,7 @@ from app.extensions.auth.authentication import (
 )
 from .schemas import (ServerSchema)
 from .models import (ServerModel)
+from ..presets.resources import (Preset)
 
 
 NAMESPACE = Namespace('servers', "The central point for all your server (controller) needs.")
@@ -262,6 +263,21 @@ class ServerBatchRequest(Resource):
                 ServerModel).filter_by(server_id=server_id, user_id=get_user_id()).one()
         except exc.NoResultFound:
             return "", 404
+            
+        # transforming into JSON-serializable objects
+        server = ServerSchema().dump(server_object).data
+        server_url = server["server_url"] + ":" + server["server_port"]
+
+        preset_id  = NAMESPACE.apis[0].payload["preset_id"]
+        preset_object = Preset.get(server_id, preset_id)
+        preset = preset_object["preset_state"]
+
+        for devices in preset:
+            for activators in devices["activators"]:
+                query = f"{server_url}/devices/{devices['deviceId']}/activators/{activators['activatorId']}"
+                payload = {"state": activators["state"]}
+                route_requests("POST", query, payload)
+
 
         # transforming into JSON-serializable objects
-        return "Sending batch request"
+        return "Batch request succesful"
