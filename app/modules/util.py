@@ -24,7 +24,6 @@ def route_request(method, query, payload):
     method = method.upper()
 
     # Fixes JS returning 0.0 and 1.0 as 0 and 1 respectively.
-
     if payload and "state" in payload and type(payload["state"]) == int:
         payload["state"] = float(payload["state"])
 
