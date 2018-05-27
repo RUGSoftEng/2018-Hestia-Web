@@ -22,7 +22,14 @@ def route_request(method, query, payload):
     Defines the route function to send commands to a controller
     """
     method = method.upper()
+
+    # Fixes JS returning 0.0 and 1.0 as 0 and 1 respectively.
+
+    if payload and "state" in payload and type(payload["state"]) == int:
+        payload["state"] = float(payload["state"])
+
     print("Sending request to server:", method, ", ", query, ", ", payload)
+
     if method == "GET":
         result = requests.get(query, verify=False, timeout=TIMEOUT).json()
         print(result)
