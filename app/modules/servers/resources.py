@@ -271,11 +271,13 @@ class ServerBatchRequest(Resource):
         preset_id  = NAMESPACE.apis[0].payload["preset_id"]
         preset_object = Preset().get(server_id, preset_id)
         preset = preset_object["preset_state"]
+        print(preset_object)
+        print(preset)
 
-        for devices in preset:
-            for activators in devices["activators"]:
-                query = f"{server_url}/devices/{devices['deviceId']}/activators/{activators['activatorId']}"
-                payload = {"state": activators["state"]}
+        for device in preset:
+            for activator in device["activators"]:
+                query = f"{server_url}/devices/{device['deviceId']}/activators/{activator['activatorId']}"
+                payload = {"state": activator["state"]}
                 route_requests("POST", query, payload)
 
 
