@@ -50,8 +50,6 @@ def ping(query):
     Ping a URL and return the time.
     """
     return {
-        "ping": {
             "value" : requests.get(query, verify=False, timeout=TIMEOUT).elapsed.microseconds/100.0,
             "unit" : "ms",
-        }
     }
