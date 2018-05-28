@@ -10,7 +10,10 @@ from flask_restplus import (
 )
 from sqlalchemy.orm import (exc) # TODO there may be a more elegant way to manage this
 from app.extensions import (DB)
-from app.modules.util import (route_request)
+from app.modules.util import (
+    route_request,
+    ping,
+)
 from app.extensions.auth.authentication import (
     requires_auth,
     get_user_id,
@@ -229,12 +232,8 @@ class ServerRequest(Resource):
         # transforming into JSON-serializable objects
         server = ServerSchema().dump(server_object).data
 
-        request_type = NAMESPACE.apis[0].payload["requestType"]
-        endpoint = NAMESPACE.apis[0].payload["endpoint"]
-        optional_payload = NAMESPACE.apis[0].payload["optionalPayload"]
-        server_query = server['server_address'] + \
-            ':' + server['server_port'] + endpoint
-        return ping(server['server_address'] + ":" + server['server_port'])
+        server_query = server['server_address'] + ':' + server['server_port']
+        return ping(server_query)
 
 
 BATCH_PAYLOAD = NAMESPACE.model('batch_payload', {
