@@ -1,15 +1,22 @@
 """
 Provides an authentication layer using JWT via Auth0.
 """
-from functools import wraps
-import json
-from os import environ as env
-from six.moves.urllib.request import urlopen
-from ..api import API
+from functools import (wraps)
+from os import (environ as env)
+from six.moves.urllib.request import (urlopen)
+from dotenv import (
+    load_dotenv,
+    find_dotenv,
+)
+from flask import (
+    request,
+    jsonify,
+    _request_ctx_stack,
+    json,
+)
+from jose import (jwt)
 
-from dotenv import load_dotenv, find_dotenv
-from flask import Flask, request, jsonify, _request_ctx_stack, json
-from jose import jwt
+from ..api import (API)
 
 ENV_FILE = find_dotenv()
 if ENV_FILE:
