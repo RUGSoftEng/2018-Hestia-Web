@@ -50,9 +50,8 @@ class Servers(Resource):
     @NAMESPACE.doc(security='apikey')
     def get(self):
         """
-        List of servers.
-        Returns a list of servers starting from ``offset`` limited by ``limit``
-        parameter.
+        Get the list of servers.
+        A server is associated with a user denoted by an authentication JWT.
         """
 
         servers = DB.session.query(
@@ -69,6 +68,7 @@ class Servers(Resource):
     def post(self):
         """
         Add a server to the list of servers.
+        A server is associated with a user denoted by an authentication JWT.
         """
 
         payload = NAMESPACE.apis[0].payload
@@ -99,6 +99,7 @@ class Server(Resource):
     def get(self, server_id):
         """
         Get a server.
+        The server is identified by its ``server_id``
         """
 
         # Attempt to retrieve the SINGLE entry in the database with the server_id given.
@@ -119,6 +120,7 @@ class Server(Resource):
     def delete(self, server_id):
         """
         Delete a server.
+        The server is identified by its ``server_id``
         """
 
         try:
@@ -139,6 +141,9 @@ class Server(Resource):
     def put(self, server_id):
         """
         Update the information of a server.
+        The server is identified by its ``server_id``. The data which may be
+        updated is the ``server_name``, the ``server_address``, and the
+        ``server_port``
         """
         DB.session.begin()
         try:
@@ -187,6 +192,12 @@ REQUEST_PAYLOAD = NAMESPACE.model('request_payload', {
 class ServerRequest(Resource):
     """
     POST a request to a server.
+
+    A request represents an abstract payload to be forwarded to another REST
+    API. A request is composed of a ``request_type`` representing the rest
+    verb, and ``endpoint`` representing the resource endpoint, and an
+    ``optionalPayload`` representing an auxiliary JSON object required to
+    perform the verb on the resource.
     """
 
     @NAMESPACE.expect(REQUEST_PAYLOAD)
@@ -225,7 +236,7 @@ class ServerPing(Resource):
     @NAMESPACE.doc(security='apikey')
     def post(self, server_id):
         """
-        Forward a request to a server.
+        Post a ping request to a server.
         """
 
         try:
