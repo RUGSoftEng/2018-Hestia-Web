@@ -1,9 +1,4 @@
-<center>
-	<!-- Title image and text. -->
-	<img src="images/hestiaLogo.png"/>
-	<h1>Hestia Web Development Requirements Document</h1>
-	<span style="font-style: italic; color: #b34700">Version 1.0</span>
-</center>
+![Website Design](images/hestiaLogo.png  "Hestia Web Development Architecture Document")
 
 ### Clients
 - F. te Nijenhuis
