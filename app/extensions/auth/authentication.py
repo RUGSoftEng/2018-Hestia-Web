@@ -5,9 +5,11 @@ from functools import wraps
 import json
 from os import environ as env
 from six.moves.urllib.request import urlopen
+from ..api import API
 
 from dotenv import load_dotenv, find_dotenv
 from flask import Flask, request, jsonify, _request_ctx_stack
+import flask
 from jose import jwt
 
 ENV_FILE = find_dotenv()
@@ -16,7 +18,6 @@ if ENV_FILE:
 AUTH0_DOMAIN = env.get("AUTH0_DOMAIN")
 API_IDENTIFIER = env.get("API_IDENTIFIER")
 ALGORITHMS = ["RS256"]
-APP = Flask(__name__)
 
 
 class AuthError(Exception):
@@ -29,15 +30,17 @@ class AuthError(Exception):
         self.status_code = status_code
 
 
-@APP.errorhandler(AuthError)
+@API.errorhandler(AuthError)
 def handle_auth_error(ex):
     """
     Produce the authentication error as a JSON HTTP response.
     """
     response = jsonify(ex.error)
     response.status_code = ex.status_code
-    return response
+    return restplus_error_wrapper(response)
 
+def restplus_error_wrapper(error_response):
+    return flask.json.loads(error_response.get_data()), error_response.status_code
 
 def get_token_auth_header():
     """Obtains the access token from the Authorization Header
