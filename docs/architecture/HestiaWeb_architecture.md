@@ -33,9 +33,9 @@ The Hestia Web Interface can be divided into two main sub-systems as mentioned i
 ## Website Front-End
 Since the frontend of the website is the first aspect of the product that the customer will interact with, and will be one of the main sources of content or discontent throughout their user experience, a variety of design choices have to be made. 
 The website will allow a user to connect to their controllers through a web server, and then manage the devices on their controllers through a range of different controls, and do this in the knowledge that themselves and their information are being kept safe.
-![Website Design](images/Hestia_login_concept.png  "Website Login Concept")
-![Website Design](images/Hestia_dash_concept.png  "Website Dash Concept")
-![Website Design](images/Hestia_control_concept.png  "Website Control Concept")
+![Website Design](images/Hestia_login.png  "Website Login")
+![Website Design](images/Hestia_server_view.png  "Website Server View")
+![Website Design](images/Hestia_device_view.png  "Website Device View")
 ### Design choices
 We use Auth0 for login, in order to implement single sign-on, and once the user is logged in the user's information will be used to get all their servers from our PostgreSQl, and connect to these servers. The frontend will be developed in Vue.js, in  order to simplify the development of our user interface. The main focus of the website will be on listing the devices managed by their controllers, and on the operations that can be applied on them. These will mirror those already implemented by Hestia, such as renaming or deleting a device, but with more streamlined interfacing added, such as using buttons and sliders in order to change the activators of a device, instead of having to directly enter values.
 #### Structural choices
