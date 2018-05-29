@@ -73,6 +73,7 @@ And the Server table contains:
 * The server's port.
 * The date the entry was created.
 * The date it was last updated
+
 Since the user\_id of a user is provided on login through Auth0, this can be used to quickly and efficiently find all of their servers for display and interaction.
 ### Functionality of the Webapp
 Currently, we have developed a server that serves as the liaison between the Hestia local controller and the user's interface. The front-end website will interact with this server exclusively through sending JSON objects in the payload of POST requests. These objects contain the following information:
