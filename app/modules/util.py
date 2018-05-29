@@ -21,7 +21,7 @@ def route_request(method, query, payload):
     method = method.upper()
 
     # Fixes JS returning 0.0 and 1.0 as 0 and 1 respectively.
-    if payload and "state" in payload and type(payload["state"]) == int:
+    if payload and "state" in payload and isinstance(payload["state"], int):
         payload["state"] = float(payload["state"])
 
     print("Sending request to server:", method, ", ", query, ", ", payload)
@@ -47,6 +47,8 @@ def ping(query):
     Ping a URL and return the time.
     """
     return {
-            "value" : requests.options(query, verify=False, timeout=TIMEOUT).elapsed.microseconds/1000.0,
-            "unit" : "ms",
+        "value" : requests.options(query,
+                                   verify=False,
+                                   timeout=TIMEOUT).elapsed.microseconds/1000.0,
+        "unit" : "ms",
     }
