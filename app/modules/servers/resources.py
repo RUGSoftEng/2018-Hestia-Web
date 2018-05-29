@@ -3,12 +3,13 @@ Defines the endpoints allowing for access and manipulation of servers.
 A server represents a remote Hestia controller.
 """
 
+import ast
 from flask_restplus import (
     Resource,
     Namespace,
     fields,
 )
-from sqlalchemy.orm import (exc) # TODO there may be a more elegant way to manage this
+from sqlalchemy.orm import (exc)
 from app.extensions import (DB)
 from app.modules.util import (
     route_request,
@@ -21,10 +22,10 @@ from app.extensions.auth.authentication import (
 from .schemas import (ServerSchema)
 from .models import (ServerModel)
 from ..presets.resources import (Preset)
-import ast
 
 
-NAMESPACE = Namespace('servers', "The central point for all your server (controller) needs.")
+NAMESPACE = Namespace(
+    'servers', "The central point for all your server (controller) needs.")
 
 SERVER = NAMESPACE.model('Server', {
     'server_name': fields.String(
@@ -40,6 +41,7 @@ SERVER = NAMESPACE.model('Server', {
         description="The server identification"
     ),
 })
+
 
 @NAMESPACE.route('/')
 class Servers(Resource):
@@ -162,6 +164,7 @@ class Server(Resource):
         # serializing as JSON for return
         return user_server
 
+
 REQUEST_PAYLOAD = NAMESPACE.model('request_payload', {
     'requestType': fields.String(
         readOnly=True,
@@ -177,6 +180,7 @@ REQUEST_PAYLOAD = NAMESPACE.model('request_payload', {
         description='The information to be forwarded to the remote server.'
     ),
 })
+
 
 @NAMESPACE.route('/<string:server_id>/request')
 @NAMESPACE.param('server_id', 'The server identifier')
@@ -209,9 +213,10 @@ class ServerRequest(Resource):
             ':' + server['server_port'] + endpoint
         return route_request(request_type, server_query, optional_payload)
 
+
 @NAMESPACE.route('/<string:server_id>/ping')
 @NAMESPACE.param('server_id', 'The server identifier')
-class ServerRequest(Resource):
+class ServerPing(Resource):
     """
     GET the ping associated with the server.
     """
@@ -243,6 +248,7 @@ BATCH_PAYLOAD = NAMESPACE.model('batch_payload', {
     ),
 })
 
+
 @NAMESPACE.route('/<string:server_id>/batch_request')
 @NAMESPACE.param('server_id', 'The server identifier')
 class ServerBatchRequest(Resource):
@@ -268,16 +274,17 @@ class ServerBatchRequest(Resource):
         server = ServerSchema().dump(server_object).data
         server_url = server["server_address"] + ":" + server["server_port"]
 
-        preset_id  = NAMESPACE.apis[0].payload["preset_id"]
+        preset_id = NAMESPACE.apis[0].payload["preset_id"]
         preset_object = Preset().get(server_id, preset_id)
         preset = ast.literal_eval(preset_object["preset_state"])
 
         for device in preset:
             for activator in device["activators"]:
-                query = f"{server_url}/devices/{device['deviceId']}/activators/{activator['activatorId']}"
+                query = (server_url +
+                         f"/devices/{device['deviceId']}" +
+                         f"/activators/{activator['activatorId']}")
                 payload = {"state": activator["state"]}
                 route_request("POST", query, payload)
-
 
         # transforming into JSON-serializable objects
         return "Batch request successful"

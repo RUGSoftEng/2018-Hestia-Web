@@ -8,9 +8,8 @@ from sqlalchemy import (
     ForeignKey,
     Integer,
 )
-from sqlalchemy.dialects.postgresql import *
+
 from app.extensions import (DB)
-from app.modules.util import (url_safe_uuid)
 
 class PresetModel(DB.Model):
     """

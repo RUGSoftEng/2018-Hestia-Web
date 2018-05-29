@@ -8,7 +8,7 @@ from flask_restplus import (
     Namespace,
     fields,
 )
-from sqlalchemy.orm import (exc) # TODO there may be a more elegant way to manage this
+from sqlalchemy.orm import (exc)
 from app.extensions import (DB)
 from app.modules.util import (route_request)
 from app.extensions.auth.authentication import (
@@ -19,9 +19,9 @@ from ..servers.models import (ServerModel)
 from ..servers.schemas import (ServerSchema)
 from .schemas import (PresetSchema)
 from .models import (PresetModel)
-import json
 
-NAMESPACE = Namespace('servers', "The central point for all your server (controller) needs.")
+NAMESPACE = Namespace(
+    'servers', "The central point for all your server (controller) needs.")
 
 PRESET_PAYLOAD = NAMESPACE.model('payload', {
     'preset_name': fields.String(
@@ -49,7 +49,7 @@ class Presets(Resource):
         except exc.NoResultFound:
             return "", 404
 
-        presets = DB.session.query(PresetModel).filter_by(server_id = server_id,)
+        presets = DB.session.query(PresetModel).filter_by(server_id=server_id,)
         schema = PresetSchema(many=True)
         all_presets = schema.dump(presets).data
         return all_presets
@@ -58,31 +58,37 @@ class Presets(Resource):
     @requires_auth
     @NAMESPACE.doc(security='apikey')
     def post(self, server_id):
-       payload = NAMESPACE.apis[0].payload
-       try:
-           server_object = DB.session.query(ServerModel).filter_by(
-               server_id=server_id, user_id=get_user_id()).one()
-       except exc.NoResultFound:
-           return "", 404
+        """
+        Post a preset to a server.
+        """
+        payload = NAMESPACE.apis[0].payload
+        try:
+            server_object = DB.session.query(ServerModel).filter_by(
+                server_id=server_id, user_id=get_user_id()).one()
+        except exc.NoResultFound:
+            return "", 404
 
-       # transforming into JSON-serializable objects
-       server = ServerSchema().dump(server_object).data
+        # transforming into JSON-serializable objects
+        server = ServerSchema().dump(server_object).data
 
-       payload["server_id"] = server_id
-       server_address = server['server_address'] + ':' + server['server_port'] + '/devices/'
-       payload["preset_state"] = str(route_request("GET", server_address, "").json)
-       posted_preset = PresetSchema(only=(
-               'preset_name',
-               'preset_state',
-               'server_id',
-           )).load(payload)
-       preset = PresetModel(**posted_preset.data)
+        payload["server_id"] = server_id
+        server_address = server['server_address'] + \
+            ':' + server['server_port'] + '/devices/'
+        payload["preset_state"] = str(
+            route_request("GET", server_address, "").json)
+        posted_preset = PresetSchema(only=(
+            'preset_name',
+            'preset_state',
+            'server_id',
+        )).load(payload)
+        preset = PresetModel(**posted_preset.data)
 
-       DB.session.begin()
-       DB.session.add(preset)
-       DB.session.commit()
+        DB.session.begin()
+        DB.session.add(preset)
+        DB.session.commit()
 
-       return PresetSchema().dump(preset).data
+        return PresetSchema().dump(preset).data
+
 
 @NAMESPACE.route('/<string:server_id>/presets/<string:preset_id>')
 @NAMESPACE.param('server_id', 'The server identifier')
@@ -104,14 +110,13 @@ class Preset(Resource):
 
         try:
             preset = DB.session.query(PresetModel).filter_by(
-                server_id = server_id,
+                server_id=server_id,
                 preset_id=preset_id
             ).one()
         except exc.NoResultFound:
             return "", 404
 
         return PresetSchema().dump(preset).data
-
 
     @NAMESPACE.doc(security='apikey')
     def delete(self, server_id, preset_id):
@@ -128,7 +133,7 @@ class Preset(Resource):
 
         try:
             preset = DB.session.query(PresetModel).filter_by(
-                server_id = server_id,
+                server_id=server_id,
                 preset_id=preset_id
             ).one()
         except exc.NoResultFound:

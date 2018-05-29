@@ -3,6 +3,7 @@ Declare the model objects for the database as well as schema for each
 """
 from marshmallow import Schema, fields
 
+
 class PresetSchema(Schema):
     """
     The preset schema.
