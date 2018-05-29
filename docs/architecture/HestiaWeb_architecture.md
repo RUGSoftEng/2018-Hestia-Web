@@ -60,7 +60,12 @@ We will use [Auth0](https://auth0.com/), a secure and popular identification pro
 4. Our webapp uses the user's ID, which is included in the access_token, to get the user's servers from our database.
 ![Website Design](images/auth.png  "Website Control Concept")
 #### Database
-We have our own PostgreSQl database, which is used to fetch the users' servers on login. It contains 2 tables: one of all users, and one of all servers. The User table contains the user\_id of a user (which will be included in the accept\_token from Auth0 on login), the date the entry was created, and the date on which it was last updated. The Server table contains the ID of the server, the ID of its owner, its name, its address and its port, as well as the date on which it was entered and the date on which it was last updated. Since the user\_id of a user is provided on login through Auth0, this can be used to quickly and efficiently find all of their servers for display and interaction.
+We have our own PostgreSQl database, which is used to fetch the users' servers on login. It contains 2 tables: one of all users, and one of all servers. The User table contains the following:
+* user\_id of a user (which will be included in the access\_token from Auth0 on login).
+* The date the entry was created.
+* The date it was last updated
+
+The Server table contains the ID of the server, the ID of its owner, its name, its address and its port, as well as the date on which it was entered and the date on which it was last updated. Since the user\_id of a user is provided on login through Auth0, this can be used to quickly and efficiently find all of their servers for display and interaction.
 ### Functionality of the Webapp
 Currently, we have developed a server that serves as the liaison between the Hestia local controller and the user's interface. The front-end website will interact with this server exclusively through sending JSON objects in the payload of POST requests. These objects contain the following information:
 * *query*: The endpoint that the client intends to send a request to, on the Hestia local controller.
@@ -128,3 +133,4 @@ Below are defined terms used in the architecture document:
 | Troy Harrison | 2018-05-29 | Whole Document       | Clean up images.                                                                |
 | Troy Harrison | 2018-05-29 | Function Description | Switch code block to python formatting    
 | Roman Bell    | 2018-05-29 | Throughout     | Added some greater detail to design choices, polished before final sprint    |
+| Roman Bell    | 2018-05-29 | Login          | Changed system diagram, added more detail on Auth0    |
