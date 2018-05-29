@@ -166,10 +166,12 @@ You may install postgres on Windows using BigSQL's premade installer. It comes w
 Just go to: http://openscg.com/bigsql/ and click download->PostgresSQL10.3 Stable. Then follow installation instructions.
 
 Once installed, you will need to add a server, and then database. Use the following information and leave the rest default:
-| --:      | :--:      |
-| Name     | HestiaDB  |
-| Password | hestia    |
-| Server   | localhost |
+
+| Key       | Value     |
+| :---      | :---      |
+| Name      | HestiaDB  |
+| Password  | hestia    |
+| Server    | localhost |
 
 ### Server Setup
 Now that python, pipenv, and the database are setup we can run the application. Make sure the pipenv environment is enabled.
