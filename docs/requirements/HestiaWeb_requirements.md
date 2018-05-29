@@ -29,7 +29,7 @@ The requirements for the system are from the perspective of all those who are go
 The actors referenced throughout the user stories are defined in more detail below, so that the reasoning for each story is logical and motivated by a realistic desire or need.
 
 #### User
-The majority of the stories are focused around the *User*, which is someone who makes use of the Hestia system to automate peripherals in their home. The user does not care about the implementation or backend behaviour, as long as their experience with the interface is satisfactory. The user, in general, wants the system to be as intuitive and easy to use as possible, while still providing complete control over the devices in their home.
+The majority of the stories are focused around the *User*, which is someone who makes use of the Hestia system to automate peripherals in their home. The user does not care about the implementation or backend behavior, as long as their experience with the interface is satisfactory. The user, in general, wants the system to be as intuitive and easy to use as possible, while still providing complete control over the devices in their home.
 
 #### Developer
 The *Developer* is one who is responsible for designing the software that the user will interact with. They are most concerned with the structure and design of the system, and must make the application in such a way as to satisfy the users' needs and the clients' goals. Note that the developer in this scenario is not responsible for the pre-existing software provided by the clients.
@@ -41,11 +41,10 @@ The *Plugin Developer* is a person who has created a plugin that the Hestia syst
 - [x] As a user, I would like to be able to change the status of peripherals in all of my Hestia servers from one location, so that it’s easier for me to configure my home automation.
 - [x] As a user, I would like to be able to add a new Hestia server to be remotely controlled.
 - [x] As a user, I would like to be able to ensure that my Hestia servers and their devices cannot be controlled without my knowledge.
-  - [ ] As a user, I would like to be able to access a log of events associated with my servers, so that I can see what changes have occurred.
+  - [ ] As a user, I would like to be able to access a log of events associated with my servers, so that I can see what changes have occurred. *Did not have time to implement this. However, the logs would best be stored by each local controller, and forwarded via the API to the central web application*
 - [x] As a user, I would like to be able to ensure that my Hestia servers cannot be accessed without my consent.
-  - [ ] As a user, I would like to be able to set my authentication credentials, to ensure that I am the only one who can be authenticated by those credentials.
+  - [x] As a user, I would like to be able to set my authentication credentials, to ensure that I am the only one who can be authenticated by those credentials.
 - [x] As a user, I would like to be able to share access to my Hestia server to other people who I trust, so that others who are affected by the peripherals can change things to suit them.
-  - [ ] As a user, I would like to be able to set permissions for the servers or peripherals, so that I can limit what people who I have shared access with can do on my servers.
 - [x] As a user, I would like to be able to easily add or remove plugins from my Hestia servers, so that it’s easy for me to test various peripherals.
 - [x] As a user, I would like to be able to use the Hestia service without interruption.
   - [x] As a user, I would like fast responses to any input I make.
@@ -75,19 +74,21 @@ Below are listed some requirements or concerns which the clients have told us ab
 
 * Add secret backdoor access to allow administrators to control the lights in any house where Hestia is installed.
 * Make website available by localhost as well as through internet. (Client says this is not necessary, but we realize it would be good to improve accessibility)
+* As a user, I would like to be able to set permissions for the servers or peripherals, so that I can limit what people who I have shared access with can do on my servers. *Not possible due to structure of backend on client side.*
 
 ## Change Log
 
-| Who            |       When | Where          | What                                                                                              |
-| :---           |       :--- | :---           | :---                                                                                              |
-| Troy Harrison  | 2018-02-27 | Whole Document | Added initial description, and basic user stories.                                                |
-| Rens Nijman    | 2018-02-27 | Whole Document | Fixed typos and separated user stories by importance.                                             |
-| Peter Oetinger | 2018-02-27 | Whole Document | Added user stories.                                                                               |
-| Andrew Lalis   | 2018-02-27 | Whole Document | Added Hestia Logo, fixed grammar, added changelog. Defined actors for user stories.               |
-| Andrew Lalis   | 2018-03-04 | Whole Document | Added TA name, Won't Do section, removed duplicate user story, added non-functional requirements. |
-| Andrew Lalis   | 2018-03-12 | Document Name  | Renamed to HestiaWeb_requirements, added local website to Won't Do.                               |
-| Rens Nijman    | 2018-03-12 | Won't Do       | Removed a space.                                                                                  |
-| Troy Harrison  | 2018-03-13 | Requirements   | Move requirements to better reflect current focus.                                                |
-| Roman Bell     | 2018-03-23 | Whole Document | Edited in preparation for final hand in.                                                          |
-| Roman Bell     | 2018-03-27 | User stories   | Did checkboxes of features.                                                                       |
-| Roman Bell     | 2018-05-29 | Whole Document | Did checkboxes of features, editing before final submission                                       |
+| Who             |       When | Where          | What                                                                                              |
+| :---            |       :--- | :---           | :---                                                                                              |
+| Troy Harrison   | 2018-02-27 | Whole Document | Added initial description, and basic user stories.                                                |
+| Rens Nijman     | 2018-02-27 | Whole Document | Fixed typos and separated user stories by importance.                                             |
+| Philip Oetinger | 2018-02-27 | Whole Document | Added user stories.                                                                               |
+| Andrew Lalis    | 2018-02-27 | Whole Document | Added Hestia Logo, fixed grammar, added changelog. Defined actors for user stories.               |
+| Andrew Lalis    | 2018-03-04 | Whole Document | Added TA name, Won't Do section, removed duplicate user story, added non-functional requirements. |
+| Andrew Lalis    | 2018-03-12 | Document Name  | Renamed to HestiaWeb_requirements, added local website to Won't Do.                               |
+| Rens Nijman     | 2018-03-12 | Won't Do       | Removed a space.                                                                                  |
+| Troy Harrison   | 2018-03-13 | Requirements   | Move requirements to better reflect current focus.                                                |
+| Roman Bell      | 2018-03-23 | Whole Document | Edited in preparation for final hand in.                                                          |
+| Roman Bell      | 2018-03-27 | User stories   | Did checkboxes of features.                                                                       |
+| Roman Bell      | 2018-05-29 | Whole Document | Did checkboxes of features, editing before final submission                                       |
+| Troy Harrison   | 2018-05-29 | User stories   | Reorder user stories and provide motivation for requirements not met.                    |
