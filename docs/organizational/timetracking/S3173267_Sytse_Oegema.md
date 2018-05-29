@@ -48,6 +48,14 @@
 | *21/05/2018* | 14:00-18:00| Worked on the login redirection. Now a user gets redirected to a login page, when his authentication token is expired. |
 | *22/05/2018* | 11:00-18:00| Worked on the refactoring of the previous sprint. |
 | *23/05/2018* | 10:00-10:30| Merged all refactorings into the feature branches. |
+| *24/05/2018* | 11:00-13:00| Worked on device editting modal and interaction with the server. |
+| *25/05/2018* | 10:00-13:30| Configured the integration with the new dev server. Worked out the error resonse from the backend on deleting a device. And made the redirection to the login page working. Worked on this together with Troy. |
+| *26/05/2018* | 18:00-22:30| Finished all the put functionality. Started with the presets. Only GET. |
+| *27/05/2018* | 19:00-22:00| Finsihed all the preset functionality and GUI. |
+| *28/05/2018* | 08:00-11:00| Final touch on the preset GUI. Setup the cypress framework Elias found. |
+| *28/05/2018* | 16:00-20:00| Made the ping functionality so that the GUI displays a message when the server is not responding. |
+| *29/05/2018* | 19:30-20:30| Refactoring some of the work of Nik and some final changes. |
+
 
 
 
