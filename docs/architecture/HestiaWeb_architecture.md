@@ -14,7 +14,7 @@
 ### Teaching Assistant
 Feiko Ritsema
 ## Introduction
-The Hestia Home Automation System, developed by the clients, aims to make home automation simple again. The local server infrastructure that facilitates communication and control of the various peripherals in one's home has been implemented by the clients. In addition to this local server, an Android application has been pre-made by the client and is available for reference. As it stands users of Hestia are unable to access their home servers outside of their local network. This coupled with the lack of client side interfacing, limits ease of use and widespread adoption of the Hestia system.
+The Hestia Home Automation System, developed by the clients, aims to make home automation simple again. The local server infrastructure that facilitates communication and control of the various peripherals in one's home has been implemented by the clients. In addition to this local server, an Android application has been made by the client and is available for reference. As it stands users of Hestia are unable to access their home servers outside of their local network. This coupled with the lack of client side interfacing, limits ease of use and widespread adoption of the Hestia system.
 To improve on this, we will develop a web based interface for Hestia. For this, there are two main systems under consideration: the front-end (the user interface with which the client interacts), and the back-end (which serves as a middleman between local Hestia servers and their users).
 This document describes the functioning of these systems, their interaction, and the motivation behind their underlying design choices.
 ### Overview
@@ -31,19 +31,19 @@ The Hestia Web Interface can be divided into two main sub-systems as mentioned i
 * Back-end server that connects users to their local Hestia controllers and holds user and server information
 ![Website Design](images/diagram.png  "Structure of the system")
 ## Website Front-End
-Since the frontend of the website is the first aspect of the product that the customer will interact with, and will be one of the main sources of content or discontent throughout their user experience, a variety of design choices have to be made.
+Since the front-end of the website is the first aspect of the product that the customer will interact with, and will be one of the main sources of content or discontent throughout their user experience, a variety of design choices have to be made.
 The website will allow a user to connect to their controllers through a web server, and then manage the devices on their controllers through a range of different controls, and do this in the knowledge that themselves and their information are being kept safe.
 ![Website Design](images/Hestia_login.png  "Website Login")
 ![Website Design](images/Hestia_server_view.png  "Website Server View")
 ![Website Design](images/Hestia_device_view.png  "Website Device View")
 ### Design choices
-We use Auth0 for login, in order to implement single sign-on, and once the user is logged in the user's information will be used to get all their servers from our PostgreSQl, and connect to these servers. The frontend will be developed in Vue.js, in  order to simplify the development of our user interface. The main focus of the website will be on listing the devices managed by their controllers, and on the operations that can be applied on them. These will mirror those already implemented by Hestia, such as renaming or deleting a device, but with more streamlined interfacing added, such as using buttons and sliders in order to change the activators of a device, instead of having to directly enter values.
+We use Auth0 for login, in order to implement single sign-on, and once the user is logged in the user's information will be used to get all their servers from our PostgreSQl, and connect to these servers. The front-end will be developed in Vue.js, in  order to simplify the development of our user interface. The main focus of the website will be on listing the devices managed by their controllers, and on the operations that can be applied on them. These will mirror those already implemented by Hestia, such as renaming or deleting a device, but with more streamlined interfacing added, such as using buttons and sliders in order to change the activators of a device, instead of having to directly enter values.
 #### Structural choices
 The page is laid out in such a way that the user can easily cycle between personal information, their devices, their controllers' information, and settings. Devices are grouped by what controller they belong to which will help reduce complexity, as a large house or an office could have several different controllers.
 #### Aesthetical choices
 The design overall will be quite minimalist, with some elements such as colour taken from the Hestia logo. Aside from the main Hestia logo, the icons used are from [Material Icons database](https://material.io/icons/), which provides a large set of intuitive, user friendly icons.
 ## Website Back-End
-The backend of the webapp will serve as a middleman between the web frontend and the user's controllers. This means that there needs to be an interface to be able to send queries to the server. Furthermore, a user database is required in order to maintain a secure environment in which users may only have permission to interact with systems they own. Unauthorized access to server data, user data, or any other sensitive information is completely forbidden.
+The back-end of the webapp will serve as a middleman between the web front-end and the user's controllers. This means that there needs to be an interface to be able to send queries to the server. Furthermore, a user database is required in order to maintain a secure environment in which users may only have permission to interact with systems they own. Unauthorized access to server data, user data, or any other sensitive information is completely forbidden.
 ### Design decisions
 For the design of the webapp we initially chose to implement PHP since there was familiarity in the team with PHP. Thus, a concise webpage was setup using HTML and PHP. This website was designed to test querying a Hestia webserver (for instance a *GET* request). After the initial webpage was created we decided to implement the webpage in Python using Flask. There are two primary reasons for this:
 1. The clients are familiar with working with both Python and Flask as they implemented Hestia using these tools.
@@ -115,7 +115,7 @@ Below are defined terms used in the architecture document:
 | Rens Nijman   | 2018-03-12 | Whole document       | More introduction and back-end.                                                 |
 | Andrew Lalis  | 2018-03-12 | Glossary             | Added glossary.                                                                 |
 | Phil Oetinger | 2018-03-13 | Whole Document       | Cleaned up the grammar, removed redundant sentences, expanded upon some points  |
-| Roman Bell    | 2018-03-13 | Frontend             | Added content regarding the frontend section                                    |
+| Roman Bell    | 2018-03-13 | Front-end            | Added content regarding the front-end section                                   |
 | Rens Nijman   | 2018-03-13 | Back-end             | Added section on our server's functionality                                     |
 | Andrew Lalis  | 2018-03-13 | Back-end             | Revised a few things.                                                           |
 | Troy Harrison | 2018-03-13 | Whole Document       | Cleaned up document.                                                            |
