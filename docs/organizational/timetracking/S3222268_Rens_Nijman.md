@@ -195,3 +195,54 @@
 | *2018-05-01* | 22:00-22:30 | Linking user info (user id) to database               |
 | *2018-05-01* | 22:30-23:00 | Linking user info (user id) to database               |
 | *2018-05-01* | 23:00-23:30 | Linking user info (user id) to database               |
+| *2018-05-19* | 19:00-19:30 | Catch up on implementation server (research)          |
+| *2018-05-19* | 19:30-20:00 | Catch up on implementation server (research)          |
+| *2018-05-20* | 14:00-14:30 | Research for SQLAlchemy in Flask                      |
+| *2018-05-20* | 14:30-15:00 | Research for SQLAlchemy in Flask                      |
+| *2018-05-25* | 11:00-11:30 | More research on SQLAlchemy                           |
+| *2018-05-25* | 11:30-12:00 | More research on SQLAlchemy                           |
+| *2018-05-25* | 12:00-12:30 | More research on SQLAlchemy                           |
+| *2018-05-25* | 12:30-13:00 | More research on SQLAlchemy                           |
+| *2018-05-25* | 13:00-13:30 | More research on SQLAlchemy                           |
+| *2018-05-25* | 13:30-14:00 | More research on SQLAlchemy                           |
+| *2018-05-25* | 14:00-14:30 | More research on SQLAlchemy                           |
+| *2018-05-25* | 14:30-15:00 | More research on SQLAlchemy                           |
+| *2018-05-25* | 15:00-15:30 | Implementing presets module                           |
+| *2018-05-25* | 15:30-16:00 | Implementing presets module                           |
+| *2018-05-25* | 16:00-16:30 | Implementing presets module                           |
+| *2018-05-25* | 16:30-17:00 | Implementing presets module                           |
+| *2018-05-25* | 17:00-17:30 | Implementing presets module                           |
+| *2018-05-25* | 17:30-18:00 | Implementing presets module                           |
+| *2018-05-25* | 18:00-18:30 | Implementing presets module                           |
+| *2018-05-25* | 18:30-19:00 | Implementing presets module                           |
+| *2018-05-25* | 19:00-19:30 | Implementing presets module                           |
+| *2018-05-25* | 19:30-20:00 | Implementing presets module                           |
+| *2018-05-26* | 10:30-11:00 | Researching SQLAlchemy                                |
+| *2018-05-26* | 11:00-11:30 | Researching SQLAlchemy                                |
+| *2018-05-26* | 11:30-12:00 | Researching SQLAlchemy                                |
+| *2018-05-26* | 12:00-12:30 | Researching SQLAlchemy                                |
+| *2018-05-26* | 12:30-13:00 | Researching SQLAlchemy                                |
+| *2018-05-26* | 13:00-13:30 | VOIP meeting with Troy                                |
+| *2018-05-26* | 13:30-14:00 | VOIP meeting with Troy                                |
+| *2018-05-27* | 10:30-11:00 | Research for implementing presets                     |
+| *2018-05-27* | 11:00-11:30 | Research for implementing presets                     |
+| *2018-05-27* | 11:30-12:00 | Research for implementing presets                     |
+| *2018-05-27* | 12:00-12:30 | Research for implementing presets                     |
+| *2018-05-27* | 12:30-13:00 | Research for implementing presets                     |
+| *2018-05-27* | 13:00-13:30 | Further implementing presets                          |
+| *2018-05-27* | 13:30-14:00 | Further implementing presets                          |
+| *2018-05-27* | 14:00-14:30 | Further implementing presets                          |
+| *2018-05-27* | 14:30-15:00 | Further implementing presets                          |
+| *2018-05-27* | 15:00-15:30 | Further implementing presets                          |
+| *2018-05-27* | 15:30-16:00 | Further implementing presets with Troy (VOIP)         |
+| *2018-05-27* | 16:00-16:30 | Further implementing presets with Troy (VOIP)         |
+| *2018-05-27* | 16:30-17:00 | Further implementing presets with Troy (VOIP)         |
+| *2018-05-27* | 17:00-17:30 | Further implementing presets with Troy (VOIP)         |
+| *2018-05-27* | 17:30-18:00 | Further implementing presets with Troy (VOIP)         |
+| *2018-05-27* | 18:00-18:30 | Further implementing presets with Troy (VOIP)         |
+| *2018-05-27* | 18:30-19:00 | Further implementing presets with Troy (VOIP)         |
+| *2018-05-27* | 19:00-19:30 | Further implementing presets with Troy (VOIP)         |
+| *2018-05-27* | 19:30-20:00 | Further implementing presets with Troy (VOIP)         |
+| *2018-05-27* | 22:00-22:30 | Fix servers/resources.py for presets with Troy (VOIP) |
+| *2018-05-27* | 22:30-23:00 | Fix servers/resources.py for presets with Troy (VOIP) |
+| *2018-05-27* | 23:00-23:30 | Fix servers/resources.py for presets with Troy (VOIP) |

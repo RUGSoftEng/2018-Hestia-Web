@@ -20,4 +20,11 @@
 | *25/04/2018* | 07:00-19:00| Researched legal issues for website, made privacy policy and terms and conditions  |
 | *27/04/2018* | 07:00-21:00| created pages for the above, worked on implementing footer  |
 | *01/05/2018* | 12:00-17:00| Updated architecture document for latest sprint |
+| *10/05/2018* | 12:00-16:00| Worked with team |
+| *16/05/2018* | 11:00-15:00| Attended corridor market, made and typed up notes on repsonses to product |
+| *28/05/2018* | 09:00-13:00| Installed latest versions of front/backend to see new changes that have been made |
+| *28/05/2018* | 14:00-20:00| Did some research on new things used, started polishing documentation |
+| *29/05/2018* | 11:00-15:00| continued working on documentation |
+| *29/05/2018* | 20:30-22:30| worked on architecture document |
+
 
