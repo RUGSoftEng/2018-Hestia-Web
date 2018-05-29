@@ -37,7 +37,7 @@ The website will allow a user to connect to their controllers through a web serv
 ![Website Design](images/Hestia_server_view.png  "Website Server View")
 ![Website Design](images/Hestia_device_view.png  "Website Device View")
 ### Design choices
-We initially decided to use [Google Firebase](https://firebase.google.com/) for login and storing each users' servers, however then we switched to [Auth0](https://auth0.com/) for login, in order to implement single sign-on. Once the user is logged in, the user's information will be used to get all their servers from our [PostgreSQl](https://www.postgresql.org/) database, and connect to these servers. The front-end will be developed in Vue.js, in  order to simplify the development of our user interface. The main focus of the website will be on listing the devices managed by their controllers, and on the operations that can be applied to them. These will mirror those already implemented by Hestia, such as renaming or deleting a device, but with more streamlined interfacing added, such as using buttons and sliders in order to change the activators of a device, instead of having to directly enter values.
+We initially decided to use [Google Firebase](https://firebase.google.com/) for login and storing each users' servers, however then we switched to [Auth0](https://auth0.com/) for login, in order to implement single sign-on. Once the user is logged in, the user's information will be used to get all their servers from our [PostgreSQl](https://www.postgresql.org/) database, and connect to these servers. The front-end will be developed in [Vue.js](https://vuejs.org/), in  order to simplify the development of our user interface. The main focus of the website will be on listing the devices managed by their controllers, and on the operations that can be applied to them. These will mirror those already implemented by Hestia, such as renaming or deleting a device, but with more streamlined interfacing added, such as using buttons and sliders in order to change the activators of a device, instead of having to directly enter values.
 #### Structural choices
 The page is laid out in such a way that the user can easily cycle between their personal information, their devices, their controllers' information, and settings. Devices are grouped by what controller they belong to which will help reduce complexity, as a large house or an office could have several different controllers.
 #### Aesthetical choices
@@ -45,7 +45,7 @@ The design overall will be quite minimalist, with some elements such as colour t
 ## Website Back-End
 The back-end of the webapp will serve as a middleman between the web front-end and the user's controllers. This means that there needs to be an interface to be able to send queries to the server. Furthermore, a user database is required in order to maintain a secure environment in which users may only have permission to interact with systems they own. Unauthorized access to server data, user data, or any other sensitive information is completely forbidden.
 ### Design decisions
-For the design of the webapp we initially chose to implement PHP since there was familiarity in the team with PHP. Thus, a concise webpage was setup using HTML and PHP. This website was designed to test querying a Hestia webserver (for instance a *GET* request). After the initial webpage was created we decided to implement the webpage in Python using Flask. There are two primary reasons for this:
+For the design of the webapp we initially chose to implement PHP since there was familiarity in the team with PHP. Thus, a concise webpage was setup using HTML and PHP. This website was designed to test querying a Hestia webserver (for instance a *GET* request). After the initial webpage was created we decided to implement the webpage in Python using [Flask](http://flask.pocoo.org/). There are two primary reasons for this:
 1. The clients are familiar with working with both Python and Flask as they implemented Hestia using these tools.
 2. It adds to consistency throughout the Hestia project.
 3. Python allows for rapid development, with simpler deployment than PHP and Apache servers.
@@ -80,7 +80,7 @@ Currently, we have developed a server that serves as the liaison between the Hes
 * *query*: The endpoint that the client intends to send a request to, on the Hestia local controller.
 * *method*: The method by which the user wishes to send the request.
 * *payload*: The payload is an optional item in the request that when supplied, is used for requests which require additional information, such as POSTing to /devices/ to create a new device, or updating a device's name. The exact content of the payload is identical in structure to the payload that would naturally be received by the controller.
-Every time a query is done on the webpage, the server gets a request where the */request* endpoint is being pinged. The above piece of code breaks down what the information consists of. Firstly, it gets a JSON object, where the *url* variable is set to be the URL, such that it can access either plugins or devices. Secondly, a certain method is set in the data that is being sent, such as GET, POST, PUT, or DELETE. Furthermore, depending on the method, there may be a payload, which contains the *body* of the message. For instance, for posting a new device, this would consist of a name, an ip, and a port number. Also, the corresponding plugin is required, which in this case also has to be part of the message sent from the webapp to our server. This differs from for instance a GET request, which simply requires a URL and the method.
+Every time a query is made on the webpage, the server gets a request where the */request* endpoint is being pinged. The above piece of code breaks down what the information consists of. Firstly, it gets a JSON object, where the *url* variable is set to be the URL, such that it can access either plugins or devices. Secondly, a certain method is set in the data that is being sent, such as GET, POST, PUT, or DELETE. Furthermore, depending on the method, there may be a payload, which contains the *body* of the message. For instance, for posting a new device, this would consist of a name, an ip, and a port number. Also, the corresponding plugin is required, which in this case also has to be part of the message sent from the webapp to our server. This differs from for instance a GET request, which simply requires a URL and the method.
 Based on this information we have a function routeRequest, which follows up with the corresponding action, and sends the appropriate data.
 ```python
 def routeRequest(method, query, payload):
@@ -108,7 +108,7 @@ More specifically, for each plugin, the following information will be stored:
 
 * Name of the plugin.
 * Author's name.
-* Date of creation/upload
+* Date of creation/upload.
 * Description.
 * Rating (users can vote on plugins they like or dislike).
 * Path to a hidden directory containing all required files.
