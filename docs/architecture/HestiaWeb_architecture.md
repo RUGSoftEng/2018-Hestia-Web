@@ -20,9 +20,9 @@ This document describes the functioning of these systems, their interaction, and
 ### Overview
 Our goal for this project is to create a web interface for Hestia. This web interface, which is hosted on a central server, should allow users to log in and connect to their local Hestia servers. This allows users to interact with their home automation system remotely.
 
-A Hestia server is a *controller* that manages a set of *peripherals*. Those peripherals are the devices to be automated. These could for example be lights, locks, or any other programmable devices. This is possible because Hestia is designed to be peripheral independent via a plugin infrastructure.
+A Hestia server is a *controller* that manages a set of *peripherals*. Those peripherals are the devices to be automated. These could, for example, be lights, locks, or any other programmable devices. This is possible because Hestia is designed to be peripheral independent via a plugin infrastructure.
 
-Additionally, the client would like to have a *marketplace*, where independed creators can submit plugins to be made available to other Hestia users.
+Additionally, the client would like to have a *marketplace*, where independent creators can submit plugins to be made available to other Hestia users.
 
 The clients have created this system using the REST API. This decouples our work from the underlying infrastructure of Hestia.
 ## General Overview of the System
@@ -32,14 +32,14 @@ The Hestia Web Interface will be divided into two main sub-systems as mentioned 
 ![Website Design](images/diagram.png  "Structure of the system")
 ## Website Front-End
 Since the front-end of the website is the first aspect of the product that the customer will interact with, and will be one of the main sources of content or discontent throughout their user experience, a variety of design choices have to be made.
-The website will allow a user to connect to their controllers through a web server, and then manage the devices on their controllers through a range of different controls, and do this in the knowledge that themselves and their information are being kept safe.
+The website will allow a user to connect to their controllers through a web server, and then manage the devices on their controllers through a range of different controls, and do this in the knowledge that they and their information are being kept safe.
 ![Website Design](images/Hestia_login.png  "Website Login")
 ![Website Design](images/Hestia_server_view.png  "Website Server View")
 ![Website Design](images/Hestia_device_view.png  "Website Device View")
 ### Design choices
-We use Auth0 for login, in order to implement single sign-on, and once the user is logged in the user's information will be used to get all their servers from our PostgreSQl, and connect to these servers. The front-end will be developed in Vue.js, in  order to simplify the development of our user interface. The main focus of the website will be on listing the devices managed by their controllers, and on the operations that can be applied on them. These will mirror those already implemented by Hestia, such as renaming or deleting a device, but with more streamlined interfacing added, such as using buttons and sliders in order to change the activators of a device, instead of having to directly enter values.
+We use [Auth0](https://auth0.com/) for login, in order to implement single sign-on, and once the user is logged in the user's information will be used to get all their servers from our PostgreSQl database, and connect to these servers. The front-end will be developed in Vue.js, in  order to simplify the development of our user interface. The main focus of the website will be on listing the devices managed by their controllers, and on the operations that can be applied to them. These will mirror those already implemented by Hestia, such as renaming or deleting a device, but with more streamlined interfacing added, such as using buttons and sliders in order to change the activators of a device, instead of having to directly enter values.
 #### Structural choices
-The page is laid out in such a way that the user can easily cycle between personal information, their devices, their controllers' information, and settings. Devices are grouped by what controller they belong to which will help reduce complexity, as a large house or an office could have several different controllers.
+The page is laid out in such a way that the user can easily cycle between their personal information, their devices, their controllers' information, and settings. Devices are grouped by what controller they belong to which will help reduce complexity, as a large house or an office could have several different controllers.
 #### Aesthetical choices
 The design overall will be quite minimalist, with some elements such as colour taken from the Hestia logo. Aside from the main Hestia logo, the icons used are from [Material Icons database](https://material.io/icons/), which provides a large set of intuitive, user friendly icons.
 ## Website Back-End
@@ -53,7 +53,7 @@ However, we are currently unsure on whether Python and Flask will hinder scalabl
 ### Why Not Go Directly From Browser to Controller?
 Because the client's website will use javascript to send AJAX requests to the webserver, it is also perfectly capable of sending those requests directly to whatever controller the user wishes to control. However, in practice, this is not recommended, since some browsers such as Firefox disable *Cross Origin Resource Sharing*. This could potentially be a large security vulnerability, and therefore we avoid the issue by adding a layer of abstraction, and forcing the user to communicate **only** with the website/webserver as opposed to both the website and the local controller. From Mozilla's website regarding CORS, or security reasons, browsers restrict cross-origin HTTP requests initiated from within scripts. For example, XMLHttpRequest and the Fetch API follow the same-origin policy, meaning scripts can only be shared between webpages if they have the same origin.
 #### Authentication
-We will use [Auth0](https://auth0.com/), a secure and popular identification provider for our login. The flow of authentication is shown below. The user will login with some form of social account, such as Google, and will get authenticated by Auth0. They will then be granted an access_token (A JSON Web Token which can be also used to specify the scope of the user's permissions). Their id, which will be included in the JWT, will be used to get the list of their servers from our database.
+We will use [Auth0](https://auth0.com/), a secure and popular identification provider for our login. The flow of authentication is shown below. The user will login with some form of social account, such as Google, and will get authenticated by Auth0. They will then be granted an access_token (A JSON Web Token which can be also used to specify the scope of the user's permissions). Their ID, which will be included in the JWT, will be used to get the list of their servers from our database.
 ![Website Design](images/auth.png  "Website Control Concept")
 #### Database
 We have our own PostgreSQl database, which is used to fetch the users' servers on login. It contains 2 tables: one of all users, and one of all servers. The User table contains the user\_id of a user (which will be included in the accept\_token from Auth0 on login), the date the entry was created, and the date on which it was last updated. The Server table contains the ID of the server, the ID of its owner, its name, its address and its port, as well as the date on which it was entered and the date on which it was last updated. Since the user\_id of a user is provided on login through Auth0, this can be used to quickly and efficiently find all of their servers for display and interaction.
@@ -123,4 +123,4 @@ Below are defined terms used in the architecture document:
 | Roman Bell    | 2018-05-01 | Throughout     | removed all reference to Firebase, mentioned new design choices made for sprint|
 | Troy Harrison | 2018-05-29 | Whole Document       | Clean up images.                                                                |
 | Troy Harrison | 2018-05-29 | Function Description | Switch code block to python formatting    
-| Roman Bell    | 2018-05-29 | Throughout     | Added some greater detail to design choices, polished before final             |
+| Roman Bell    | 2018-05-29 | Throughout     | Added some greater detail to design choices, polished before final sprint    |
