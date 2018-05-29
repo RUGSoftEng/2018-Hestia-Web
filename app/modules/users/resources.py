@@ -24,8 +24,6 @@ class Users(Resource):
     def post(self):
         """
         List of users.
-        Returns a list of users starting from ``offset`` limited by ``limit``
-        parameter.
         """
         user_id = {
             'user_id': get_user_id()
@@ -37,3 +35,22 @@ class Users(Resource):
         DB.session.commit()
 
         return UserSchema().dump(new_user).data
+
+    @requires_auth
+    @NAMESPACE.doc(security='apikey')
+    def delete(self):
+        """
+        Delete a user.
+        A user is identified by its ``user_id`` from the authentication JWT.
+        """
+
+        try:
+            user = DB.session.query(UserModel).filter_by(user_id=get_user_id()).one()
+        except exc.NoResultFound:
+            return "", 404
+
+        DB.session.begin()
+        DB.session.delete(user)
+        DB.session.commit()
+
+        return "", 204
