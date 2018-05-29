@@ -23,9 +23,9 @@
 Feiko Ritsema
 
 ## Introduction
-The *Hestia* Home Automation System, developed by the clients, aims to make home automation simple again. The local server based back end infrastructure to facilitate communicating and controlling the various devices connected to that server has been implemented by the clients. However, besides an Android application (also developed by the clients), the system lacks a consumer side interface. This limits ease of use and hinders widespread popular usage.
+The Hestia Home Automation System, developed by the clients, aims to make home automation simple again. The local server based back end infrastructure to facilitate communicating and controlling the various devices connected to that server has been implemented by the clients. However, besides an Android application (also developed by the clients), the system lacks a consumer side interface. This limits ease of use and hinders widespread popular adoption.
 
-Our goal in this project is to develop a web interface to ensure that the users of the Hestia System have a streamlined, usable, and secure experience. In brief, the users of the system should have quick, intuitive access to all the functionality provided by the clients' existing API system, so that anyone can simply navigate to a webpage and have the power to do what one could previously only do through manual HTTP requests. To that end this document details the requirements associated with this project.
+Our goal in this project is to develop a web interface to ensure that the users of the Hestia System have a streamlined, satisfactory and secure experience. In brief, the users of the system should have quick, intuitive access to all the functionality provided by the clients' existing API system, so that anyone can simply navigate to a webpage and have the power to do what one could previously only do through manual HTTP requests. To that end this document details the requirements associated with this project.
 
 ## User Stories
 
