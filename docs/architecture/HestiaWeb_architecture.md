@@ -4,13 +4,13 @@
 - L. Holdijk
 ### Authors
 * A. Lalis
-* T.K. Harrison
-* R.T. Nijman
-* P. Oetinger
-* N. Dijkema
 * E. Abdo
+* N. Dijkema
+* P. Oetinger
 * R. Bell
+* R.T. Nijman
 * S. Oegema
+* T.K. Harrison
 ### Teaching Assistant
 Feiko Ritsema
 ## Introduction
