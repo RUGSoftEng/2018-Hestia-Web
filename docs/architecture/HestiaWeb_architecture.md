@@ -29,7 +29,7 @@ The clients have created this system using the REST API. This decouples our work
 The Hestia Web Interface will be divided into two main sub-systems as mentioned in the introduction.
 * The front-end user interface, with which the user interacts.
 * The back-end server that connects users to their local Hestia controllers, and holds user and server information.
-![Website Design](images/diagram.png  "Structure of the system")
+![Website Design](images/system.png  "Structure of the system")
 ## Website Front-End
 Since the front-end of the website is the first aspect of the product that the customer will interact with, and will be one of the main sources of content or discontent throughout their user experience, a variety of design choices have to be made.
 The website will allow a user to connect to their controllers through a web server, and then manage the devices on their controllers through a range of different controls, and do this in the knowledge that they and their information are being kept safe.
