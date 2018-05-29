@@ -14,3 +14,8 @@
 | *27/03/2018* | 11:30-12:15 | Final functional implementations and further troubleshooting and design fixes for minimum requirements pull request. |
 | *29/04/2018* | 15:30-17:15 | Familiarising myself with recent platform changes (Vur and Semantic UI. |
 | *30/04/2018* | 14:45-18:45 | looking further into vue and sematix UI and starting new final frontend design in Vue/Semantic UI. |
+| *30/04/2018* | 14:30-19:00 | Getting set up again after partial absence, big framework changes were made in my absence. I was also brought up to speed on the current standing of the project and the decided approach of the team. |
+| *14/05/2018* | 13:30-17:00 | Created a new plan for the front-end to be finished for the hallway testing. |
+| *15/05/2018* | 13:00-18:00 | Adapted development front-end to new design and functionality in preparation for the hallway testing. |
+| *15/05/2018* | 20:00-21:15 | Further work on new front-end. |
+| *16/05/2018* | 5:10-8:15| Tweaking front-end to be ready for hallway testing. |

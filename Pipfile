@@ -6,14 +6,22 @@ name = "pypi"
 [packages]
 flask = "*"
 flask-sqlalchemy = "*"
-"psycopg2-binary" = "*"
 flask-cors = "*"
 flask-marshmallow = "*"
 marshmallow-sqlalchemy = "*"
-flask-restplus = "*"
+flask-restplus = "==0.10.1"
+requests = "*"
+python-jose-cryptodome = "*"
+authlib = "*"
+six = "*"
+python-dotenv = "*"
+gunicorn = "*"
+"psycopg2-binary" = "*"
 
 [dev-packages]
+pytest = "*"
 pylint = "*"
+pytest-cov = "*"
 
 [requires]
 python_version = "3.6"
