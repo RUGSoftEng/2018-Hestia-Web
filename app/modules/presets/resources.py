@@ -1,6 +1,6 @@
 """
-Defines the endpoints allowing for access and manipulation of servers.
-A server represents a remote Hestia controller.
+Defines the endpoints allowing for access and manipulation of presets
+associated with a particular Hestia controller.
 """
 
 from flask_restplus import (
@@ -39,9 +39,9 @@ class Presets(Resource):
     @NAMESPACE.doc(security='apikey')
     def get(self, server_id):
         """
-        List of presets.
-        Returns a list of presets starting from ``offset`` limited by ``limit``
-        parameter.
+        List of presets. Returns a list of all presets associated with a
+        server. If the server is not associated with the user it returns an
+        exception.
         """
         try:
             DB.session.query(ServerModel).filter_by(
@@ -72,15 +72,20 @@ class Presets(Resource):
         server = ServerSchema().dump(server_object).data
 
         payload["server_id"] = server_id
+
         server_address = server['server_address'] + \
             ':' + server['server_port'] + '/devices/'
+
+        # Get the current state of the server.
         payload["preset_state"] = str(
             route_request("GET", server_address, "").json)
+
         posted_preset = PresetSchema(only=(
             'preset_name',
             'preset_state',
             'server_id',
         )).load(payload)
+
         preset = PresetModel(**posted_preset.data)
 
         DB.session.begin()
@@ -94,13 +99,11 @@ class Presets(Resource):
 @NAMESPACE.param('server_id', 'The server identifier')
 class Preset(Resource):
 
-    """ GET all presets in given server, POST a new preset. """
+    """ GET a particular preset in given server, DELETE a preset. """
     @NAMESPACE.doc(security='apikey')
     def get(self, server_id, preset_id):
         """
-        List of presets.
-        Returns a list of presets starting from ``offset`` limited by ``limit``
-        parameter.
+        Return a specific preset with ``preset_id`` associated with a server with ``server_id``
         """
         try:
             DB.session.query(ServerModel).filter_by(
@@ -121,9 +124,7 @@ class Preset(Resource):
     @NAMESPACE.doc(security='apikey')
     def delete(self, server_id, preset_id):
         """
-        List of presets.
-        Returns a list of presets starting from ``offset`` limited by ``limit``
-        parameter.
+        Delete a specific preset with ``preset_id`` associated with a server with ``server_id``
         """
         try:
             DB.session.query(ServerModel).filter_by(
