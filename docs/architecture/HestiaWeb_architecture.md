@@ -106,20 +106,21 @@ Below are defined terms used in the architecture document:
 * *Marketplace*: A seperate area of the site where users can browse available plugins, upload their own, and integrate these plugins into their local controller's setup.
 
 ## Change Log
-| Who           |       When | Where          | What                                                                            |
-| :---          |       :--- | :---           | :---                                                                            |
-| Troy Harrison | 2018-03-12 | Whole Document | Created initial document.                                                       |
-| Andrew Lalis  | 2018-03-12 | Whole Document | Updated content for document.                                                   |
-| Rens Nijman   | 2018-03-12 | Front-End      | Add structure for front-end section.                                            |
-| Rens Nijman   | 2018-03-12 | Back-End       | Add structure for back-end section.                                             |
-| Rens Nijman   | 2018-03-12 | Whole document | More introduction and back-end.                                                 |
-| Andrew Lalis  | 2018-03-12 | Glossary       | Added glossary.                                                                 |
-| Phil Oetinger | 2018-03-13 | Whole Document | Cleaned up the grammar, removed redundant sentences, expanded upon some points  |
-| Roman Bell    | 2018-03-13 | Frontend       | Added content regarding the frontend section                                    |
-| Rens Nijman   | 2018-03-13 | Back-end       | Added section on our server's functionality                                     |
-| Andrew Lalis  | 2018-03-13 | Back-end       | Revised a few things.                                                           |
-| Troy Harrison | 2018-03-13 | Whole Document | Cleaned up document.                                                            |
-| Roman Bell    | 2018-03-23 | Whole Document | Added stuff regarding Firebase, cleared up grammar and syntax throughout        |
-| Roman Bell    | 2018-04-14 | Overview       | Added diagram                                                                   |
-| Roman Bell    | 2018-05-01 | Throughout     | removed all reference to Firebase, mentioned new design choices made for sprint |
-| Troy Harrison | 2018-05-29 | Whole Document | Clean up images.                                                                |
+| Who           |       When | Where                | What                                                                            |
+| :---          |       :--- | :---                 | :---                                                                            |
+| Troy Harrison | 2018-03-12 | Whole Document       | Created initial document.                                                       |
+| Andrew Lalis  | 2018-03-12 | Whole Document       | Updated content for document.                                                   |
+| Rens Nijman   | 2018-03-12 | Front-End            | Add structure for front-end section.                                            |
+| Rens Nijman   | 2018-03-12 | Back-End             | Add structure for back-end section.                                             |
+| Rens Nijman   | 2018-03-12 | Whole document       | More introduction and back-end.                                                 |
+| Andrew Lalis  | 2018-03-12 | Glossary             | Added glossary.                                                                 |
+| Phil Oetinger | 2018-03-13 | Whole Document       | Cleaned up the grammar, removed redundant sentences, expanded upon some points  |
+| Roman Bell    | 2018-03-13 | Frontend             | Added content regarding the frontend section                                    |
+| Rens Nijman   | 2018-03-13 | Back-end             | Added section on our server's functionality                                     |
+| Andrew Lalis  | 2018-03-13 | Back-end             | Revised a few things.                                                           |
+| Troy Harrison | 2018-03-13 | Whole Document       | Cleaned up document.                                                            |
+| Roman Bell    | 2018-03-23 | Whole Document       | Added stuff regarding Firebase, cleared up grammar and syntax throughout        |
+| Roman Bell    | 2018-04-14 | Overview             | Added diagram                                                                   |
+| Roman Bell    | 2018-05-01 | Throughout           | removed all reference to Firebase, mentioned new design choices made for sprint |
+| Troy Harrison | 2018-05-29 | Whole Document       | Clean up images.                                                                |
+| Troy Harrison | 2018-05-29 | Function Description | Switch code block to python formatting                                          |
