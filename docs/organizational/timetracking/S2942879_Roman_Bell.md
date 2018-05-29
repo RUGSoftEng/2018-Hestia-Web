@@ -25,5 +25,6 @@
 | *28/05/2018* | 09:00-13:00| Installed latest versions of front/backend to see new changes that have been made |
 | *28/05/2018* | 14:00-20:00| Did some research on new things used, started polishing documentation |
 | *29/05/2018* | 11:00-15:00| continued working on documentation |
+| *29/05/2018* | 20:30-22:30| worked on architecture document |
 
 
