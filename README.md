@@ -33,7 +33,7 @@ Here we document the endpoints associated with each module. We have endpoints de
 ### /servers/
  The servers endpoint's NAMESPACE is declared in the modules init file. Each module
 
-  It just declares the namespace (from flask_restplus) and gives a description.
+ It just declares the namespace (from flask_restplus) and gives a description.
 
 #### get
 This will get all servers associated with a user.
@@ -122,7 +122,7 @@ pip install pipenv
 Make sure your cd is `backend` directory.
 Now run:
 ```bash
-pipenv install
+pipenv install --dev
 ```
 
 This will create a virtualenv with python3
