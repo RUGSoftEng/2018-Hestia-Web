@@ -10,7 +10,8 @@ import pytest
     ('GET', '/servers/1'),
     ('PUT', '/servers/1'),
     ('DELETE', '/servers/1'),
-    ('POST', '/servers/1/request'),
+    ('POST', '/servers/1/ping'),
+    ('POST', '/servers/1/batch_request'),
 ))
 def test_general_access(http_method, http_path, flask_app_client):
     """ Test that it is possible to access all of the server endpoints """

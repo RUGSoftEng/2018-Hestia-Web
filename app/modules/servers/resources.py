@@ -229,7 +229,7 @@ class ServerRequest(Resource):
 @NAMESPACE.param('server_id', 'The server identifier')
 class ServerPing(Resource):
     """
-    GET the ping associated with the server.
+    POST request to get the ping associated with the server.
     """
 
     @requires_auth
