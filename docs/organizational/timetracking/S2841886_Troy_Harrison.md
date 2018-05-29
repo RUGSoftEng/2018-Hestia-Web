@@ -150,9 +150,6 @@
 |              | 11:00-11:30 | Setup Travis CI for backend.                                                                                       |
 |              | 11:30-12:00 | Setup Travis CI for backend.                                                                                       |
 |              | 12:00-12:30 | Add build badges to readme.                                                                                        |
-| *2018-05-07* |             |                                                                                                                    |
-|              |             |                                                                                                                    |
-|              |             |                                                                                                                    |
 | *2018-05-12* | 11:00-11:30 | Research deployment via Heroku.                                                                                    |
 |              | 11:30-12:00 | Test deployment via Heroku.                                                                                        |
 |              | 11:30-12:00 | Test deployment via Heroku.                                                                                        |
@@ -182,6 +179,25 @@
 |              | 14:30-15:00 | Assist frontend with debugging.                                                                                    |
 |              | 15:30-16:00 | Assist frontend with debugging.                                                                                    |
 |              | 16:00-16:30 | Assist frontend with debugging.                                                                                    |
+| *2018-05-27* | 15:30-16:00 | Implement presets with Rens                                                                                        |
+|              | 16:00-16:30 | Implement presets with Rens                                                                                        |
+|              | 16:30-17:00 | Implement presets with Rens                                                                                        |
+|              | 17:00-17:30 | Implement presets with Rens                                                                                        |
+|              | 17:30-18:00 | Implement presets with Rens                                                                                        |
+|              | 18:00-18:30 | Implement presets with Rens                                                                                        |
+|              | 18:30-19:00 | Implement presets with Rens                                                                                        |
+|              | 19:00-19:30 | Implement presets with Rens                                                                                        |
+|              | 19:30-20:00 | Implement presets with Rens                                                                                        |
+|              | 22:00-22:30 | Fix server interaction with presets with Rens                                                                      |
+|              | 22:30-23:00 | Fix server interaction with presets with Rens                                                                      |
+|              | 23:00-23:30 | Fix server interaction with presets with Rens                                                                      |
+| *2018-05-29* | 20:00-20:30 | Cleanup documentation                                                                                              |
+|              | 20:30-21:00 | Cleanup documentation                                                                                              |
+|              | 21:00-21:30 | Cleanup documentation                                                                                              |
+|              | 21:30-22:00 | Cleanup documentation                                                                                              |
+|              | 22:00-22:30 | Cleanup documentation                                                                                              |
+|              | 22:30-23:00 | Fix preset deletion                                                                                                |
+|              | 23:00-23:30 | Cleanup documentation                                                                                              |
                   
                   
                   
