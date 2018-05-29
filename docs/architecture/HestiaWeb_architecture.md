@@ -4,6 +4,7 @@
     <h1>Hestia Web Development Architecture Document</h1>
     <span style="font-style: italic; color: #b34700">Version 1.0</span>
 </center>
+
 ### Clients
 - F. te Nijenhuis
 - L. Holdijk
@@ -61,7 +62,7 @@ Because the client's website will use javascript to send AJAX requests to the we
 We will use Auth0 (https://auth0.com/), a secure and popular identification provider for our login. The flow of authentication is shown below. The user will login with some form of social account, such as Google, and will get authenticated by Auth0. They will then be granted an access_token (A JSON Web Token which can be also used to specify the scope of the user's permissions). Their ID, which will be included in the JWT, will be used to get the list of their servers from our database. 
 ![Website Design](images/auth.png  "Website Control Concept")
 #### Database
-We have our own PostgreSQl database, which is used to fetch the users' servers on login. It contains 2 tables: one of all users, and one of all servers. The User table contains the user\_id of a user (which will be included in the accept\_token from Auth0 on login), the date the entry was created, and the date on which it was last updated. The Server table contains the ID of the server, the ID of it's owner, its name, its address and its port, as well as the date on which it was entered and the date on which it was last updated. Since the user_id of a user is provided on login through Auth0, this can be used to quickly and efficiently find all of their servers for display and interaction.
+We have our own PostgreSQl database, which is used to fetch the users' servers on login. It contains 2 tables: one of all users, and one of all servers. The User table contains the user\_id of a user (which will be included in the accept\_token from Auth0 on login), the date the entry was created, and the date on which it was last updated. The Server table contains the ID of the server, the ID of its owner, its name, its address and its port, as well as the date on which it was entered and the date on which it was last updated. Since the user\_id of a user is provided on login through Auth0, this can be used to quickly and efficiently find all of their servers for display and interaction.
 ### Functionality of the Webapp
 Currently, we have developed a server that serves as the liaison between the Hestia local controller and the user's interface. The front-end website will interact with this server exclusively through sending JSON objects in the payload of POST requests. These objects contain the following information:
 * *query*: The endpoint that the client intends to send a request to, on the Hestia local controller.
