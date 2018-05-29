@@ -41,14 +41,14 @@ This will get all servers associated with a user.
 #### post
 This will post a new server associated with a user to the database. This expects a JSON object representing properties (name, IP address, and port) of the server. If successful this will return a JSON representation of the stored server.
 
-### /servers/<string:id>
+### /servers/<string:server_id>
 This endpoint extends from the /servers/, but adds the ability to query a single server based on the identification of the (user) that requested. When an authenticated user needs to communicated with a specific server, they will pass the server id into the argument of the endpoint. For example, an authenticated user wishes to get from server with id="54a8c4h". They will send a request through the endpoint /servers/54a8c4h/.
 
 #### get
 The get function acts like before and fetches the server as an object from the database. This is then returned as a JSON object. However, the previous endpoint will return a JSON array containing zero or many servers, this will instead return a single object representing the queried server.
 
 #### delete
-This function deletes the specific server that was passed in. It will return a code 204 is this completes correctly.
+This function deletes the specific server that was passed in. It will return a code 204 is this completes correctly. This will cascade to delete all presets associated with the deleted server.
 
 #### put
 This function will update the name, IP address, or port of a server given its id.
@@ -62,16 +62,35 @@ This will fire an options request to the server and return the ping in ms.
 #### batch_request
 The function acts similarly to the request endpoint. However, instead of a user specifying a request it will apply a previously saved preset.
 
+### /servers/<string:server_id>/presets/
+The preset endpoint enables users to store a state of all the devices. This enables a user to restore the individual states of each device with one call. The endpoint contains a get and post.
+
+#### get
+The function will return a list of all presets associated with a server. If the user attempts to query a server they are not associated with, it will return an exception.
+
+#### post
+The function will post a preset that conforms to the model schema. If successful it will return the name, state, and id
+
+### /servers/<string:server_id>/presets/<string:preset_id>
+This endpoint extends from the presets endpoint, adding functionality to individual presets. The added functionality includes deletion and retrieval of a specific preset.
+
+#### get
+The function returns the specific preset with `preset_id` associated with the server with `server_id`.
+
+#### delete
+The function deletes the preset matching `preset_id` that is associated with the server.
+
 ### /users/
+This endpoint deals with the user table and exposes the ability to add and delete a user.
 
 #### post
 This function allows the posting of a new user to the database. It expects a USER model which is the n posted to the database. If this is successful, a message will be returned with the new user in the payload.
 
 #### delete
-This function will remove the authenticated user from the database.
+This function will remove the authenticated user from the database. This will cascade down to remove all servers associated with that user.
 
 ## Development Setup
-For initial setup of the backend. Follow either linux or windows. Apple setup is not known. The general flow for first time setup is Python -> pipenv -> database -> server.
+For initial setup of the Back-end. Follow either Linux or Windows. Apple setup is not known. The general flow for first time setup is Python -> pipenv -> database -> server.
 
 After first time setup, the flow becomes database -> pipenv -> server
 ### Python
