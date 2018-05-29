@@ -195,7 +195,6 @@
 | *2018-05-01* | 22:00-22:30 | Linking user info (user id) to database               |
 | *2018-05-01* | 22:30-23:00 | Linking user info (user id) to database               |
 | *2018-05-01* | 23:00-23:30 | Linking user info (user id) to database               |
-
 | *2018-05-19* | 19:00-19:30 | Catch up on implementation server (research)          |
 | *2018-05-19* | 19:30-20:00 | Catch up on implementation server (research)          |
 | *2018-05-20* | 14:00-14:30 | Research for SQLAlchemy in Flask                      |
