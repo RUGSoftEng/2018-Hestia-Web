@@ -61,11 +61,19 @@ We will use [Auth0](https://auth0.com/), a secure and popular identification pro
 ![Website Design](images/auth.png  "Website Control Concept")
 #### Database
 We have our own PostgreSQl database, which is used to fetch the users' servers on login. It contains 2 tables: one of all users, and one of all servers. The User table contains the following:
-* user\_id of a user (which will be included in the access\_token from Auth0 on login).
+* user\_id of the user (which will be included in the access\_token from Auth0 on login).
 * The date the entry was created.
 * The date it was last updated
 
-The Server table contains the ID of the server, the ID of its owner, its name, its address and its port, as well as the date on which it was entered and the date on which it was last updated. Since the user\_id of a user is provided on login through Auth0, this can be used to quickly and efficiently find all of their servers for display and interaction.
+And the Server table contains:
+* The ID of the server.
+* The ID of it's owner.
+* The name of the server.
+* The server's address.
+* The server's port.
+* The date the entry was created.
+* The date it was last updated
+Since the user\_id of a user is provided on login through Auth0, this can be used to quickly and efficiently find all of their servers for display and interaction.
 ### Functionality of the Webapp
 Currently, we have developed a server that serves as the liaison between the Hestia local controller and the user's interface. The front-end website will interact with this server exclusively through sending JSON objects in the payload of POST requests. These objects contain the following information:
 * *query*: The endpoint that the client intends to send a request to, on the Hestia local controller.
