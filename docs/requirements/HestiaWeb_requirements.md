@@ -18,9 +18,7 @@
 Feiko Ritsema
 
 ## Introduction
-The Hestia Home Automation System, developed by the clients, aims to make home automation simple again. The local server based back end infrastructure to facilitate communicating and controlling the various devices connected to that server has been implemented by the clients. However, besides an Android application (also developed by the clients), the system lacks a consumer side interface. This limits ease of use and hinders widespread popular adoption.
-
-Our goal in this project is to develop a web interface to ensure that the users of the Hestia System have a streamlined, satisfactory and secure experience. In brief, the users of the system should have quick, intuitive access to all the functionality provided by the clients' existing API system, so that anyone can simply navigate to a webpage and have the power to do what one could previously only do through manual HTTP requests. To that end this document details the requirements associated with this project.
+The Hestia Home Automation System, developed by the clients, aims to make home automation simple again. The team last year developed a local server based system, which allowed users on that server to add and remove devices, and change the values of the activators of each device, essentially giving them complete control of all devices connected to that server. However the system has the following drawbacks: all changes are made through posting HTTP requests to the server, which is slow and unintuitive to the average user. Also, accessing the server can only be done locally. In order to improve the functionality of the system, we will be developing an online interface between a user and their local Hestia servers. The user will be able to log in through a webpage, see all their servers and the devices on each server, and be able to have quick, intuitive access to all the functionality currently provided by the clients' existing API system. This document details all the requirements that should be fulfilled by our project
 
 ## User Stories
 
@@ -91,4 +89,5 @@ Below are listed some requirements or concerns which the clients have told us ab
 | Roman Bell      | 2018-03-23 | Whole Document | Edited in preparation for final hand in.                                                          |
 | Roman Bell      | 2018-03-27 | User stories   | Did checkboxes of features.                                                                       |
 | Roman Bell      | 2018-05-29 | Whole Document | Did checkboxes of features, editing before final submission                                       |
-| Troy Harrison   | 2018-05-29 | User stories   | Reorder user stories and provide motivation for requirements not met.                    |
+| Troy Harrison   | 2018-05-29 | User stories   | Reorder user stories and provide motivation for requirements not met.              |
+ Roman Bell      | 2018-06-01 | Introduction    | Reworked introduction                                       |
