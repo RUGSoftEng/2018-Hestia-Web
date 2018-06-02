@@ -22,7 +22,7 @@ The Hestia Home Automation System, developed by the clients, aims to make home a
 
 ## User Stories
 
-The requirements for the system are from the perspective of all those who are going to use the system, i.e. via user stories. The user stories are formatted as follows: the description of the user, their requirement, and the reasoning behind that requirement. The user stories reaffirm the context of the requirement and aid in prioritization and re-specification. More user stories will be added as more requirements are discovered throughout the development process and following further consultation with the client.
+The requirements for the system are from the perspective of all those who are going to use the system, i.e. via user stories. The user stories are formatted as follows: the description of the user (either *User*, *Developer*, or *Plugin Developer*, as defined below), their requirement, and the reasoning behind that requirement. The user stories reaffirm the context of the requirement and aid in prioritization and re-specification. More user stories will be added as more requirements are discovered throughout the development process and following further consultation with the client.
 
 The actors referenced throughout the user stories are defined in more detail below, so that the reasoning for each story is logical and motivated by a realistic desire or need.
 
