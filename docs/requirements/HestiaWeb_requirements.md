@@ -74,6 +74,22 @@ Below are listed some requirements or concerns which the clients have told us ab
 * Make website available by localhost as well as through internet. (Client says this is not necessary, but we realize it would be good to improve accessibility)
 * As a user, I would like to be able to set permissions for the servers or peripherals, so that I can limit what people who I have shared access with can do on my servers. *Not possible due to structure of backend on client side.*
 
+
+##Scenarios
+The scenarios are intended to flesh out the user stories shown above, by giving examples of how the system will be used once it is fully developed. Each scenario is an outline of a situation in which one probable user will use the system.
+
+###Scenario 1:
+Mr A is an office worker who commutes to and from work each day, and lives alone. Lately, his neighbourhood has been affected by a spate of burglaries. In order to reduce the chance of this happening to him, he wants to turn on the lights in his home when it gets dark, however he is rarely home early enough to do it manually. Instead, he can access the Hestia website through his workstation, log in with his credentials, access his server and devices, and turn his lights on.
+
+###Scenario 2:
+Ms. B runs a popular and large nightclub in the centre of the city. In order to improve the mood in the club, she has bought a large number of multi-coloured lights. However, changing the settings on each of these lights individually would take far too long, manually wiring them all to a central control system would be complicated, and since the lights come from a range of manufacturers, multiple apps would be needed to manage them all. As a solution, she uses the Hestia website through her phone, and is able to manage all her lights easily and effectively.
+
+###Scenario 3:
+
+
+
+
+
 ## Change Log
 
 | Who             |       When | Where          | What                                                                                              |
