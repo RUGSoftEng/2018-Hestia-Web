@@ -84,6 +84,9 @@ Mr A is an office worker who commutes to and from work each day, and lives alone
 ### Scenario 2:
 Ms. B runs a popular and large nightclub in the centre of the city. In order to improve the mood in the club, she has bought a large number of multi-coloured lights. However, changing the settings on each of these lights individually would take far too long, manually wiring them all to a central control system would be complicated, and since the lights come from a range of manufacturers, multiple apps would be needed to manage them all. As a solution, she uses the Hestia website through her phone, and is able to manage all her lights easily and effectively.
 
+### Scenario 3:
+Mr C is someone who currently works in a supermarket, however he is learning software development in his spare time and is thinking of becoming a full-time plugin developer. In order to gain a better understanding of his possible future success, he can release plugins on the Hestia plugin marketplace. There he will recieve detailed feedback on his work from potential users, and he will be able to make an informed choice about his future.
+
 
 
 
@@ -105,5 +108,5 @@ Ms. B runs a popular and large nightclub in the centre of the city. In order to 
 | Roman Bell      | 2018-03-23 | Whole Document | Edited in preparation for final hand in.                                                          |
 | Roman Bell      | 2018-03-27 | User stories   | Did checkboxes of features.                                                                       |
 | Roman Bell      | 2018-05-29 | Whole Document | Did checkboxes of features, editing before final submission                                       |
-| Troy Harrison   | 2018-05-29 | User stories   | Reorder user stories and provide motivation for requirements not met.              |
- Roman Bell      | 2018-06-01 | Introduction    | Reworked introduction                                       |
+| Troy Harrison   | 2018-05-29 | User stories   | Reorder user stories and provide motivation for requirements not met.              |Roman Bell      | 2018-06-01 | Introduction    | Reworked introduction                                       |
+|Roman Bell      | 2018-06-03 | Scenarios       | Added scenarios                                      |
