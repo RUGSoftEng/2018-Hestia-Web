@@ -38,16 +38,14 @@ The website will allow a user to connect to their controllers through a web serv
 ![Website Design](images/Hestia_device_view.png  "Website Device View")
 ### Design choices
 #### Structural choices
-The page is laid out in such a way that the user can easily cycle between their devices, their controllers' information, and settings. Devices are grouped by what controller they belong to which will help reduce complexity, as a large house or an office could have several different controllers.
+The page is laid out in the following manner: once the user has logged in, they are shown all their servers, demarcated by name and IP address, along with the option to add a new server. Once they have selected a server, the user is shown all devices on that server. The devices are laid out in the same way as the servers are, with each device having it's name, it's ID, and all of it's activators. The option to add another device is also there.
 We initially decided to use [Google Firebase](https://firebase.google.com/) for login and storing each users' servers, however then we switched to [Auth0](https://auth0.com/) for login, in order to implement single sign-on. Once the user is logged in, the user's information will be used to get all their servers from our [PostgreSQl](https://www.postgresql.org/) database, and connect to these servers. The front-end will be developed in [Vue.js](https://vuejs.org/), in  order to simplify the development of our user interface. The main focus of the website will be on listing the devices managed by their controllers, and on the operations that can be applied to them. These will mirror those already implemented by Hestia, such as renaming or deleting a device, but with more streamlined interfacing added, such as using buttons and sliders in order to change the activators of a device, instead of having to directly enter values. Additionally, more functionality such as the ability to batch apply presets will be exposed in the back-end and interfaced via this front-end.
 
-Within Vue, three design patterns were used to simply development. They were:
+Within Vue, three design patterns were used to simplify development. They were:
   1. Singleton pattern - By using a Vue store we ensure a single point of reference for the state of the web application. All changes to state are routed through the store, thereby propagating state change throughout the front-end.
   2. Dispatch pattern - This facilitates rapidly extending the front-end to account for and consume new endpoints. It splits up the dispatch process into two steps. Preparing the dispatch payload in `beforeDispatch`, dispatching the payload in `dispatch`. The functions from these two modules are then coordinated in the Vue store to handle updating state. Though it may sound trivial, structuring the API interaction in this manner greatly improved development speed.
-#### Structural choices
-The page is laid out in such a way that the user can easily cycle between their personal information, their devices, their controllers' information, and settings. Devices are grouped by what controller they belong to which will help reduce complexity, as a large house or an office could have several different controllers.
 #### Aesthetical choices
-The design overall will be quite minimalist, with some elements such as colour taken from the Hestia logo. Aside from the main Hestia logo, the icons used are from Semantic UI, which provides a large set of intuitive, user friendly icons.
+The design overall is be quite minimalist, with some elements such as colour taken from the Hestia logo. Aside from the main Hestia logo, the icons used are from Semantic UI, which provides a large set of intuitive, user friendly icons.
 ## Website Back-End
 The back-end of the webapp will serve as a middleman between the web front-end and the user's controllers. This means that there needs to be an interface to be able to send queries to the server. Furthermore, a user database is required in order to maintain a secure environment in which users may only have permission to interact with systems they own. Unauthorized access to server data, user data, or any other sensitive information is completely forbidden.
 ### Design decisions
@@ -251,3 +249,4 @@ Below are defined terms used in the architecture document:
 | Roman Bell    | 2018-05-29 | Login                | Changed system diagram, added more detail on Auth0                              |
 | Phil Oetinger | 2018-05-29 | backend              | Added information for backend                                                   |
 | Troy Harrison | 2018-05-29 | Throughout           | Added information for backend                                                   |
+| Roman Bell    | 2018-06-03 | Structural choices   | Made it more specific                              |
