@@ -47,7 +47,7 @@ Within Vue, two design patterns were used to simplify development. They were:
   1. Singleton pattern - By using a Vue store we ensure a single point of reference for the state of the web application. All changes to state are routed through the store, thereby propagating state change throughout the front-end.
   2. Dispatch pattern - This facilitates rapidly extending the front-end to account for and consume new endpoints. It splits up the dispatch process into two steps. Preparing the dispatch payload in `beforeDispatch`, dispatching the payload in `dispatch`. The functions from these two modules are then coordinated in the Vue store to handle updating state. Though it may sound trivial, structuring the API interaction in this manner greatly improved development speed.
 #### Aesthetical choices
-The design overall is quite minimalist, with some elements such as colour taken from the Hestia logo. Aside from the main Hestia logo, the icons used are from Semantic UI, which provides a large set of intuitive, user friendly icons.
+The design overall is quite minimalist, with some elements such as colour taken from the Hestia logo. Aside from the main Hestia logo, the icons used are from [Semantic UI](https://semantic-ui.com/), which provides a large set of intuitive, user friendly icons.
 ## Website Back-End
 The back-end of the webapp will serve as a middleman between the web front-end and the user's controllers. This means that there needs to be an interface to be able to send queries to the server. Furthermore, a user database is required in order to maintain a secure environment in which users may only have permission to interact with systems they own. Unauthorized access to server data, user data, or any other sensitive information is completely forbidden.
 ### Design decisions
@@ -68,7 +68,7 @@ We use [Auth0](https://auth0.com/), a secure and popular identification provider
 ![Website Design](images/auth.png  "Login Flow")
 #### Database
 We have our own PostgreSQl database, which is used to fetch the users' servers on login. It contains 3 tables: one of all users, one of all servers and one of all presets. The User table contains the following:
-* user\_id of the user (which will be included in the access\_token from Auth0 on login).
+* `user_id` of the user (which will be included in the `access_token` from Auth0 on login).
 * The date the entry was created.
 * The date it was last updated
 
@@ -89,7 +89,7 @@ And the Prests table contains:
 * The date the entry was created.
 * The date it was last updated
 
-Since the user\_id of a user is provided on login through Auth0, this can be used to quickly and efficiently find all of their servers for display and interaction.
+Since the `user_id`of a user is provided on login through Auth0, this can be used to quickly and efficiently find all of their servers for display and interaction.
 ### Functionality of the Webapp
 #### Model Information
 Currently, we use a Postgres database to store the information of each user and their "controllers". The model is interacted with through the endpoints described below. As specified above, there are three tables in the model: the users table, the servers table, and the presets table.
