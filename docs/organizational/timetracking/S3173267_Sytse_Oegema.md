@@ -55,6 +55,10 @@
 | *28/05/2018* | 08:00-11:00| Final touch on the preset GUI. Setup the cypress framework Elias found. |
 | *28/05/2018* | 16:00-20:00| Made the ping functionality so that the GUI displays a message when the server is not responding. |
 | *29/05/2018* | 19:30-20:30| Refactoring some of the work of Nik and some final changes. |
+| *05/06/2018* | 12:00-14:00| Preparing the presentation. |
+| *11/06/2018* | 08:30-09:30| Final changes to the frontend. Preset auto reload and readme instruction for deploying the frontend. |
+
+
 
 
 
