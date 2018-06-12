@@ -130,7 +130,7 @@ This will post a new server associated with a user to the database. This require
 This endpoint extends from the /servers/, but adds the ability to query a single server based on the identification of the (user) who requested it. When an authenticated user needs to communicate with a specific server, they will pass the server ID into the argument of the endpoint. For example, an authenticated user wishes to access the server with ID "54a8c4h". They will send a request through the endpoint /servers/54a8c4h/.
 
 ###### GET
-The GET function acts as previously described and fetches the server as a JSON object from the database. However, the previous endpoint returns a JSON array containing zero or more, and this will instead return a single object representing the queried server.
+The GET function acts as previously described and fetches the server as a JSON object from the database. However, the previous endpoint returns a JSON array containing zero or more servers, and this will instead return a single object representing the queried server.
 
 ###### DELETE
 This function deletes the specified server that was passed as the argument. It will return a code 204 if it completes correctly. This will also cascade to delete all presets associated with the deleted server.
