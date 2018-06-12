@@ -7,7 +7,7 @@
 | Development | [![Build Status](https://travis-ci.org/RUGSoftEng/2018-Hestia-Web.svg?branch=development)](https://travis-ci.org/RUGSoftEng/2018-Hestia-Web)       |
 
 ## Quick Start
-- [Linux Ubuntu](### Setup-Linux-Ubuntu)
+- [Linux Ubuntu](#setup-linux-ubuntu)
 - Linux Arch
 - Windows
 - Database
