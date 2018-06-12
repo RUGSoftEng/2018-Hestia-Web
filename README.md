@@ -6,6 +6,12 @@
 | Master      | [![Build Status](https://travis-ci.org/RUGSoftEng/2018-Hestia-Web.svg?branch=master)](https://travis-ci.org/RUGSoftEng/2018-Hestia-Web)            |
 | Development | [![Build Status](https://travis-ci.org/RUGSoftEng/2018-Hestia-Web.svg?branch=development)](https://travis-ci.org/RUGSoftEng/2018-Hestia-Web)       |
 
+## Quick Start
+[Linux Ubuntu](#linux-ubuntu)
+Linux Arch
+Windows
+Database
+
 ## Model Information
 Currently, we use a postgres database to store information of each user and their "controllers". The model is interacted with through the endpoints described below. There are two tables in the model, the users table and the servers table.
 
@@ -57,7 +63,8 @@ You need the following dependencies to run the Hestia back-end:
 
 Setup information for these dependencies is below.
 
-### Setup - Linux Ubuntu
+#linux-ubuntu
+### Setup - Linux Ubuntu 
 Make sure you have Python 3.6 installed.
 
 ```sh
