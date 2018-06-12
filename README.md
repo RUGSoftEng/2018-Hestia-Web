@@ -7,10 +7,13 @@
 | Development | [![Build Status](https://travis-ci.org/RUGSoftEng/2018-Hestia-Web.svg?branch=development)](https://travis-ci.org/RUGSoftEng/2018-Hestia-Web)       |
 
 ## Quick Start
-- [Linux Ubuntu](#setup-linux-ubuntu)
-- Linux Arch
-- Windows
-- Database
+- [Linux Ubuntu](#setup---linux-ubuntu)
+- [Linux Arch](#setup---linux-arch)
+- [Windows](#setup---windows)
+
+- [Database](#database-setup)
+
+There is also a [quick reference](#quick-command-reference) for commonly used commands.
 
 ## Model Information
 Currently, we use a postgres database to store information of each user and their "controllers". The model is interacted with through the endpoints described below. There are two tables in the model, the users table and the servers table.
@@ -64,7 +67,7 @@ You need the following dependencies to run the Hestia back-end:
 Setup information for these dependencies is below.
 
 
-### Setup Linux Ubuntu 
+### Setup - Linux Ubuntu 
 Make sure you have Python 3.6 installed.
 
 ```sh
@@ -145,18 +148,19 @@ pipenv shell
 ```
 This enables the environment with the lock file already included in the repository.
 
-## Server Setup
-### Linux
+## Running the Server
+### Linux and Windows
 Assuming the environment is enabled (pipenv shell) in the backend directory, and the database server is running, you may now start the server in development mode with:
 ```bash
 python application.py dev
 ```
-
-### Windows
-Assuming the environment is enabled (pipenv shell) in the backend directory, and the database server is running, you may now start the server with:
-```bash
-python application.py dev
-```
+## Quick Command Reference
+| Action              | Command                      |
+| :---                | :---                         |
+| Start virtual environment (before any other commands can be used  | `pipenv shell` |
+| Run the development server   | `python application.py dev`  |
+| Run tests | `pytest`    |
+| Run tests (coverage) | `pytest --cov=app`    |
 
 ## Heroku deployment
 In order to deploy to Heroku, simply follow the steps on the following page: https://devcenter.heroku.com/articles/getting-started-with-python.
