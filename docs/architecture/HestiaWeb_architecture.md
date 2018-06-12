@@ -83,7 +83,7 @@ The Server table contains:
 * The date the entry was created.
 * The date it was last updated
 
-And the Prests table contains:
+And the Presets table contains:
 * The ID of the preset
 * The ID of the server to which it applies
 * The name of the preset, as specified by the user on creation
