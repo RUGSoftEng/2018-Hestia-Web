@@ -140,7 +140,7 @@ You have to add a (free) Postgres add-on to your account on Heroku if you want t
 ## Database Setup
 
 ### Testing and development purposes
-You do not need to use Docker for testing or development purposes, instead you can the 
+You do not need to use Docker for testing or development purposes. Simply running the application with `dev` or `test` will create a local SQLite database.
 
 ### Local Production Server
 
@@ -185,12 +185,12 @@ Add yourself to group:
 sudo gpasswd -a *username* docker
 ```
 
-Now start docker daemon:
+Now start the docker daemon:
 ```bash
 sudo systemctl start docker #for auto-start, use enable instead of start
 ```
 
-Finally, launch container:
+Finally, launch the container:
 ```bash
 sudo docker run --name hestia-web-db \
     -p 5432:5432 \
