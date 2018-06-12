@@ -27,6 +27,7 @@ class Users(Resource):
         user_id = {
             'user_id': AUTHENTICATOR.get_user_id()
         }
+        
         schema = UserSchema().load(user_id)
         new_user = UserModel(**schema.data)
         DB.session.begin()

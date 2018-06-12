@@ -25,11 +25,6 @@ AUTH0_DOMAIN = env.get("AUTH0_DOMAIN")
 API_IDENTIFIER = env.get("API_IDENTIFIER")
 ALGORITHMS = ["RS256"]
 
-def auth_class_factory(BaseClass):
-    class AuthClass(BaseClass):
-        def __init__(self, *args, **kwargs):
-            super(AuthClass, self).__init__(*args, **kwargs)
-    return AuthClass
 
 class AuthError(Exception):
     """
@@ -88,17 +83,30 @@ class Authenticator():
     TODO: change this comment
     A class for authentication functions
     """
-   
+    def __init__(self, testing_mode=True):
+        self.testing_mode = testing_mode
+        self.testing_user_id = None
+        print(self.testing_mode)
+
+    def init_app(self, app):
+        self.testing_mode = app.config["TESTING"]
+
+    def set_user_id(self, user_id):
+        self.testing_user_id = user_id
+
     def get_user_id(self):
         """
         Get the user id from the access token in the Authorization header.
         """
+
         token = get_token_auth_header()
-    
+        if (self.testing_mode):
+            return self.testing_user_id
+
         jsonurl = urlopen("https://"+AUTH0_DOMAIN+"/.well-known/jwks.json")
-    
+
         jwks = json.loads(jsonurl.read())
-    
+
         rsa_key = {}
         for key in jwks["keys"]:
             rsa_key = {
@@ -108,7 +116,7 @@ class Authenticator():
                 "n": key["n"],
                 "e": key["e"]
             }
-    
+
         payload = jwt.decode(
             token,
             rsa_key,
@@ -116,9 +124,9 @@ class Authenticator():
             audience=API_IDENTIFIER,
             issuer="https://"+AUTH0_DOMAIN+"/"
         )
-    
+
         return payload['sub']
-    
+
     def requires_auth(self, func):
         """Determines if the access token is valid
         """
@@ -128,6 +136,9 @@ class Authenticator():
             The decorator requiring authentication before func may be called.
             """
             token = get_token_auth_header()
+            if (self.testing_mode):
+                return func(*args, **kwargs)
+
             jsonurl = urlopen("https://"+AUTH0_DOMAIN+"/.well-known/jwks.json")
             jwks = json.loads(jsonurl.read())
             try:
@@ -174,39 +185,9 @@ class Authenticator():
                                      "description":
                                      "Unable to parse authentication"
                                      " token."}, 401)
-    
+
                 _request_ctx_stack.top.current_user = payload
                 return func(*args, **kwargs)
             raise AuthError({"code": "invalid_header",
                              "description": "Unable to find appropriate key"}, 401)
         return decorated
-
-class AuthenticatorTest():
-    """
-    A fake authentication class for testing authenticated requests.
-    """
-
-    def __init__(self, user_id):
-        self.user_id = user_id
-
-    def get_user_id(self):
-        """
-        Get a hardcoded user id for testing.
-        """
-        return self.user_id
-
-    def requires_auth(self, func):
-        """
-        Override the default decorator to allow authenticated usage.
-        """
-        @wraps(func)
-        def decorated(*args, **kwargs):
-            """
-            Override the default decorator to facilitate testing.
-            """
-            token = get_token_auth_header()
-            return func(*args, **kwargs)
-        return decorated
-
-
-
