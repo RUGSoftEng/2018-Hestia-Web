@@ -7,10 +7,10 @@
 | Development | [![Build Status](https://travis-ci.org/RUGSoftEng/2018-Hestia-Web.svg?branch=development)](https://travis-ci.org/RUGSoftEng/2018-Hestia-Web)       |
 
 ## Quick Start
-[Linux Ubuntu](#Setup-Linux-Ubuntu)
-Linux Arch
-Windows
-Database
+- [Linux Ubuntu](#Setup-Linux-Ubuntu)
+- Linux Arch
+- Windows
+- Database
 
 ## Model Information
 Currently, we use a postgres database to store information of each user and their "controllers". The model is interacted with through the endpoints described below. There are two tables in the model, the users table and the servers table.
