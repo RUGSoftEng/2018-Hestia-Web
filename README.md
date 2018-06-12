@@ -126,6 +126,7 @@ python application.py dev
 | Run the development server   | `python application.py dev`  |
 | Run tests | `pytest`    |
 | Run tests (coverage) | `pytest --cov=app`    |
+| Run linter (check code formatting) | `pylint app tests` |
 
 ## Heroku deployment
 In order to deploy to Heroku, simply follow the steps on the following page: https://devcenter.heroku.com/articles/getting-started-with-python.
