@@ -135,6 +135,8 @@ Travis CI can be used to automate deployment, otherwise updates need to be manua
 
 If you are not deploying to Heroku, you can ignore the files _Procfile_ and _wsgi.py_ in the root directory.
 
+You have to add a (free) Postgres add-on to your account on Heroku if you want to deploy.
+
 ## Database Setup
 
 ### Testing and development purposes
