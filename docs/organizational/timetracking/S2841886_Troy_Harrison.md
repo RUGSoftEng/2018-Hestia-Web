@@ -198,6 +198,29 @@
 |              | 22:00-22:30 | Cleanup documentation                                                                                              |
 |              | 22:30-23:00 | Fix preset deletion                                                                                                |
 |              | 23:00-23:30 | Cleanup documentation                                                                                              |
+| *2018-06-12* | 11:00-11:30 | Work with team on finalizing documentation and fixing testing                                                      |
+|              | 11:30-12:00 | Work with team on finalizing documentation and fixing testing                                                      |
+|              | 12:00-12:30 | Work with team on finalizing documentation and fixing testing                                                      |
+|              | 12:30-13:00 | Work with team on finalizing documentation and fixing testing                                                      |
+|              | 13:00-13:30 | Work with team on finalizing documentation and fixing testing                                                      |
+|              | 13:30-14:00 | Work with team on finalizing documentation and fixing testing                                                      |
+|              | 14:00-14:30 | Work with team on finalizing documentation and fixing testing                                                      |
+|              | 14:30-15:00 | Work with team on finalizing documentation and fixing testing                                                      |
+|              | 15:00-15:30 | Assist with md to pdf export script                                                                                |
+|              | 15:30-16:00 | Assist with md to pdf export script                                                                                |
+|              | 16:00-16:30 | Assist with md to pdf export script                                                                                |
+|              | 16:30-17:00 | Implement tests with Rens.                                                                                         |
+|              | 17:00-17:30 | Implement tests with Rens.                                                                                         |
+|              | 17:30-18:00 | Implement tests with Rens.                                                                                         |
+|              | 18:00-18:30 | Implement tests with Rens.                                                                                         |
+|              | 18:30-19:00 | Implement tests with Rens.                                                                                         |
+|              | 19:00-19:30 | Implement tests with Rens.                                                                                         |
+|              | 19:30-20:00 | Implement tests with Rens.                                                                                         |
+|              | 21:30-22:00 | Implement tests with Rens.                                                                                         |
+|              | 22:00-22:30 | Implement tests with Rens.                                                                                         |
+|              | 22:30-23:00 | Implement tests with Rens.                                                                                         |
+|              | 23:00-23:30 | Implement tests with Rens.                                                                                         |
+|              | 23:30-00:00 | Implement tests with Rens.                                                                                         |
                   
                   
                   
