@@ -100,7 +100,7 @@ Currently, we use a Postgres database to store the information of each user and 
 The extensions are an example of the singleton pattern. They represent the resources that should be accessible throughout the application. This includes the DB access object and the API to register endpoints to. Their central nature to the functioning of the application justifies the use of this pattern and simplifies design.
 
 #### Modules
-The modules represent the primary business logic of the application. They define the endpoints that clients can access, the database interaction, and the translation between the web technologies and the underlying RDBMS (relational database management system). In our application we have three modules, one for `users`, one for `servers`, and one for `presets`. Though it may increase the complexity of our code, this structure improves the extensibility and maintainability of our code base. This particular structure was recommended by (frol)[https://github.com/frol/flask-restplus-server-example].
+The modules represent the primary business logic of the application. They define the endpoints that clients can access, the database interaction, and the translation between the web technologies and the underlying RDBMS (relational database management system). In our application we have three modules, one for `users`, one for `servers`, and one for `presets`. Though it may increase the complexity of our code, this structure improves the extensibility and maintainability of our code base. This particular structure was recommended by [frol](https://github.com/frol/flask-restplus-server-example).
 
 ##### Models - `models.py`
 For each module this defines the underlying database table representing that module.
@@ -112,7 +112,7 @@ For each module this represents the translation to and from the database to an o
 For each module this represents the brunt the module. It described the endpoints that clients can access to interact with that module, any constraints on that interaction (such as a requirement for authentication), and the actual action associated with that interaction. The interaction is in the form of standard REST verbs acting on the resource the module represents.
 
 #### Application Configuration and the Factory Pattern
-To aid with building, testing, and deploying our application we use the (factory pattern)[https://en.wikipedia.org/wiki/Factory_method_pattern]. We define the configuration of our application in `config.py` as an object. The classes of configuration are `Development`, `Testing`, and `Production`. The application is created via the factory `create_app()` method.
+To aid with building, testing, and deploying our application we use the [factory pattern](https://en.wikipedia.org/wiki/Factory_method_pattern). We define the configuration of our application in `config.py` as an object. The classes of configuration are `Development`, `Testing`, and `Production`. The application is created via the factory `create_app()` method.
 
 #### Endpoint Information
 Here we document the endpoints associated with each module. We have endpoints dealing with users, servers, and presets.
