@@ -6,10 +6,9 @@ from flask_restplus import (
     Namespace,
 )
 
-from app.extensions import (DB)
-from app.extensions.auth.authentication import (
-    requires_auth,
-    get_user_id,
+from app.extensions import (
+    DB,
+    AUTHENTICATOR,
 )
 from .schemas import (UserSchema)
 from .models import (UserModel)
@@ -19,14 +18,14 @@ NAMESPACE = Namespace('users', "Manipulate users of the system.")
 @NAMESPACE.route('/')
 class Users(Resource):
     """ POST a new user. """
-    @requires_auth
+    @AUTHENTICATOR.requires_auth
     @NAMESPACE.doc(security='apikey')
     def post(self):
         """
         List of users.
         """
         user_id = {
-            'user_id': get_user_id()
+            'user_id': AUTHENTICATOR.get_user_id()
         }
         schema = UserSchema().load(user_id)
         new_user = UserModel(**schema.data)
@@ -36,7 +35,7 @@ class Users(Resource):
 
         return UserSchema().dump(new_user).data
 
-    @requires_auth
+    @AUTHENTICATOR.requires_auth
     @NAMESPACE.doc(security='apikey')
     def delete(self):
         """
@@ -45,7 +44,7 @@ class Users(Resource):
         """
 
         try:
-            user = DB.session.query(UserModel).filter_by(user_id=get_user_id()).one()
+            user = DB.session.query(UserModel).filter_by(user_id=AUTHENTICATOR.get_user_id()).one()
         except exc.NoResultFound:
             return "", 404
 

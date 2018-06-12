@@ -10,14 +10,13 @@ from flask_restplus import (
     fields,
 )
 from sqlalchemy.orm import (exc)
-from app.extensions import (DB)
+from app.extensions import (
+    DB,
+    AUTHENTICATOR,
+)
 from app.modules.util import (
     route_request,
     ping,
-)
-from app.extensions.auth.authentication import (
-    requires_auth,
-    get_user_id,
 )
 from .schemas import (ServerSchema)
 from .models import (ServerModel)
@@ -46,7 +45,7 @@ SERVER = NAMESPACE.model('Server', {
 @NAMESPACE.route('/')
 class Servers(Resource):
     """ GET all servers, POST a new server. """
-    @requires_auth
+    @AUTHENTICATOR.requires_auth
     @NAMESPACE.doc(security='apikey')
     def get(self):
         """
@@ -55,7 +54,7 @@ class Servers(Resource):
         """
 
         servers = DB.session.query(
-            ServerModel).filter_by(user_id=get_user_id())
+            ServerModel).filter_by(user_id=AUTHENTICATOR.get_user_id())
 
         # transforming into JSON-serializable objects
         schema = ServerSchema(many=True)
@@ -63,7 +62,7 @@ class Servers(Resource):
         return all_servers
 
     @NAMESPACE.expect(SERVER)
-    @requires_auth
+    @AUTHENTICATOR.requires_auth
     @NAMESPACE.doc(security='apikey')
     def post(self):
         """
@@ -72,7 +71,7 @@ class Servers(Resource):
         """
 
         payload = NAMESPACE.apis[0].payload
-        payload['user_id'] = get_user_id()
+        payload['user_id'] = AUTHENTICATOR.get_user_id()
         posted_server = ServerSchema(
             only=('user_id',
                   'server_name',
@@ -94,7 +93,7 @@ class Servers(Resource):
 @NAMESPACE.param('server_id', 'The server identifier')
 class Server(Resource):
     """ GET a server, DELETE a server, PUT (update) a server """
-    @requires_auth
+    @AUTHENTICATOR.requires_auth
     @NAMESPACE.doc(security='apikey')
     def get(self, server_id):
         """
@@ -106,7 +105,7 @@ class Server(Resource):
         # Error 404 if >1 or D.N.E
         try:
             server_object = DB.session.query(
-                ServerModel).filter_by(server_id=server_id, user_id=get_user_id()).one()
+                ServerModel).filter_by(server_id=server_id, user_id=AUTHENTICATOR.get_user_id()).one()
         except exc.NoResultFound:
             return "", 404
 
@@ -115,7 +114,7 @@ class Server(Resource):
 
         return server
 
-    @requires_auth
+    @AUTHENTICATOR.requires_auth
     @NAMESPACE.doc(security='apikey')
     def delete(self, server_id):
         """
@@ -125,7 +124,7 @@ class Server(Resource):
 
         try:
             server = DB.session.query(ServerModel).filter_by(
-                server_id=server_id, user_id=get_user_id()).one()
+                server_id=server_id, user_id=AUTHENTICATOR.get_user_id()).one()
         except exc.NoResultFound:
             return "", 404
 
@@ -136,7 +135,7 @@ class Server(Resource):
         return "", 204
 
     @NAMESPACE.expect(SERVER)
-    @requires_auth
+    @AUTHENTICATOR.requires_auth
     @NAMESPACE.doc(security='apikey')
     def put(self, server_id):
         """
@@ -148,7 +147,7 @@ class Server(Resource):
         DB.session.begin()
         try:
             server = DB.session.query(ServerModel).filter_by(
-                server_id=server_id, user_id=get_user_id()).one()
+                server_id=server_id, user_id=AUTHENTICATOR.get_user_id()).one()
         except exc.NoResultFound:
             return "", 404
 
@@ -201,7 +200,7 @@ class ServerRequest(Resource):
     """
 
     @NAMESPACE.expect(REQUEST_PAYLOAD)
-    @requires_auth
+    @AUTHENTICATOR.requires_auth
     @NAMESPACE.doc(security='apikey')
     def post(self, server_id):
         """
@@ -210,7 +209,7 @@ class ServerRequest(Resource):
 
         try:
             server_object = DB.session.query(
-                ServerModel).filter_by(server_id=server_id, user_id=get_user_id()).one()
+                ServerModel).filter_by(server_id=server_id, user_id=AUTHENTICATOR.get_user_id()).one()
         except exc.NoResultFound:
             return "", 404
 
@@ -232,7 +231,7 @@ class ServerPing(Resource):
     POST request to get the ping associated with the server.
     """
 
-    @requires_auth
+    @AUTHENTICATOR.requires_auth
     @NAMESPACE.doc(security='apikey')
     def post(self, server_id):
         """
@@ -241,7 +240,7 @@ class ServerPing(Resource):
 
         try:
             server_object = DB.session.query(
-                ServerModel).filter_by(server_id=server_id, user_id=get_user_id()).one()
+                ServerModel).filter_by(server_id=server_id, user_id=AUTHENTICATOR.get_user_id()).one()
         except exc.NoResultFound:
             return "", 404
 
@@ -268,7 +267,7 @@ class ServerBatchRequest(Resource):
     """
 
     @NAMESPACE.expect(BATCH_PAYLOAD)
-    @requires_auth
+    @AUTHENTICATOR.requires_auth
     @NAMESPACE.doc(security='apikey')
     def post(self, server_id):
         """
@@ -277,7 +276,7 @@ class ServerBatchRequest(Resource):
 
         try:
             server_object = DB.session.query(
-                ServerModel).filter_by(server_id=server_id, user_id=get_user_id()).one()
+                ServerModel).filter_by(server_id=server_id, user_id=AUTHENTICATOR.get_user_id()).one()
         except exc.NoResultFound:
             return "", 404
 

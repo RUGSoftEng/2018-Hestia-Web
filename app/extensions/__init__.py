@@ -5,10 +5,16 @@ Extensions allows for access to common resources throughout the application.
 from flask_cors import (CORS)
 from flask_marshmallow import (Marshmallow)
 from .flask_sqlalchemy import (SQLAlchemy)
+from app.extensions.auth.authentication import (
+    Authenticator,
+    AuthenticatorTest,
+    auth_class_factory,
+)
 
 CROSS_ORIGIN_RESOURCE_SHARING = CORS()
 MARSHMALLOW = Marshmallow()
 DB = SQLAlchemy()
+AUTHENTICATOR = auth_class_factory(Authenticator)()
 
 def init_app(app):
     """ Initialize application extensions. """
