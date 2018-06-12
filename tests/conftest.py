@@ -26,6 +26,8 @@ def flask_app_user_in_db():
     app = create_app('testing')
     DB.drop_all(app=app)
     DB.create_all(app=app)
+    app.app_context().push()
+
     user_id = {
         'user_id': "1"
     }
@@ -50,7 +52,7 @@ def flask_app_authenticated_client_in_DB(flask_app_user_in_db):
     """ Create flask client to test HTTP responses. """
     AUTHENTICATOR.set_user_id("1")
 
-    return flask_app.test_client()
+    return flask_app_user_in_db.test_client()
 
 @pytest.fixture(scope='session')
 #pylint: disable=redefined-outer-name

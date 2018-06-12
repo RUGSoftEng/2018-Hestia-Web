@@ -105,7 +105,10 @@ class Server(Resource):
         # Error 404 if >1 or D.N.E
         try:
             server_object = DB.session.query(
-                ServerModel).filter_by(server_id=server_id, user_id=AUTHENTICATOR.get_user_id()).one()
+                ServerModel).filter_by(
+                    server_id=server_id,
+                    user_id=AUTHENTICATOR.get_user_id()
+                ).one()
         except exc.NoResultFound:
             return "", 404
 
@@ -209,7 +212,10 @@ class ServerRequest(Resource):
 
         try:
             server_object = DB.session.query(
-                ServerModel).filter_by(server_id=server_id, user_id=AUTHENTICATOR.get_user_id()).one()
+                ServerModel).filter_by(
+                    server_id=server_id,
+                    user_id=AUTHENTICATOR.get_user_id()
+                ).one()
         except exc.NoResultFound:
             return "", 404
 
@@ -240,7 +246,10 @@ class ServerPing(Resource):
 
         try:
             server_object = DB.session.query(
-                ServerModel).filter_by(server_id=server_id, user_id=AUTHENTICATOR.get_user_id()).one()
+                ServerModel).filter_by(
+                    server_id=server_id,
+                    user_id=AUTHENTICATOR.get_user_id()
+                ).one()
         except exc.NoResultFound:
             return "", 404
 
@@ -276,7 +285,10 @@ class ServerBatchRequest(Resource):
 
         try:
             server_object = DB.session.query(
-                ServerModel).filter_by(server_id=server_id, user_id=AUTHENTICATOR.get_user_id()).one()
+                ServerModel).filter_by(
+                    server_id=server_id,
+                    user_id=AUTHENTICATOR.get_user_id()
+                ).one()
         except exc.NoResultFound:
             return "", 404
 

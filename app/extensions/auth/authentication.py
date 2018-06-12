@@ -80,8 +80,7 @@ def get_token_auth_header():
 
 class Authenticator():
     """
-    TODO: change this comment
-    A class for authentication functions
+    A class which handles authentication.
     """
     def __init__(self, testing_mode=True):
         self.testing_mode = testing_mode
@@ -89,9 +88,15 @@ class Authenticator():
         print(self.testing_mode)
 
     def init_app(self, app):
+        """
+        Specify whether the Authenticator should be configured for testing or production.
+        """
         self.testing_mode = app.config["TESTING"]
 
     def set_user_id(self, user_id):
+        """
+        Specify the testing user_id the Authenticator should return.
+        """
         self.testing_user_id = user_id
 
     def get_user_id(self):
@@ -100,7 +105,7 @@ class Authenticator():
         """
 
         token = get_token_auth_header()
-        if (self.testing_mode):
+        if self.testing_mode:
             return self.testing_user_id
 
         jsonurl = urlopen("https://"+AUTH0_DOMAIN+"/.well-known/jwks.json")
@@ -136,7 +141,7 @@ class Authenticator():
             The decorator requiring authentication before func may be called.
             """
             token = get_token_auth_header()
-            if (self.testing_mode):
+            if self.testing_mode:
                 return func(*args, **kwargs)
 
             jsonurl = urlopen("https://"+AUTH0_DOMAIN+"/.well-known/jwks.json")

@@ -5,7 +5,7 @@ from flask_restplus import (
     Resource,
     Namespace,
 )
-
+from sqlalchemy.orm import (exc)
 from app.extensions import (
     DB,
     AUTHENTICATOR,
@@ -27,7 +27,7 @@ class Users(Resource):
         user_id = {
             'user_id': AUTHENTICATOR.get_user_id()
         }
-        
+
         schema = UserSchema().load(user_id)
         new_user = UserModel(**schema.data)
         DB.session.begin()
