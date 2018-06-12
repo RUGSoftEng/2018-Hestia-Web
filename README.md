@@ -7,7 +7,7 @@
 | Development | [![Build Status](https://travis-ci.org/RUGSoftEng/2018-Hestia-Web.svg?branch=development)](https://travis-ci.org/RUGSoftEng/2018-Hestia-Web)       |
 
 ## Quick Start
-[Linux Ubuntu](###Setup---Linux-Ubuntu)
+[Linux Ubuntu](###Setup-Linux-Ubuntu)
 Linux Arch
 Windows
 Database
@@ -64,7 +64,7 @@ You need the following dependencies to run the Hestia back-end:
 Setup information for these dependencies is below.
 
 
-### Setup - Linux Ubuntu 
+### Setup Linux Ubuntu 
 Make sure you have Python 3.6 installed.
 
 ```sh
