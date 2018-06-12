@@ -72,7 +72,7 @@ We use [Auth0](https://auth0.com/), a secure and popular identification provider
 We have our own PostgreSQl database, which is used to fetch the users' servers on login. It contains 3 tables: one of all users, one of all servers and one of all presets. The User table contains the following:
 * `user_id` of the user (which will be included in the `access_token` from Auth0 on login).
 * The date the entry was created.
-* The date it was last updated
+* The date it was last updated.
 
 The Server table contains:
 * The ID of the server.
@@ -81,15 +81,15 @@ The Server table contains:
 * The server's address.
 * The server's port.
 * The date the entry was created.
-* The date it was last updated
+* The date it was last updated.
 
 And the Presets table contains:
-* The ID of the preset
-* The ID of the server to which it applies
-* The name of the preset, as specified by the user on creation
-* The state of the preset
+* The ID of the preset.
+* The ID of the server to which it applies.
+* The name of the preset, as specified by the user on creation.
+* The state of the preset.
 * The date the entry was created.
-* The date it was last updated
+* The date it was last updated.
 
 Since the `user_id`of a user is provided on login through Auth0, this can be used to quickly and efficiently find all of their servers for display and interaction.
 ### Functionality of the Webapp
