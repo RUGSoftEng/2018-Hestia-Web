@@ -51,7 +51,7 @@ You need the following dependencies to run the Hestia back-end:
 
 - Python 3
 - Pip
-- Pipenv trhough Pip
+- Pipenv through Pip
 - Docker - _If you want to run a local production server_
 - Heroku CLI - _If you want to deploy to Heroku_
 
