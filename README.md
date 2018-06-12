@@ -215,29 +215,61 @@ The important thing to know about the model (database file path) is that it only
 Inside the endpoints folder, you will find all of the declared endpoints that can be used. There are two major ones, each dealing with the two respective database tables. The first is the users, and the second being the servers.
 
 ### /servers/
- The servers endpoint's NAMESPACE is declured in the init file. It just declares the namespace (from flask_restplus) and gives a description.
+ The servers endpoint's NAMESPACE is declared in the init file. It just declares the namespace (from flask_restplus) and gives a description.
  
-#### get
-Within the servers, a ServerList class is declared that handles the endpoint for the '/' part of /servers. This means that it handles the broad changes of the overall serverlist. Including a "get" for all servers in the server table. It fetches each object from the server, and then returns them in JSON format.
+#### GET
+Within the servers, a ServerList class is declared that handles the endpoint for the '/' part of /servers. This means that it handles the broad changes of the overall serverlist, including a GET for all servers in the server table. It fetches each object from the server, and then returns them in JSON format.
 
-#### post
+#### POST
 The second function available at the '/' route of /servers allows a posting of a new server to the database. This function expects a SERVER model which is then posted to the database. If this is successful, a message will be returned with the new server in the payload.
 
 ### /servers/<string:id>
-This endpoint extends from the /servers/, but adds the ability to query a single server based on the identitification of the (user) that requested. When an authenticated user needs to communicated with a specific server, they will pass the server id into the argument of the endpoint. For example, an authenticated user wishes to get from server with id="54a8c4h". They will send a request through the endpoint /servers/54a8c4h/. 
+This endpoint extends from /servers/, but adds the ability to query a single server based on the identification of the user that sent the query . When an authenticated user needs to communicate with a specific server, they will pass the server ID to the argument of the endpoint. For example, an authenticated user wishes to GET from the server with id="54a8c4h". They will send a request through the endpoint /servers/54a8c4h/. 
 
-#### get
-The get function acts like before and fetches the server as an object from the database. This is then returned as a JSON object.
+#### GET
+The GET function acts as previously described and fetches the server as a JSON object from the database. However, the previous endpoint returns a JSON array containing zero or more servers, and this will instead return a single object representing the queried server.
 
-#### delete
-This function deletes the specific server that was passed in. It will return a code 204 is this completes correctly.
+#### DELETE
+This function deletes the specific server that was passed in. It will return a code 204 when it completes correctly.
 
-#### put
-This function will update a server given it's id.
+#### PUT
+This function will update the name, IP address, or port of a server given its ID.
 
 #### request
-This function handles routing a request to the actual controller residing at the address contained in the server object. A PAYLOAD is defined that takes in the type of request, the endpoint it is going to, and any optional payload in raw form. This payload is sent to the server that is returned from the query (that returns the ONE object after filtering based on id). It will return 404 if the server is not able to be contacted or does not exist. This function utilizes a helper function "route_requset" that handles the actual setup of each request based on the type of request.
+This function handles routing a request to the actual controller at the address contained in the server object. A PAYLOAD is defined that takes in the type of request, the endpoint it is going to, and any optional payload in raw form. This payload is sent to the server that is returned from the query (that returns the ONE object after filtering based on ID). It will return a 404 error if the server is not able to be contacted or does not exist. This function utilizes a helper function route_request that handles the actual setup of each request, based on the type of the request.
 
+####ping
+This will send an options request to the server and return the ping in milliseconds.
+
+#### batch_request
+The function acts similarly to the request endpoint. However, instead of a user specifying a request it will apply a previously saved preset.
+
+##### /servers/<string:server_id>/presets/
+The preset endpoint enables users to store a state of all the devices. This enables a user to restore the individual states of each device with one call. The endpoint contains a GET and POST.
+
+###### GET
+The function will return a list of all presets associated with a server. If the user attempts to query a server they are not associated with, it will return an exception.
+
+###### POST
+The function will post a preset that conforms to the model schema. If successful it will return the name, state, and ID.
+
+##### /servers/<string:server_id>/presets/<string:preset_id>
+This endpoint extends from the presets endpoint, adding functionality to individual presets. The added functionality includes deletion and retrieval of a specific preset.
+
+###### GET
+The function returns the specific preset with `preset_id` associated with the server with `server_id`.
+
+###### DELETE
+The function deletes the preset matching `preset_id` that is associated with the server.
+
+##### /users/
+This endpoint deals with the user table and provides the ability to add and delete a user.
+
+###### POST
+This function allows the posting of a new user to the database. It expects a USER model which is then posted to the database. If this is successful, a message will be returned with the new user in the payload.
+
+###### delete
+This function will remove the authenticated user from the database. This will cascade down to remove all servers associated with that user.
 
 
 ### Other
