@@ -118,9 +118,7 @@ To aid with building, testing, and deploying our application we use the [factory
 Here we document the endpoints associated with each module. We have endpoints dealing with users, servers, and presets.
 
 ##### /servers/
- The servers endpoint's NAMESPACE is declared in the modules init file. Each module
-
- It just declares the namespace (from flask_restplus) and gives a description.
+ The servers endpoint's NAMESPACE is declared in the modules init file. It just declares the namespace (from flask_restplus) and gives a description.
 
 ###### GET
 This will get all servers belonging to a user.
@@ -177,7 +175,7 @@ This function allows the posting of a new user to the database. It expects a USE
 This function will remove the authenticated user from the database. This will cascade down to remove all servers associated with that user.
 
 ### Elaboration on request forwarding
-Currently, we have developed a server that serves as the liaison between the Hestia local controller and the user's interface. The front-end website will interact with this server exclusively through sending JSON objects in the payload of POST requests. These objects contain the following information:
+Currently, we have developed a server that serves as the liaison between the Hestia local controller and the user interface. The front-end website will interact with this server exclusively through sending JSON objects in the payload of POST requests. These objects contain the following information:
 * *query*: The endpoint that the client intends to send a request to, on the Hestia local controller.
 * *method*: The method by which the user wishes to send the request.
 * *payload*: The payload is an optional item in the request that when supplied, is used for requests which require additional information, such as POSTing to /devices/ to create a new device, or updating a device's name. The exact content of the payload is identical in structure to the payload that would naturally be received by the controller.
@@ -212,7 +210,7 @@ def route_request(method, query, payload):
 
     return jsonify(result)
 ```
-Currently, the verify flag is set to `False`, as there is no secure connection to the site yet, which obviously has to be changed. What the code above does is, based on the method, it will send a package with corresponding information to the corresponding URL, and return the result of that request back to the client who originally sent the request.
+Currently, the verify flag is set to `False`, as there is no secure connection to the site yet, which obviously has to be changed. What the code above does is, based on the method, send a package with corresponding information to the corresponding URL, and return the result of that request back to the client who originally sent the request.
 
 ## Plugin Marketplace
 In order to allow users to more easily take advantage of Hestia's versatility, a *marketplace* will be constructed to host plugin files, and let users both browse and install plugins onto their own Hestia controller. The marketplace will consist of both a front-end, user oriented design to search for and browse plugins, and a back-end database that will store the data as a relational database and associated files.
@@ -263,3 +261,4 @@ Below are defined terms used in the architecture document:
 | Troy Harrison | 2018-05-29 | Throughout           | Added information for backend                                                   |
 | Roman Bell    | 2018-06-03 | Structural choices   | Made it more specific                              |
 | Roman Bell    | 2018-06-08 | Throughout           | Grammar, syntax and styling consistency                              |
+| Roman Bell    | 2018-06-12 | Throughout           | Prep for final sprint                             |
