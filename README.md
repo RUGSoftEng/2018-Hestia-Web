@@ -45,18 +45,7 @@ This function will update a server given it's id.
 This function handles routing a request to the actual controller residing at the address contained in the server object. A PAYLOAD is defined that takes in the type of request, the endpoint it is going to, and any optional payload in raw form. This payload is sent to the server that is returned from the query (that returns the ONE object after filtering based on id). It will return 404 if the server is not able to be contacted or does not exist. This function utilizes a helper function "route_requset" that handles the actual setup of each request based on the type of request.
 
 ## Development Setup
-
-### Dependencies
-You need the following dependencies to run the Hestia back-end:
-
-- Python 3
-- Pip
-- Pipenv trhough Pip
-- Docker - _If you want to run a local production server_
-
-Setup information for these dependencies is below.
-
-### Setup - Linux Ubuntu
+### Linux Ubuntu
 Make sure you have Python 3.6 installed.
 
 ```sh
@@ -74,7 +63,7 @@ Make sure your cd is `backend` directory.
 
 Now run:
 ```bash
-pipenv install --dev
+pipenv install
 ```
 This will create a virtualenv with python3
 
@@ -84,7 +73,7 @@ pipenv shell
 ```
 This enables the environment with the lock file already included in the repository.
 
-### Setup - Linux Arch
+### Linux Arch
 Make sure you have Python 3.6 installed.
 
 ```sh
@@ -101,7 +90,7 @@ Make sure your cd is `backend` directory.
 
 Now run:
 ```bash
-pipenv install --dev
+pipenv install
 ```
 This will create a virtualenv with python3
 
@@ -112,11 +101,11 @@ pipenv shell
 This enables the environment with the lock file already included in the repository.
 
 
-### Setup - Windows
-Setup is very different for windows. You must first download python 3.6 from their website.
+### Windows
+Setup is very different for windows. You must first download python 3.6 from [their website](https://www.python.org/downloads/release/python-360/).
 
 Next download [get-pip.py](https://bootstrap.pypa.io/get-pip.py)
-Execute it with console by pressing windows key, type in cmd, then press enter. Run python get-pip.py from where you downloaded it to. You may have to put python in your PATH (Google if needed).
+Execute it through the console by pressing the windows key, typing in cmd, then pressing enter. Run python get-pip.py from where you downloaded it to. You may have to put python in your PATH (Google if needed).
 
 Install pipenv through pip:
 ```bash
@@ -151,12 +140,7 @@ python application.py dev
 ```
 
 ## Database Setup
-
-### Testing and development purposes
-You do not need to use Docker for testing or development purposes, instead you can the 
-
-### Local Production Server
-#### Docker Ubuntu
+### Docker Ubuntu
 First install Docker:
 ```bash
 sudo apt install docker.io
@@ -181,7 +165,7 @@ The database will be running immediately. The following commands are also availa
 | Stop the database   | `docker stop hestia-web-db`  |
 | Delete the database | `docker rm hestia-web-db`    |
 
-#### Docker Arch
+### Docker Arch
 First install Docker:
 ```bash
 sudo pacman -S docker
