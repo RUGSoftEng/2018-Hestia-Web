@@ -109,7 +109,7 @@ For each module this defines the underlying database table representing that mod
 For each module this represents the translation to and from the database to an object representing the module.
 
 ##### Resources - `resources.py`
-For each module this represents the brunt the module. It described the endpoints that clients can access to interact with that module, any constraints on that interaction (such as a requirement for authentication), and the actual action associated with that interaction. The interaction is in the form of standard REST verbs acting on the resource the module represents.
+For each module this represents the main body of the module. It described the endpoints that clients can access to interact with that module, any constraints on that interaction (such as a requirement for authentication), and the actual action associated with that interaction. The interaction is in the form of standard REST verbs acting on the resource the module represents.
 
 #### Application Configuration and the Factory Pattern
 To aid with building, testing, and deploying our application we use the [factory pattern](https://en.wikipedia.org/wiki/Factory_method_pattern). We define the configuration of our application in `config.py` as an object. The classes of configuration are `Development`, `Testing`, and `Production`. The application is created via the factory `create_app()` method.
