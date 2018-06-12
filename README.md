@@ -238,7 +238,7 @@ This function will update the name, IP address, or port of a server given its ID
 #### request
 This function handles routing a request to the actual controller at the address contained in the server object. A PAYLOAD is defined that takes in the type of request, the endpoint it is going to, and any optional payload in raw form. This payload is sent to the server that is returned from the query (that returns the ONE object after filtering based on ID). It will return a 404 error if the server is not able to be contacted or does not exist. This function utilizes a helper function route_request that handles the actual setup of each request, based on the type of the request.
 
-####ping
+#### ping
 This will send an options request to the server and return the ping in milliseconds.
 
 #### batch_request
