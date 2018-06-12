@@ -152,8 +152,9 @@ python application.py dev
 ```
 
 ## Heroku deployment
-In order to deploy to Heroku, simply follow the steps on the following page: https://devcenter.heroku.com/articles/getting-started-with-python
-THe current setup does not auto-deploy on succesful commits, instead you have to follow the tutorial using your own account.
+In order to deploy to Heroku, simply follow the steps on the following page: https://devcenter.heroku.com/articles/getting-started-with-python.
+
+The current setup does not auto-deploy on succesful commits, instead you have to follow the tutorial using your own account.
 Travis CI can be used to automate deployment, otherwise updates need to be manually redeployed.
 
 If you are not deploying to Heroku, you can ignore the files _Procfile_ and _wsgi.py_ in the root directory.
