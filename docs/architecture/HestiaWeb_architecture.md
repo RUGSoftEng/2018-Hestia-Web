@@ -2,6 +2,7 @@
 ### Clients
 - F. te Nijenhuis
 - L. Holdijk
+
 ### Authors
 * A. Lalis
 * E. Abdo
@@ -11,12 +12,15 @@
 * R.T. Nijman
 * S. Oegema
 * T.K. Harrison
+
 ### Teaching Assistant
 Feiko Ritsema
+
 ## Introduction
 The Hestia Home Automation System, developed by the clients, aims to make home automation simple again. The local server infrastructure that facilitates communication and control of the various peripherals in one's home has already been implemented by the clients. In addition to this local server, an Android application has been pre-made by the client and is available for reference. As it stands users of Hestia are unable to access their home servers from outside of their local network. This, coupled with the lack of client side interfacing, limits the ease of use and widespread adoption of the Hestia system.
 To improve on this, we will develop a web based interface for Hestia. There are two main systems under consideration: the front-end (the user interface which the client interacts through a browser), and the back-end (which serves as a middleman between local Hestia servers and the front-end).
 This document describes the functionality of these systems, their interaction, and our motivation behind their underlying design choices.
+
 ### Overview
 Our goal for this project is to create a web interface for Hestia. This web interface, which is hosted on a central server, should allow users to log in and connect to their local Hestia servers. This allows users to interact with their home automation system remotely.
 
@@ -30,13 +34,16 @@ The Hestia Web Interface will be divided into two main sub-systems as mentioned 
 * The front-end user interface, with which the user interacts through a browser.
 * The back-end server that connects users to their local Hestia controllers, and holds information on each user and their servers.
 ![Website Design](images/system.png  "Structure of the system")
+
 ## Website Front-End
 Since the front-end of the website is the first aspect of the product that the customer will interact with, and will be one of the main sources of content or discontent throughout their user experience, a variety of design choices had to be made.
 The website will allow a user to connect to their controllers through a web server, and then manage the devices on their controllers through a range of different controls, and do this in the knowledge that they and their information are being kept safe.
 ![Website Design](images/Hestia_login.png  "Website Login")
 ![Website Design](images/Hestia_server_view.png  "Website Server View")
 ![Website Design](images/Hestia_device_view.png  "Website Device View")
+
 ### Design choices
+
 #### Structural choices
 The page is laid out in the following manner, as shown above: once the user has logged in, they are shown all their servers, demarcated by name and IP address, along with the option to add a new server. Once they have selected a server, the user is shown all devices on that server. The devices are laid out in the same way as the servers are, with each device having it's name, it's ID, and all of it's activators. The option to add another device is also there.
 Each page scales to the screensize, meaning that as many or as few elements are shown in each row as is appropriate for the screensize of the device being used to view the page. Our webapp then has full functionality when viewed through a mobile browser.
@@ -48,10 +55,13 @@ However, we then switched to [Auth0](https://auth0.com/), an online authenticati
 Within Vue, two design patterns were used to simplify development. They were:
   1. Singleton pattern - By using a Vue store we ensure a single point of reference for the state of the web application. All changes to state are routed through the store, thereby propagating state change throughout the front-end.
   2. Dispatch pattern - This facilitates rapidly extending the front-end to account for and consume new endpoints. It splits up the dispatch process into two steps. Preparing the dispatch payload in `beforeDispatch`, dispatching the payload in `dispatch`. The functions from these two modules are then coordinated in the Vue store to handle updating state. Though it may sound trivial, structuring the API interaction in this manner greatly improved development speed.
+
 #### Aesthetical choices
 The design overall is quite minimalist, with some elements such as colour taken from the Hestia logo. Aside from the main Hestia logo, the icons used are from [Semantic UI](https://semantic-ui.com/), which provides a large set of intuitive, user friendly icons.
+
 ## Website Back-End
 The back-end of the webapp will serve as a middleman between the web front-end and the user's controllers. This means that there needs to be an interface to be able to send queries to the server. Furthermore, a user database is required in order to maintain a secure environment in which users may only have permission to interact with systems they own. Unauthorized access to server data, user data, or any other sensitive information is completely forbidden.
+
 ### Design decisions
 For the design of the webapp we initially chose to implement PHP since there was familiarity in the team with PHP. Thus, a concise webpage was setup using HTML and PHP. This website was designed to test querying a Hestia webserver (for instance a *GET* request). After the initial webpage was created we decided to implement the webpage in Python using [Flask](http://flask.pocoo.org/). There are three primary reasons for this:
 
@@ -61,6 +71,7 @@ For the design of the webapp we initially chose to implement PHP since there was
 
 ### Why Not Go Directly From Browser to Controller?
 Because the client's website will use Javascript to send AJAX requests to the webserver, it is also perfectly capable of sending those requests directly to whatever controller the user wishes to control. However, in practice, this is not recommended, since some browsers such as Firefox disable *Cross Origin Resource Sharing*. This could potentially be a large security vulnerability, and therefore we avoid the issue by adding a layer of abstraction, and forcing the user to communicate **only** with the website/webserver as opposed to both the website and the local controller. From Mozilla's website regarding CORS, or security reasons, browsers restrict cross-origin HTTP requests initiated from within scripts. For example, XMLHttpRequest and the Fetch API follow the same-origin policy, meaning scripts can only be shared between webpages if they have the same origin.
+
 #### Authentication
 We use [Auth0](https://auth0.com/), a secure and popular identification provider for our login. The flow of authentication is as follows:
 1. The user is directed to Auth0, so that authentication can take place.
@@ -68,6 +79,7 @@ We use [Auth0](https://auth0.com/), a secure and popular identification provider
 3. The user is directed by Auth0 back to our webapp, along with their *access_token*, (A JSON Web Token which can be also used to specify the scope of the user's permissions)
 4. Our webapp uses the user's ID, which is included in the access_token, to get the user's servers from our database.
 ![Website Design](images/auth.png  "Login Flow")
+
 #### Database
 We have our own PostgreSQl database, which is used to fetch the users' servers on login. It contains 3 tables: one of all users, one of all servers and one of all presets. The User table contains the following:
 * `user_id` of the user (which will be included in the `access_token` from Auth0 on login).
@@ -92,7 +104,9 @@ And the Presets table contains:
 * The date it was last updated.
 
 Since the `user_id`of a user is provided on login through Auth0, this can be used to quickly and efficiently find all of their servers for display and interaction.
+
 ### Functionality of the Webapp
+
 #### Model Information
 Currently, we use a Postgres database to store the information of each user and their "controllers". The model is interacted with through the endpoints described below. As specified above, there are three tables in the model: the users table, the servers table, and the presets table.
 
@@ -171,7 +185,7 @@ This endpoint deals with the user table and provides the ability to add and dele
 ###### POST
 This function allows the posting of a new user to the database. It expects a USER model which is then posted to the database. If this is successful, a message will be returned with the new user in the payload.
 
-###### delete
+###### DELETE
 This function will remove the authenticated user from the database. This will cascade down to remove all servers associated with that user.
 
 ### Elaboration on request forwarding
@@ -236,8 +250,9 @@ Below are defined terms used in the architecture document:
 * *Marketplace*: A seperate area of the site where users can browse available plugins, upload their own, and add these plugins to their local controller's setup.
 
 ## Change Log
+
 | Who           |       When | Where                | What                                                                            |
-| :---          |       :--- | :---                 | :---                                                                            |
+| :---          |       :--- | :---                 | :---                                                                           |
 | Troy Harrison | 2018-03-12 | Whole document       | Created initial document.                                                       |
 | Andrew Lalis  | 2018-03-12 | Whole document       | Updated content for document.                                                   |
 | Rens Nijman   | 2018-03-12 | Front-End            | Add structure for front-end section.                                            |
@@ -259,6 +274,6 @@ Below are defined terms used in the architecture document:
 | Roman Bell    | 2018-05-29 | Login                | Changed system diagram, added more detail on Auth0                              |
 | Phil Oetinger | 2018-05-29 | backend              | Added information for backend                                                   |
 | Troy Harrison | 2018-05-29 | Throughout           | Added information for backend                                                   |
-| Roman Bell    | 2018-06-03 | Structural choices   | Made it more specific                              |
-| Roman Bell    | 2018-06-08 | Throughout           | Grammar, syntax and styling consistency                              |
-| Roman Bell    | 2018-06-12 | Throughout           | Prep for final sprint                             |
+| Roman Bell    | 2018-06-03 | Structural choices   | Made it more specific                                                           |
+| Roman Bell    | 2018-06-08 | Throughout           | Grammar, syntax and styling consistency                                         |
+| Roman Bell    | 2018-06-12 | Throughout           | Prep for final sprint                                                           |
