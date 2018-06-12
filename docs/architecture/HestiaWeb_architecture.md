@@ -78,6 +78,7 @@ We use [Auth0](https://auth0.com/), a secure and popular identification provider
 2. The user is authenticated by Auth0, using some form of social account such as Google. If it is their first time, they will be shown a consent page.
 3. The user is directed by Auth0 back to our webapp, along with their *access_token*, (A JSON Web Token which can be also used to specify the scope of the user's permissions)
 4. Our webapp uses the user's ID, which is included in the access_token, to get the user's servers from our database.
+
 ![Website Design](images/auth.png  "Login Flow")
 
 #### Database
@@ -131,61 +132,61 @@ To aid with building, testing, and deploying our application we use the [factory
 #### Endpoint Information
 Here we document the endpoints associated with each module. We have endpoints dealing with users, servers, and presets.
 
-##### /servers/
+##### `/servers/`
  The servers endpoint's NAMESPACE is declared in the modules init file. It just declares the namespace (from flask_restplus) and gives a description.
 
-###### GET
+###### *GET*
 This will get all servers belonging to a user.
 
-###### POST
+###### *POST*
 This will post a new server associated with a user to the database. This requires a JSON object representing the properties (name, IP address, and port) of the server. If successful, this will return a JSON representation of the stored server.
 
-##### /servers/<string:server_id>
+##### `/servers/<string:server_id>`
 This endpoint extends from the /servers/, but adds the ability to query a single server based on the identification of the user who requested it. When an authenticated user needs to communicate with a specific server, they will pass the server ID into the argument of the endpoint. For example, an authenticated user wishes to access the server with ID "54a8c4h". They will send a request through the endpoint /servers/54a8c4h/.
 
-###### GET
+###### *GET*
 The GET function acts as previously described and fetches the server as a JSON object from the database. However, the previous endpoint returns a JSON array containing zero or more servers, and this will instead return a single object representing the queried server.
 
-###### DELETE
+###### *DELETE*
 This function deletes the specified server that was passed as the argument. It will return a code 204 if it completes correctly. This will also cascade to delete all presets associated with the deleted server.
 
-###### PUT
+###### *PUT*
 This function will update the name, IP address, or port of a server given its ID.
 
-###### request
+###### *request*
 This function handles routing a request to the actual controller at the address contained in the server object. A `PAYLOAD` is defined that takes in the type of request, the endpoint it is going to, and any optional payload in raw form. This payload is sent to the server that is returned from the query (that returns the ONE object after filtering based on ID). It will return a 404 error if the server is not able to be contacted or does not exist. This function utilizes a helper function `route_request` that handles the actual setup of each request, based on the type of the request.
 
-###### ping
+###### *ping*
 This will send an options request to the server and return the ping in milliseconds.
 
-###### batch_request
+###### *batch_request*
 The function acts similarly to the request endpoint. However, instead of a user specifying a request it will apply a previously saved preset.
 
-##### /servers/<string:server_id>/presets/
+##### `/servers/<string:server_id>/presets/`
 The preset endpoint enables users to store a state of all the devices. This enables a user to restore the individual states of each device with one call. The endpoint contains a GET and POST.
 
-###### GET
+###### *GET*
 The function will return a list of all presets associated with a server. If the user attempts to query a server they are not associated with, it will return an exception.
 
-###### POST
+###### *POST*
 The function will post a preset that conforms to the model schema. If successful it will return the name, state, and ID.
 
-##### /servers/<string:server_id>/presets/<string:preset_id>
+##### `/servers/<string:server_id>/presets/<string:preset_id>`
 This endpoint extends from the presets endpoint, adding functionality to individual presets. The added functionality includes deletion and retrieval of a specific preset.
 
-###### GET
+###### *GET*
 The function returns the specific preset with `preset_id` associated with the server with `server_id`.
 
-###### DELETE
+###### *DELETE*
 The function deletes the preset matching `preset_id` that is associated with the server.
 
-##### /users/
+##### `/users/`
 This endpoint deals with the user table and provides the ability to add and delete a user.
 
-###### POST
+###### *POST*
 This function allows the posting of a new user to the database. It expects a USER model which is then posted to the database. If this is successful, a message will be returned with the new user in the payload.
 
-###### DELETE
+###### *DELETE*
 This function will remove the authenticated user from the database. This will cascade down to remove all servers associated with that user.
 
 ### Elaboration on request forwarding
@@ -224,7 +225,8 @@ def route_request(method, query, payload):
 
     return jsonify(result)
 ```
-Currently, the verify flag is set to `False`, as there is no secure connection to the site yet, which obviously has to be changed. What the code above does is, based on the method, send a package with corresponding information to the corresponding URL, and return the result of that request back to the client who originally sent the request.
+
+Currently, the verify flag is set to `False`, as there is no secure connection to the individual controllers yet. This obviously has to be remedied but requires coordination with the clients' code base. What the code above does is, based on the method, send a package with corresponding information to the corresponding URL, and return the result of that request back to the client who originally sent the request. This decision means that changes to the controller endpoints do not require duplicate changes to occur on the central webserver.
 
 ## Plugin Marketplace
 In order to allow users to more easily take advantage of Hestia's versatility, a *marketplace* will be constructed to host plugin files, and let users both browse and install plugins onto their own Hestia controller. The marketplace will consist of both a front-end, user oriented design to search for and browse plugins, and a back-end database that will store the data as a relational database and associated files.
