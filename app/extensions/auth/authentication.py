@@ -35,7 +35,6 @@ class AuthError(Exception):
         self.error = error
         self.status_code = status_code
 
-
 @API.errorhandler(AuthError)
 def handle_auth_error(ex):
     """
@@ -79,111 +78,121 @@ def get_token_auth_header():
     token = parts[1]
     return token
 
-
-def get_user_id():
+class Authenticator():
     """
-    Get the user id from the access token in the Authorization header.
+    A class which handles authentication.
     """
-    token = get_token_auth_header()
+    def __init__(self, testing_mode=True):
+        self.testing_mode = testing_mode
+        self.testing_user_id = None
+        print(self.testing_mode)
 
-    jsonurl = urlopen("https://"+AUTH0_DOMAIN+"/.well-known/jwks.json")
-
-    jwks = json.loads(jsonurl.read())
-
-    rsa_key = {}
-    for key in jwks["keys"]:
-        rsa_key = {
-            "kty": key["kty"],
-            "kid": key["kid"],
-            "use": key["use"],
-            "n": key["n"],
-            "e": key["e"]
-        }
-
-    payload = jwt.decode(
-        token,
-        rsa_key,
-        algorithms=ALGORITHMS,
-        audience=API_IDENTIFIER,
-        issuer="https://"+AUTH0_DOMAIN+"/"
-    )
-
-    return payload['sub']
-
-
-def requires_scope(required_scope):
-    """Determines if the required scope is present in the access token
-    Args:
-        required_scope (str): The scope required to access the resource
-    """
-    token = get_token_auth_header()
-    unverified_claims = jwt.get_unverified_claims(token)
-    if unverified_claims.get("scope"):
-        token_scopes = unverified_claims["scope"].split()
-        for token_scope in token_scopes:
-            if token_scope == required_scope:
-                return True
-    return False
-
-
-def requires_auth(func):
-    """Determines if the access token is valid
-    """
-    @wraps(func)
-    def decorated(*args, **kwargs):
+    def init_app(self, app):
         """
-        The decorator requiring authentication before func may be called.
+        Specify whether the Authenticator should be configured for testing or production.
         """
+        self.testing_mode = app.config["TESTING"]
+
+    def set_user_id(self, user_id):
+        """
+        Specify the testing user_id the Authenticator should return.
+        """
+        self.testing_user_id = user_id
+
+    def get_user_id(self):
+        """
+        Get the user id from the access token in the Authorization header.
+        """
+
         token = get_token_auth_header()
+        if self.testing_mode:
+            return self.testing_user_id
+
         jsonurl = urlopen("https://"+AUTH0_DOMAIN+"/.well-known/jwks.json")
+
         jwks = json.loads(jsonurl.read())
-        try:
-            unverified_header = jwt.get_unverified_header(token)
-        except jwt.JWTError:
-            raise AuthError({"code": "invalid_header",
-                             "description":
-                             "Invalid header. "
-                             "Use an RS256 signed JWT Access Token"}, 401)
-        if unverified_header["alg"] == "HS256":
-            raise AuthError({"code": "invalid_header",
-                             "description":
-                             "Invalid header. "
-                             "Use an RS256 signed JWT Access Token"}, 401)
+
         rsa_key = {}
         for key in jwks["keys"]:
-            if key["kid"] == unverified_header["kid"]:
-                rsa_key = {
-                    "kty": key["kty"],
-                    "kid": key["kid"],
-                    "use": key["use"],
-                    "n": key["n"],
-                    "e": key["e"]
-                }
-        if rsa_key:
+            rsa_key = {
+                "kty": key["kty"],
+                "kid": key["kid"],
+                "use": key["use"],
+                "n": key["n"],
+                "e": key["e"]
+            }
+
+        payload = jwt.decode(
+            token,
+            rsa_key,
+            algorithms=ALGORITHMS,
+            audience=API_IDENTIFIER,
+            issuer="https://"+AUTH0_DOMAIN+"/"
+        )
+
+        return payload['sub']
+
+    def requires_auth(self, func):
+        """Determines if the access token is valid
+        """
+        @wraps(func)
+        def decorated(*args, **kwargs):
+            """
+            The decorator requiring authentication before func may be called.
+            """
+            token = get_token_auth_header()
+            if self.testing_mode:
+                return func(*args, **kwargs)
+
+            jsonurl = urlopen("https://"+AUTH0_DOMAIN+"/.well-known/jwks.json")
+            jwks = json.loads(jsonurl.read())
             try:
-                payload = jwt.decode(
-                    token,
-                    rsa_key,
-                    algorithms=ALGORITHMS,
-                    audience=API_IDENTIFIER,
-                    issuer="https://"+AUTH0_DOMAIN+"/"
-                )
-            except jwt.ExpiredSignatureError:
-                raise AuthError({"code": "token_expired",
-                                 "description": "token is expired"}, 401)
-            except jwt.JWTClaimsError:
-                raise AuthError({"code": "invalid_claims",
-                                 "description":
-                                 "incorrect claims,"
-                                 " please check the audience and issuer"}, 401)
-            except Exception:
+                unverified_header = jwt.get_unverified_header(token)
+            except jwt.JWTError:
                 raise AuthError({"code": "invalid_header",
                                  "description":
-                                 "Unable to parse authentication"
-                                 " token."}, 401)
+                                 "Invalid header. "
+                                 "Use an RS256 signed JWT Access Token"}, 401)
+            if unverified_header["alg"] == "HS256":
+                raise AuthError({"code": "invalid_header",
+                                 "description":
+                                 "Invalid header. "
+                                 "Use an RS256 signed JWT Access Token"}, 401)
+            rsa_key = {}
+            for key in jwks["keys"]:
+                if key["kid"] == unverified_header["kid"]:
+                    rsa_key = {
+                        "kty": key["kty"],
+                        "kid": key["kid"],
+                        "use": key["use"],
+                        "n": key["n"],
+                        "e": key["e"]
+                    }
+            if rsa_key:
+                try:
+                    payload = jwt.decode(
+                        token,
+                        rsa_key,
+                        algorithms=ALGORITHMS,
+                        audience=API_IDENTIFIER,
+                        issuer="https://"+AUTH0_DOMAIN+"/"
+                    )
+                except jwt.ExpiredSignatureError:
+                    raise AuthError({"code": "token_expired",
+                                     "description": "token is expired"}, 401)
+                except jwt.JWTClaimsError:
+                    raise AuthError({"code": "invalid_claims",
+                                     "description":
+                                     "incorrect claims,"
+                                     " please check the audience and issuer"}, 401)
+                except Exception:
+                    raise AuthError({"code": "invalid_header",
+                                     "description":
+                                     "Unable to parse authentication"
+                                     " token."}, 401)
 
-            _request_ctx_stack.top.current_user = payload
-            return func(*args, **kwargs)
-        raise AuthError({"code": "invalid_header",
-                         "description": "Unable to find appropriate key"}, 401)
-    return decorated
+                _request_ctx_stack.top.current_user = payload
+                return func(*args, **kwargs)
+            raise AuthError({"code": "invalid_header",
+                             "description": "Unable to find appropriate key"}, 401)
+        return decorated

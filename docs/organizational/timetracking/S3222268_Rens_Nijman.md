@@ -246,3 +246,43 @@
 | *2018-05-27* | 22:00-22:30 | Fix servers/resources.py for presets with Troy (VOIP) |
 | *2018-05-27* | 22:30-23:00 | Fix servers/resources.py for presets with Troy (VOIP) |
 | *2018-05-27* | 23:00-23:30 | Fix servers/resources.py for presets with Troy (VOIP) |
+| *2018-06-11* | 12:00-12:30 | Researching Travis CI                                 |
+| *2018-06-11* | 12:30-13:00 | Researching Travis CI                                 |
+| *2018-06-11* | 13:00-13:30 | Researching Travis CI                                 |
+| *2018-06-11* | 13:30-14:00 | Researching Travis CI                                 |
+| *2018-06-11* | 14:00-14:30 | Reading up current implementation testing             |
+| *2018-06-11* | 14:30-15:00 | Reading up current implementation testing             |
+| *2018-06-11* | 15:00-15:30 | Research testing (specifically fix backend test)      |
+| *2018-06-11* | 15:30-16:00 | Research testing (specifically fix backend test)      |
+| *2018-06-11* | 16:00-16:30 | Research testing (specifically fix backend test)      |
+| *2018-06-11* | 16:30-17:00 | Work on fixing testing                                |
+| *2018-06-11* | 17:00-17:30 | Work on fixing testing                                |
+| *2018-06-11* | 17:30-18:00 | Work on fixing testing                                |
+| *2018-06-11* | 18:00-18:30 | Work on fixing testing                                |
+| *2018-06-11* | 19:30-20:00 | Work on fixing testing                                |
+| *2018-06-11* | 20:00-20:30 | Work on fixing testing                                |
+| *2018-06-11* | 20:30-21:00 | Research pytest                                       |
+| *2018-06-11* | 21:00-21:30 | Research pytest                                       |
+| *2018-06-12* | 11:00-11:30 | Research and implementing fixes backend testing       |
+| *2018-06-12* | 11:30-12:00 | Research and implementing fixes backend testing       |
+| *2018-06-12* | 12:00-12:30 | Research and implementing fixes backend testing       |
+| *2018-06-12* | 12:30-13:00 | Research and implementing fixes backend testing       |
+| *2018-06-12* | 13:00-13:30 | Research and implementing fixes backend testing       |
+| *2018-06-12* | 13:30-14:00 | Research and implementing fixes backend testing       |
+| *2018-06-12* | 14:00-14:30 | Research and implementing fixes backend testing       |
+| *2018-06-12* | 14:30-15:00 | Research and implementing fixes backend testing       |
+| *2018-06-12* | 15:00-15:30 | Research and implementing fixes backend testing       |
+| *2018-06-12* | 15:30-16:00 | Research and implementing fixes backend testing       |
+| *2018-06-12* | 16:00-16:30 | Research and implementing fixes backend testing       |
+| *2018-06-12* | 16:30-17:00 | Research and implementing fixes backend testing       |
+| *2018-06-12* | 17:00-17:30 | Research and implementing fixes backend testing       |
+| *2018-06-12* | 17:30-18:00 | Research and implementing fixes backend testing       |
+| *2018-06-12* | 18:00-18:30 | Research and implementing fixes backend testing       |
+| *2018-06-12* | 18:30-19:00 | Research and implementing fixes backend testing       |
+| *2018-06-12* | 19:00-19:30 | Research and implementing fixes backend testing       |
+| *2018-06-12* | 19:30-20:00 | Research and implementing fixes backend testing       |
+| *2018-06-12* | 21:30-22:00 | Further implementing fixes with Troy (VOIP)           |
+| *2018-06-12* | 22:00-22:30 | Further implementing fixes with Troy (VOIP)           |
+| *2018-06-12* | 22:30-23:00 | Further implementing fixes with Troy (VOIP)           |
+| *2018-06-12* | 23:00-23:30 | Further implementing fixes with Troy (VOIP)           |
+| *2018-06-12* | 23:30-00:00 | Further implementing fixes with Troy (VOIP)           |
