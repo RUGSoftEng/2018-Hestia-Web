@@ -9,12 +9,11 @@ from flask_restplus import (
     fields,
 )
 from sqlalchemy.orm import (exc)
-from app.extensions import (DB)
-from app.modules.util import (route_request)
-from app.extensions.auth.authentication import (
-    requires_auth,
-    get_user_id,
+from app.extensions import(
+    DB,
+    AUTHENTICATOR,
 )
+from app.modules.util import (route_request)
 from ..servers.models import (ServerModel)
 from ..servers.schemas import (ServerSchema)
 from .schemas import (PresetSchema)
@@ -45,7 +44,7 @@ class Presets(Resource):
         """
         try:
             DB.session.query(ServerModel).filter_by(
-                server_id=server_id, user_id=get_user_id()).one()
+                server_id=server_id, user_id=AUTHENTICATOR.get_user_id()).one()
         except exc.NoResultFound:
             return "", 404
 
@@ -55,7 +54,7 @@ class Presets(Resource):
         return all_presets
 
     @NAMESPACE.expect(PRESET_PAYLOAD)
-    @requires_auth
+    @AUTHENTICATOR.requires_auth
     @NAMESPACE.doc(security='apikey')
     def post(self, server_id):
         """
@@ -64,7 +63,7 @@ class Presets(Resource):
         payload = NAMESPACE.apis[0].payload
         try:
             server_object = DB.session.query(ServerModel).filter_by(
-                server_id=server_id, user_id=get_user_id()).one()
+                server_id=server_id, user_id=AUTHENTICATOR.get_user_id()).one()
         except exc.NoResultFound:
             return "", 404
 
@@ -107,7 +106,7 @@ class Preset(Resource):
         """
         try:
             DB.session.query(ServerModel).filter_by(
-                server_id=server_id, user_id=get_user_id()).one()
+                server_id=server_id, user_id=AUTHENTICATOR.get_user_id()).one()
         except exc.NoResultFound:
             return "", 404
 
@@ -128,7 +127,7 @@ class Preset(Resource):
         """
         try:
             DB.session.query(ServerModel).filter_by(
-                server_id=server_id, user_id=get_user_id()).one()
+                server_id=server_id, user_id=AUTHENTICATOR.get_user_id()).one()
         except exc.NoResultFound:
             return "", 404
 
