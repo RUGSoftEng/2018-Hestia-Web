@@ -26,5 +26,10 @@
 | *28/05/2018* | 14:00-20:00| Did some research on new things used, started polishing documentation |
 | *29/05/2018* | 11:00-15:00| continued working on documentation |
 | *29/05/2018* | 20:30-22:30| worked on architecture document |
+| *01/06/2018* | 12:00-14:00| Reworked intro of arch. document |
+| *03/06/2018* | 12:00-17:00 | Madeover requirements document, added scenarios |
+| *08/06/2018* | 13:00-17:00 | Went through architecture document, fixing styling of new sections |
+| *12/06/2018* | 12:00-19:30 | Worked on new readme, more slight grammar changes and proofreading, helped with parser for creating pdf's |
+
 
 

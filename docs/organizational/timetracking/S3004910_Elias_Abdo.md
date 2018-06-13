@@ -16,3 +16,6 @@
 | *16-04-2018* | 6 | worked on add/delete devices. start to learn about vue.js, semantics ui
 | *20-04-2018* | 5 | tried to set up for connection between front-end and backend using vue and flask/ learned vue for frontend.
 | *24-04-2018* | 4 | worked on frontend of project using vue, 
+| *22/05/2018* | 11:00-13:00 | Worked on the refactoring of the previous sprint.
+| *28/05/2018* | 15:00-20:00 | Attempt to implement Cypress tests with the VUE framework.
+| *29/05/2018* | 12:15-17:00 | tried with Nik to implement Cypress tests with the VUE framework.
