@@ -17,6 +17,7 @@ class BaseConfig:
 
 class DevelopmentConfig(BaseConfig):
     """ Development configuration for the application. """
+    ENV = "development"
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = 'sqlite:///HestiaDB'
     PORT = 5000
@@ -24,6 +25,7 @@ class DevelopmentConfig(BaseConfig):
 
 class TestingConfig(BaseConfig):
     """ Test related configuration for the application. """
+    ENV = "testing"
     DEBUG = True
     TESTING = True
     SQLALCHEMY_DATABASE_URI = 'sqlite:///HestiaDB'
@@ -33,6 +35,7 @@ class TestingConfig(BaseConfig):
 
 class ProductionConfig(BaseConfig):
     """ Production configuration for the application. """
+    ENV = "production"
     DEBUG = False
     SQLALCHEMY_DATABASE_URI = os.environ.get(
         "DATABASE_URL", f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_BASE_URL}/HestiaDB'

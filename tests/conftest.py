@@ -16,6 +16,7 @@ from app.modules.users.models import (UserModel)
 def flask_app():
     """ Create flask application for testing. """
     app = create_app('testing')
+    app.app_context().push()
     DB.drop_all(app=app)
     DB.create_all(app=app)
     return app

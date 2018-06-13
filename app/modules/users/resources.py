@@ -10,6 +10,7 @@ from app.extensions import (
     DB,
     AUTHENTICATOR,
 )
+
 from .schemas import (UserSchema)
 from .models import (UserModel)
 
