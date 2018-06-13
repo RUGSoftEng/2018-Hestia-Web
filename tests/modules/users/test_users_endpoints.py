@@ -1,14 +1,9 @@
 """
 Test user endpoints.
 """
-import pytest
-from tests.conftest import (DB)
-
-from app.modules.users.schemas import (UserSchema)
-from app.modules.users.models import (UserModel)
 
 def test_post_users(flask_app_authenticated_client):
-    """ test that it is possible to access all of the user endpoints """
+    """ Testing that posting a user functions. """
     http_method = 'post'
     http_path = '/users/'
 
@@ -17,7 +12,7 @@ def test_post_users(flask_app_authenticated_client):
     assert response.status_code == 200
 
 def test_delete_users(flask_app_authenticated_client_in_DB):
-    """ test that it is possible to access all of the user endpoints """
+    """ Test that deleting a user functions. """
     http_method = 'delete'
     http_path = '/users/'
 
@@ -25,7 +20,7 @@ def test_delete_users(flask_app_authenticated_client_in_DB):
     assert response.status_code == 204
 
 def test_delete_non_existant_user(flask_app_authenticated_client):
-    """ test that it is possible to access all of the user endpoints """
+    """ Test that deleting a non existant user results in a 404 """
     http_method = 'delete'
     http_path = '/users/'
 

@@ -71,6 +71,7 @@ class Servers(Resource):
         """
 
         payload = NAMESPACE.apis[0].payload
+        print(payload)
         payload['user_id'] = AUTHENTICATOR.get_user_id()
         posted_server = ServerSchema(
             only=('user_id',
