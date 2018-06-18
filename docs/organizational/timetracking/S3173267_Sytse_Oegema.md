@@ -45,6 +45,22 @@
 | *14/05/2018* | 13:00-18:00| Figuring out the Gulp build for the semantic ui theme css. |
 | *15/05/2018* | 08:00-09:30| Reconfigured the add device modal in a more logical way. Also looked into the functionallity that still needed to be added to the frontend. |
 | *15/05/2018* | 13:00-18:00| Added the functionality that was still missing. Only the PUT methods do not have a GUI implementation yet. Also the DELETE a device is still bugging. |
+| *21/05/2018* | 14:00-18:00| Worked on the login redirection. Now a user gets redirected to a login page, when his authentication token is expired. |
+| *22/05/2018* | 11:00-18:00| Worked on the refactoring of the previous sprint. |
+| *23/05/2018* | 10:00-10:30| Merged all refactorings into the feature branches. |
+| *24/05/2018* | 11:00-13:00| Worked on device editting modal and interaction with the server. |
+| *25/05/2018* | 10:00-13:30| Configured the integration with the new dev server. Worked out the error resonse from the backend on deleting a device. And made the redirection to the login page working. Worked on this together with Troy. |
+| *26/05/2018* | 18:00-22:30| Finished all the put functionality. Started with the presets. Only GET. |
+| *27/05/2018* | 19:00-22:00| Finsihed all the preset functionality and GUI. |
+| *28/05/2018* | 08:00-11:00| Final touch on the preset GUI. Setup the cypress framework Elias found. |
+| *28/05/2018* | 16:00-20:00| Made the ping functionality so that the GUI displays a message when the server is not responding. |
+| *29/05/2018* | 19:30-20:30| Refactoring some of the work of Nik and some final changes. |
+| *05/06/2018* | 12:00-14:00| Preparing the presentation. |
+| *11/06/2018* | 08:30-09:30| Final changes to the frontend. Preset auto reload and readme instruction for deploying the frontend. |
+
+
+
+
 
 
 

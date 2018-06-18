@@ -18,4 +18,7 @@
 | *14/05/2018* | 13:30-17:00 | Created a new plan for the front-end to be finished for the hallway testing. |
 | *15/05/2018* | 13:00-18:00 | Adapted development front-end to new design and functionality in preparation for the hallway testing. |
 | *15/05/2018* | 20:00-21:15 | Further work on new front-end. |
-| *16/05/2018* | 5:10-8:15| Tweaking front-end to be ready for hallway testing. |
+| *16/05/2018* | 5:10-8:15 | Tweaking front-end to be ready for hallway testing. |
+| *22/05/2018* | 13:15-17:30 | Working on the login page/redirect (mostly troubleshooting button functionality across components). |
+| *29/05/2018* | 12:15-17:00 | Attempted with Elias to implement Cypress tests with the VUE framework. |
+| *12/06/2018* | 13:00-16:50 | Finalizing documentation and resolving previous sprint issues. |
